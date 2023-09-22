@@ -1,0 +1,5 @@
+package com.movie.aop;
+
+public class LoggingAdvice {
+
+}

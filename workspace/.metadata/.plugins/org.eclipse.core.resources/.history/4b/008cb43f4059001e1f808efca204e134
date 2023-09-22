@@ -1,0 +1,54 @@
+package com.movie.mapper;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.movie.domain.dto.MovieDTO;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+public class MovieMapperTests {
+	
+	@Autowired
+	public MovieMapper movieMapper;
+	
+//	//조회테스트
+//	@Test
+//	public void selectTest() {
+//		
+//		MovieDTO movieDTO = movieMapper.select(1);
+//		System.out.println("조회 정보 : " + movieDTO);
+//	}
+//	
+//	//영화등록테스트
+//	@Test
+//	public void insertTest() {
+//		
+//		MovieDTO movie = new MovieDTO();
+//		
+//		movie.setMovieName("테스트네임");
+//		movie.setMovieTime("테스트시간");
+//		movie.setMovieInfo("테스트인포");
+//		movie.setMovieType("테스트액션");
+//		movie.setMovieDic("테스트 감독");
+//		movie.setMovieAct("테스트배우");
+//		movie.setMovieRelease("테스트개봉날짜");
+//		
+//		movieMapper.insert(movie);
+//	}
+	
+	@Test
+	public void selectTest() {
+		
+		int movieId = 60;
+		
+		MovieDTO result = movieMapper.select(movieId);
+		
+		System.out.println("조회 정보 : " + result);
+		
+	}
+
+}

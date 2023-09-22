@@ -1,0 +1,10 @@
+com\movie\controller\HomeController.class
+com\movie\domain\service\TestService.class
+com\movie\config\MybatisConfig.class
+com\movie\domain\dto\TestDTO.class
+com\movie\config\WebMvcConfig.class
+com\movie\domain\service\TestServiceImpl.class
+com\movie\config\TxConfig.class
+com\movie\domain\mapper\TestMapper.class
+com\movie\controller\TestController.class
+com\movie\config\DataSourceConfig.class

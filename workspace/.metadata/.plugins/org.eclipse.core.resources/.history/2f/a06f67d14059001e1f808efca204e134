@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.movie.mapper.MovieMapper">
+  
+  <!-- 영화단건조회  -->
+  <select id="select" resultType="com.movie.domain.dto.MovieDTO">
+  		SELECT M_ID, M_NAME, M_TIME, M_INFO, M_TYPE, M_ACT, M_DIC, M_RELEASE
+  		FROM tbl_movie
+  		WHERE M_ID = #{movieId}
+  </select>
+  <!-- 영화등록  -->
+  <insert id="insert">
+  		INSERT INTO TBL_MOVIE
+  		(M_ID, M_NAME, M_TIME, M_INFO, M_TYPE, M_ACT, M_DIC, M_RELEASE)
+  		VALUES(#{movieId}, #{movieName}, #{movieTime}, #{movieInfo}, #{movieType}, #{movieAct}, #{movieDic}, #{movieRelease});
+  </insert>
+  
+  </mapper>
