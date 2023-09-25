@@ -1,5 +1,5 @@
-package com.movie.service;
-
-public interface TestService {
-
-}
+//package com.movie.service;
+//
+//public interface TestService {
+//
+//}
