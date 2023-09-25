@@ -20,27 +20,25 @@ public class MovieMapperTests {
 	@Autowired
 	public MovieMapper movieMapper;
 	
-//	//Á¶È¸Å×½ºÆ®
+//	//ì˜í™”ì¡°íšŒ
 //	@Test
 //	public void selectTest() {
 //		
 //		MovieDTO movieDTO = movieMapper.select(1);
-//		System.out.println("Á¶È¸ Á¤º¸ : " + movieDTO);
+//		System.out.println("ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½ : " + movieDTO);
 //	}
 //	
-//	//¿µÈ­µî·ÏÅ×½ºÆ®
+	//ì˜í™”ì¶”ê°€
 //	@Test
 //	public void insertTest() {
 //		
 //		MovieDTO movie = new MovieDTO();
 //		
-//		movie.setMovieName("Å×½ºÆ®³×ÀÓ");
-//		movie.setMovieTime("Å×½ºÆ®½Ã°£");
-//		movie.setMovieInfo("Å×½ºÆ®ÀÎÆ÷");
-//		movie.setMovieType("Å×½ºÆ®¾×¼Ç");
-//		movie.setMovieDic("Å×½ºÆ® °¨µ¶");
-//		movie.setMovieAct("Å×½ºÆ®¹è¿ì");
-//		movie.setMovieRelease("Å×½ºÆ®°³ºÀ³¯Â¥");
+//		movie.setMovieName("í…ŒìŠ¤íŠ¸ì œëª©");
+//		movie.setMovieInfo("í…ŒìŠ¤íŠ¸ì¸í¬");
+//		movie.setMovieRating("7");
+//		movie.setMovieType("í…ŒìŠ¤íŠ¸íƒ€ì…");
+//		movie.setMovieRelease("í…ŒìŠ¤íŠ¸ë¦´ë¦¬ì¦ˆ");
 //		
 //		movieMapper.insert(movie);
 //	}
@@ -48,7 +46,7 @@ public class MovieMapperTests {
 	@Test
 	public void selectTest() {
 		
-		int movieId = 26;
+		int movieId = 27;
 		
 		MovieDTO result = movieMapper.select(movieId);
 		System.out.println("==============================");
@@ -57,5 +55,12 @@ public class MovieMapperTests {
 		
 		
 	}
+//	
+//	@Test
+//	public void deleteTest() {
+//		
+//		
+//		movieMapper.delete(62);
+//	}
 
 }

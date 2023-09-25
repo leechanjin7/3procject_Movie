@@ -32,7 +32,9 @@
 	</bean>
 
 
-	<mybatis-spring:scan
-		base-package="com.movie.mapper" />
+	<mybatis-spring:scan base-package="com.movie.mapper" />
+	<context:component-scan base-package="com.movie.model"></context:component-scan>
+    <context:component-scan base-package="com.movie.service"></context:component-scan>
+    <context:component-scan base-package="com.movie.task"></context:component-scan>
 
 </beans>

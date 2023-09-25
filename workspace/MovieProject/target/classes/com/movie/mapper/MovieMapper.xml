@@ -6,15 +6,21 @@
   
   <!-- 영화단건조회  -->
   <select id="select" resultType="com.movie.domain.dto.MovieDTO">
-  		SELECT M_ID, M_NAME, M_TIME, M_INFO, M_TYPE, M_ACT, M_DIC, M_RELEASE
+  		SELECT M_ID, M_NAME, M_RELEASE, M_RATING, M_TYPE, M_INFO
   		FROM tbl_movie
   		WHERE M_ID = #{movieId}
   </select>
   <!-- 영화등록  -->
   <insert id="insert">
   		INSERT INTO tbl_movie
-  		(M_ID, M_NAME, M_TIME, M_INFO, M_TYPE, M_ACT, M_DIC, M_RELEASE)
-  		VALUES(#{movieId}, #{movieName}, #{movieTime}, #{movieInfo}, #{movieType}, #{movieAct}, #{movieDic}, #{movieRelease});
+  		(M_ID, M_NAME, M_RELEASE, M_RATING, M_TYPE, M_INFO)
+  		VALUES(#{movieId}, #{movieName}, #{movieRelease}, #{movieRating}, #{movieType}, #{movieInfo});
   </insert>
+  
+  <update id="delete">
+  		DELETE FROM TBL_MOVIE
+  		WHERE M_ID = #{movieId}
+  
+  </update>
   
   </mapper>

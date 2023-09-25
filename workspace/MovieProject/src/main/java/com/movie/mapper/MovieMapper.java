@@ -6,19 +6,19 @@ import com.movie.domain.dto.MovieDTO;
 
 public interface MovieMapper {
 	
-	//¿µÈ­ °Ë»ö(´Ü°Ç)
+	//ì˜í™”ì¡°íšŒ(ë‹¨ê±´)
 	public MovieDTO select(int movieId);
 	
-	//¿µÈ­ °Ë»ö(ÀüÃ¼ ¸®½ºÆ®)
+	//ì˜í™”ì¡°íšŒ(ì „ì²´)
 	public List<MovieDTO> selectAll();
 	
-	//¿µÈ­ Ãß°¡
+	//ì˜í™”ì¶”ê°€
 	public void insert(MovieDTO movieDTO);
 	
-	//¿µÈ­ ¼öÁ¤
+	//ì˜í™”ìˆ˜ì •
 	public void update(MovieDTO movieDTO);
 	
-	//¿µÈ­ »èÁ¦
+	//ì˜í™”ì‚­ì œ
 	public void delete(int movieId);
 
 }
