@@ -38,12 +38,12 @@
 
 ## ▶️ IDE 종류
 
-##### IntelliJ IDEA 2023-06
+##### STS-3.9.18 RELEASE 
 <br/>
 
 ## ▶️ Software 목록
 
-##### IDE : IntelliJ IDEA 버전명
+##### IDE : STS-3.9.18 RELEASE
 ##### SpringBoot 2.7.15
 ##### maven version 3.1.2
 ##### Git 3.1.1
