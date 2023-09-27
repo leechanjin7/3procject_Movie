@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MemberMapper">
+    <!-- 회원가입 -->
+    <insert id="memberJoin">
+        INSERT INTO TBL_MEMBER
+        VALUES (#{userId}, #{userPw}, #{userName}, #{userAddr1}, #{userAddr2}, #{userAddr3}, #{userPhone}, 0 )
+
+    </insert>
+
+    <!-- 아이디 중복검사 -->
+    <select id="idCheck" resultType="int">
+        SELECT COUNT(*) FROM TBL_MEMBER WHERE USERID = #{userId}
+    </select>
+
+    <!-- 로그인 -->
+    <select id="memberLogin" resultType="com.example.demo.domain.dto.MemberDTO">
+        SELECT USERID, USERNAME, USERROLE FROM TBL_MEMBER WHERE USERID = #{userId} and USERPW = #{userPw}
+    </select>
+</mapper>
