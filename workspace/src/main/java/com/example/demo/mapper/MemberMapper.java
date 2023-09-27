@@ -10,11 +10,12 @@ public interface MemberMapper {
     public void memberJoin(MemberDTO memberDTO);
 
     //아이디 중복검사
-    public String idCheck(String memberId);
+    public int idCheck(String userId);
 
     //로그인
     public MemberDTO memberLogin(MemberDTO memberDTO);
 
+    public MemberDTO getMember(String userId);
 
 
 }

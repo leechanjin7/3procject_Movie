@@ -26,7 +26,7 @@
 <h1>MAIN</h1>
 <hr />
 <c:if test="${empty ROLE}">
-	<a href="${pageContext.request.contextPath}/login.do"  >LOGIN</a><br/>
+	<a href="${pageContext.request.contextPath}/login.do">LOGIN</a><br/>
 	<a href="${pageContext.request.contextPath}/join.do">회원가입</a>
 </c:if>
 <c:if test="${not empty ROLE}">
@@ -34,91 +34,88 @@
 </c:if> --%>
 
 <body>
-    <header>
-        <div id="header_section" class="header">
-            <h1 class="logo">
-                <a href="${pageContext.request.contextPath}/main.do"></a>
-            </h1>
-            <div class="gnb">
-                <ul class="menu1">
-                    <li><a href=""><img src="/resources/image/페이스북.png" alt="페이스북로고"></a></li>
-                    <li><a href="" style="width:35px"><img src="/resources/image/유튜브-removebg-preview.png" alt="유튜브로고"></a></li>
-                    <li><a href=""><img src="/resources/image/인스타그램.png" alt="인스타그램로고"></a></li>
-                </ul>
-                <ul class="menu2">
-                    <li><a href="">멤버십</a></li>
-                    <li><a href="">고객센터</a></li>
-                    <li><a href="">단체관람/대관문의</a></li>
-                    <li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
-                </ul>
-                <ul class="menu3">
-                    <li><a href="${pageContext.request.contextPath}/member/join.do">회원가입</a></li>
-                    <li><a href="">바로예매</a></li>
-                    <li><a href=""><img src="/resources/image/햄버거버튼.png"></a></li>
-                </ul>
-                <div class="nav">
-                    <ul class="submenu">
-                        <li>
-                            <a href="">예매</a>
-                            <ul class="submenu1">
-                                <li><a href="">예매하기</a></li>
-                                <li><a href="">상영시간표</a></li>
-                                <li><a href="">할인안내</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">영화</a>
-                            <ul class="submenu2">
-                                <li><a href="">홈</a></li>
-                                <li><a href="">현재상영작</a></li>
-                                <li><a href="">상영예정작</a></li>
-                                <li><a href="">아르떼</a></li>
-                                <li><a href="">국립극장</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">영화관</a>
-                            <ul class=submenu3>
-                                <li><a href="">스페셜관</a></li>
-                                <li><a href="">서울</a></li>
-                                <li><a href="">경기/인천</a></li>
-                                <li><a href="">충청/대전</a></li>
-                                <li><a href="">전라/광주</a></li>
-                                <li><a href="">경상/대구</a></li>
-                                <li><a href="">경상/부산/울산</a></li>
-                                <li><a href="">강원</a></li>
-                                <li><a href="">제주</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">이벤트</a>
-                            <ul class="submenu4">
-                                <li><a href="">홈</a></li>
-                                <li><a href="">영화</a></li>
-                                <li><a href="">시사회/무대인사</a></li>
-                                <li><a href="">HOT</a></li>
-                                <li><a href="">제휴할인</a></li>
-                                <li><a href="">우리동네영화관</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">스토어</a>
-                            <ul class="submenu5">
-                                <li><a href="">베스트</a></li>
-                                <li><a href="">관람권</a></li>
-                                <li><a href="">스낵음료</a></li>
-                                <li><a href="">포토카드</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href=""></a>
-                            <ul></ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
+   <header>
+		<div id="header_section" class="header">
+			<h1 class="logo">
+				<a href="${pageContext.request.contextPath}/main"></a>
+			</h1>
+			<div class="gnb">
+				<ul class="menu1">
+					<li><a href=""><img src="/resources/image/페이스북.png"
+							alt="페이스북로고"></a></li>
+					<li><a href="" style="width: 35px"><img
+							src="/resources/image/유튜브-removebg-preview.png" alt="유튜브로고"></a></li>
+					<li><a href=""><img src="/resources/image/인스타그램.png"
+							alt="인스타그램로고"></a></li>
+				</ul>
+				<ul class="menu2">
+					<li><a href="">멤버십</a></li>
+					<li><a href="">고객센터</a></li>
+					<li><a href="">단체관람/대관문의</a></li>
+					<c:if test="${member == null}">
+					    <li id="loginLink"><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+					</c:if>
+					<c:if test="${member != null}">
+					    <li id="logoutLink" style="display:none;"><a href="${pageContext.request.contextPath}/main" class="logout_btn">로그아웃</a></li>
+					</c:if>
+				</ul>
+				<ul class="menu3">
+					<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
+					<li><a href="">바로예매</a></li>
+					<li><a href=""><img src="/resources/image/햄버거버튼.png"></a></li>
+				</ul>
+				<div class="nav">
+					<ul class="submenu">
+						<li><a href="">예매</a>
+							<ul class="submenu1">
+								<li><a href="">예매하기</a></li>
+								<li><a href="">상영시간표</a></li>
+								<li><a href="">할인안내</a></li>
+							</ul></li>
+						<li><a href="">영화</a>
+							<ul class="submenu2">
+								<li><a href="">홈</a></li>
+								<li><a href="">현재상영작</a></li>
+								<li><a href="">상영예정작</a></li>
+								<li><a href="">아르떼</a></li>
+								<li><a href="">국립극장</a></li>
+							</ul></li>
+						<li><a href="">영화관</a>
+							<ul class=submenu3>
+								<li><a href="">스페셜관</a></li>
+								<li><a href="">서울</a></li>
+								<li><a href="">경기/인천</a></li>
+								<li><a href="">충청/대전</a></li>
+								<li><a href="">전라/광주</a></li>
+								<li><a href="">경상/대구</a></li>
+								<li><a href="">경상/부산/울산</a></li>
+								<li><a href="">강원</a></li>
+								<li><a href="">제주</a></li>
+							</ul></li>
+						<li><a href="">이벤트</a>
+							<ul class="submenu4">
+								<li><a href="">홈</a></li>
+								<li><a href="">영화</a></li>
+								<li><a href="">시사회/무대인사</a></li>
+								<li><a href="">HOT</a></li>
+								<li><a href="">제휴할인</a></li>
+								<li><a href="">우리동네영화관</a></li>
+							</ul></li>
+						<li><a href="">스토어</a>
+							<ul class="submenu5">
+								<li><a href="">베스트</a></li>
+								<li><a href="">관람권</a></li>
+								<li><a href="">스낵음료</a></li>
+								<li><a href="">포토카드</a></li>
+							</ul></li>
+						<li><a href=""></a>
+							<ul></ul></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+
     <main>
         <div class="subsection">
             <div class="sub1">
@@ -171,36 +168,7 @@
             <!-- 광고 닫는 버튼 -->
             <button class="banner_close"></button>
           </div>
-    <footer>
-        <div class="footer">
-            <div class="inner">
-                <span class="footerlogo">
-                    <img src="/resources/image/logo3.png" alt="">
-                </span>
-                <ul class="footermenu">
-                    <li><a href="#" >이용약관</a></li>
-                    <li><a href="#">개인정보처리방침</a></li>
-                    <li><a href="#">이메일무단수집거부</a></li>
-                    <li><a href="#">영상정보처리기기 운영 및 관리방침</a></li>
-                    <li><a href="#">L.POINT회원안내</a></li>
-                    <li><a href="#">배정기준</a></li>
-                    <li><a href="#">채용안내</a></li>
-                    <li><a href="#">광고/임대문의</a></li>
-                    <li><a href="#">기업정보</a></li>
-                    <li><a href="#">사회적책임</a></li>
-                </ul>
-                <div class="address">
-                    <span class="bar">서울특별시 송파구 올림픽로 300 롯데월드타워 27층</span>
-                    <span class="bar">고객센터 1544-8855 (유료)</span><br>
-                    <span class="bar">대표이사 3조</span>
-                    <span class="bar">사업자등록번호 111-11-11111</span>
-                    <span class="bar">통신판매없신고번호 제1111호</span>
-                    <span class="bar">개인정보보호책임자 4조</span>
-                </div>
-                <p class="copyright" style="font-size: 12px;">COPYRIGHT LOTTE CINEMA ALL RIGHT RESERVED.</p>
-            </div>
-        </div>
-    </footer>
+        <%@include file="includes/admin/footer.jsp"%>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- 제이쿼리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -254,6 +222,26 @@
       leftBanner.style.display = 'none';
       bannerCloseButton.style.display = 'none';
     });
+
+
+    //로그인 로그아웃 전환
+    $(document).ready(function){
+        var isLogin = false;
+
+        var loginLink = $("#loginLink");
+        var logoutLink = $("#logoutLink");
+
+        if(isLogin){
+            loginLink.hide();
+            logoutLink.show();
+        }else{
+             loginLink.show();
+             logoutLink.hide();
+        }
+    });
+
+
+
     </script>
 
 

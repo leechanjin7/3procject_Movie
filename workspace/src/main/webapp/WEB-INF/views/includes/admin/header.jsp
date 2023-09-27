@@ -4,7 +4,7 @@
     	<header>
 		<div id="header_section" class="header">
 			<h1 class="logo">
-				<a href="${pageContext.request.contextPath}/main.do"></a>
+				<a href="${pageContext.request.contextPath}/main"></a>
 			</h1>
 			<div class="gnb">
 				<ul class="menu1">
@@ -19,10 +19,11 @@
 					<li><a href="">멤버십</a></li>
 					<li><a href="">고객센터</a></li>
 					<li><a href="">단체관람/대관문의</a></li>
-					<li><a href="${pageContext.request.contextPath}/login.do">로그인</a></li>
+					<li id="loginLink"><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+					<li id="logoutLink" style="display:none;"><a href="${pageContext.request.contextPath}/main" class="logout_btn">로그아웃</a></li>
 				</ul>
 				<ul class="menu3">
-					<li><a href="${pageContext.request.contextPath}/join.do">회원가입</a></li>
+					<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 					<li><a href="">바로예매</a></li>
 					<li><a href=""><img src="/resources/image/햄버거버튼.png"></a></li>
 				</ul>

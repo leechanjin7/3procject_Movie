@@ -20,7 +20,7 @@ public class MemberMapperTests {
 
         MemberDTO memberDTO = new MemberDTO();
 
-        memberDTO.setUserId("test1");
+        memberDTO.setUserId("dddddd");
         memberDTO.setUserPw("test1");
         memberDTO.setUserName("test1");
         memberDTO.setUserAddr1("test1");

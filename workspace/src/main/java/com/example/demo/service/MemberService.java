@@ -19,8 +19,8 @@ public class MemberService {
     }
 
     //아이디 중복 조회
-    public String idCheck(String memberId) {
-        return memberMapper.idCheck(memberId);
+    public int idCheck(String userId) {
+        return memberMapper.idCheck(userId);
     }
 
     //로그인

@@ -51,7 +51,7 @@
                             <label for="checksavedid">아이디 저장</label>
                           </div>
                           <div class="login-menu">
-                            <a href="<%= request.getContextPath() %>/member/join">회원가입</a>
+                            <a href="${pageContext.request.contextPath}/member/join">회원가입</a>
                             <a href="#">아이디 찾기</a>
                             <a href="#">비밀번호 찾기</a>
                           </div>

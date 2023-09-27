@@ -25,4 +25,17 @@ public class MemberServiceTests {
         memberService.memberLogin(memberDTO);
         log.info("결과 값 : " + memberService.memberLogin(memberDTO));
     }
+
+    //아이디 중복검사
+    @Test
+    public void idCheck(){
+
+        String id = "admin";
+        String id2 = "encoding0";
+        memberService.idCheck(id);
+        memberService.idCheck(id2);
+
+        log.info("결과 값 : " +memberService.idCheck(id) );
+        log.info("결과 값 : " +memberService.idCheck(id2) );
+    }
 }

@@ -20,7 +20,7 @@
 	<%@include file="../includes/admin/header.jsp"%>
 
 <div class="wrapper">
-	<form id="join_form" method="post">
+	<form id="join_form" method="post" action="/member/join">
 	<div class="wrap">
 			<div class="subjecet">
 				<span>회원가입</span>
@@ -101,11 +101,13 @@
 
 	<%@include file="../includes/admin/footer.jsp"%>
 
+
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 
+
 	var code = "";					//이메일전송 인증번호 저장위한 코드
-	
+
 	/* 유효성 검사 통과유무 변수 */
 	 var idCheck = false;            // 아이디
 	 var idckCheck = false;            // 아이디 중복 검사
@@ -121,7 +123,7 @@
 		//회원가입 버튼(회원가입 기능 작동)
 		$(".join_button").click(function(){
 
-			
+
 	        /* 입력값 변수 */
 	        var id = $('.id_input').val();                 // id 입력란
 	        var pw = $('.pw_input').val();                // 비밀번호 입력란
@@ -129,7 +131,7 @@
 	        var name = $('.user_input').val();            // 이름 입력란
 	        var phone = $('.phone_input').val();            // phone 입력란
 	        var addr = $('.address_input_3').val();        // 주소 입력란
-	        
+
 	        /* 아이디 유효성검사 */
 	        if(id == ""){
 	            $('.final_id_ck').css('display','block');
@@ -138,7 +140,7 @@
 	            $('.final_id_ck').css('display', 'none');
 	            idCheck = true;
 	        }
-	        
+
 	        /* 비밀번호 유효성 검사 */
 	        if(pw == ""){
 	            $('.final_pw_ck').css('display','block');
@@ -147,7 +149,7 @@
 	            $('.final_pw_ck').css('display', 'none');
 	            pwCheck = true;
 	        }
-	        
+
 	        /* 비밀번호 확인 유효성 검사 */
 	        if(pwck == ""){
 	            $('.final_pwck_ck').css('display','block');
@@ -156,7 +158,7 @@
 	            $('.final_pwck_ck').css('display', 'none');
 	            pwckCheck = true;
 	        }
-	        
+
 	        /* 이름 유효성 검사 */
 	        if(name == ""){
 	            $('.final_name_ck').css('display','block');
@@ -165,7 +167,7 @@
 	            $('.final_name_ck').css('display', 'none');
 	            nameCheck = true;
 	        }
-	        
+
 	        /* phone 유효성 검사 */
 	        if(phone == ""){
 	            $('.final_phone_ck').css('display','block');
@@ -174,7 +176,7 @@
 	            $('.final_phone_ck').css('display', 'none');
 	            phoneCheck = true;
 	        }
-	        
+
 	        /* 주소 유효성 검사 */
 	        if(addr == ""){
 	            $('.final_addr_ck').css('display','block');
@@ -183,26 +185,27 @@
 	            $('.final_addr_ck').css('display', 'none');
 	            addressCheck = true;
 	        }
-	        
+
 	        /* 최종 유효성 검사 */
-	        if(idCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&phoneCheck&&addressCheck ){
-	 
-				$("#join_form").attr("action", "/member/join");
+	        if(idCheck&&idckCheck&&pwCheck&&pwckCheck&&pwckcorCheck&&nameCheck&&phoneCheck&&addressCheck ){
+
+				//$("#join_form").attr("action", "/member/join");
+				//$("#join_form").attr("method", "post");
 				$("#join_form").submit();
 	        }
 	        return false;
-	   
+
 		});
 	});
-	
+
 	//아이디 중복검사
 	$('.id_input').on("propertychange change keyup paste input", function(){
 
 		//console.log("keyup 테스트");
-		
+
 		var memberId = $('.id_input').val();			// .id_input에 입력되는 값
 		var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
-		
+
 		$.ajax({
 			type : "post",
 			url : "/member/memberIdChk",
@@ -215,23 +218,23 @@
 					idckCheck = true;
 				} else {
 					$('.id_input_re_2').css("display","inline-block");
-					$('.id_input_re_1').css("display", "none");	
+					$('.id_input_re_1').css("display", "none");
 					idckCheck = false;
 				}
-				
+
 			}// success 종료
 		}); // ajax 종료
 
 	});// function 종료
-	
+
 	/* 비밀번호 확인 일치 유효성 검사 */
-	 
+
 	$('.pwck_input').on("propertychange change keyup paste input", function(){
-		
+
 	    var pw = $('.pw_input').val();
 	    var pwck = $('.pwck_input').val();
 	    $('.final_pwck_ck').css('display', 'none');
-	    
+
 	    if(pw == pwck){
 	        $('.pwck_input_re_1').css('display','block');
 	        $('.pwck_input_re_2').css('display','none');
@@ -241,10 +244,11 @@
 	        $('.pwck_input_re_2').css('display','block');
 	        pwckcorCheck = false;
 	    }
-	        
-	    
+
+
 	});
-	
+
+
 	
 	
 	/* 다음 주소 연동 */
@@ -303,6 +307,10 @@
 	    }).open(); 
 	    
 	}
+
+
+
+
 	
 
 	

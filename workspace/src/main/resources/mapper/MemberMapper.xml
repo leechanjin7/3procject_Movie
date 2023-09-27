@@ -17,4 +17,8 @@
     <select id="memberLogin" resultType="com.example.demo.domain.dto.MemberDTO">
         SELECT USERID, USERNAME, USERROLE FROM TBL_MEMBER WHERE USERID = #{userId} and USERPW = #{userPw}
     </select>
+    <select id="getMember" resultType="com.example.demo.domain.dto.MemberDTO">
+        SELECT * FROM TBL_MEMBER WHERE USERID = #{userId}
+    </select>
+
 </mapper>
