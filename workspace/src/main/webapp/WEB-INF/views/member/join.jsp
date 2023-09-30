@@ -115,7 +115,7 @@
 	 var pwckCheck = false;            // 비번 확인
 	 var pwckcorCheck = false;        // 비번 확인 일치 확인
 	 var nameCheck = false;            // 이름
-	 var phoneCheck = false;            // 이메일
+	 var phoneCheck = false;            // 휴대폰번호
 	 var addressCheck = false         // 주소
 
 
@@ -203,8 +203,8 @@
 
 		//console.log("keyup 테스트");
 
-		var memberId = $('.id_input').val();			// .id_input에 입력되는 값
-		var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
+		var userId = $('.id_input').val();			// .id_input에 입력되는 값
+		var data = {userId : userId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
 
 		$.ajax({
 			type : "post",
@@ -212,7 +212,7 @@
 			data : data,
 			success : function(result){
 				 //console.log("성공 여부" + result);
-				if(result != 'fail'){
+				if(result != "fail"){
 					$('.id_input_re_1').css("display","inline-block");
 					$('.id_input_re_2').css("display", "none");
 					idckCheck = true;

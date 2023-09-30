@@ -67,7 +67,7 @@ public class MemberController {
 
 		int result = memberService.idCheck(userId);
 
-        log.info("결과값 : " + result);
+//        log.info("결과값 : " + result);
 
         if(result != 0 ){
             return "fail";  //중복아이디 존재
