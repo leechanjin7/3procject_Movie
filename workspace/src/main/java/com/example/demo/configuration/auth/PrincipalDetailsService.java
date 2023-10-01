@@ -25,7 +25,8 @@ public class PrincipalDetailsService implements UserDetailsService {
 		MemberDTO dto =  memberMapper.getMember(username);
 
 		if(dto==null)
-			return null;
+			throw new UsernameNotFoundException("Could not find user");
+
 		return new PrincipalDetails(dto);
 	}
 

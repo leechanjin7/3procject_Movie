@@ -28,6 +28,10 @@ public class MemberService {
         return memberMapper.memberLogin(memberDTO);
     }
 
+    public MemberDTO findByUserId(String userid){
+        return memberMapper.findByUserId(userid);
+    }
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.demo.configuration;
 
+import com.example.demo.configuration.auth.CustomAuthenticationSuccessHandler;
 import com.example.demo.configuration.auth.PrincipalDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +27,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private PrincipalDetailsService principalDetailsService;
 
+    @Autowired
+    private CustomAuthenticationSuccessHandler successHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
 
@@ -41,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .formLogin()
                     .loginPage("/member/login")
+                    .successHandler(successHandler)
                     .defaultSuccessUrl("/main")
                     .permitAll()
                 .and()

@@ -24,7 +24,7 @@ public class MemberDTO {
     //  상세 주소
     private String userAddr3;
     //	회원 전화번호
-    private String userPhone;
+    private int userPhone;
     //	회원, 관리자(0,1)
     private int userRole;
 

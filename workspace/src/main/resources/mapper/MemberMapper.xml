@@ -15,7 +15,13 @@
 
     <!-- 로그인 -->
     <select id="memberLogin" resultType="com.example.demo.domain.dto.MemberDTO">
-        SELECT USERID, USERNAME, USERROLE FROM TBL_MEMBER WHERE USERID = #{userId} and USERPW = #{userPw}
+        SELECT USERID as userId, USERNAME as userName, USERROLE as userRole
+        FROM TBL_MEMBER WHERE USERID = #{userId} and USERPW = #{userPw}
+    </select>
+
+    <select id="findByUserId" resultType="com.example.demo.domain.dto.MemberDTO">
+        SELECT USERID as userId, USERPW as userPw, USERNAME as userName, USERROLE as userRole
+        FROM TBL_MEMBER WHERE USERID = #{userId}
     </select>
 
     <select id="getMember" resultType="com.example.demo.domain.dto.MemberDTO">

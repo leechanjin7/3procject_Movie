@@ -5,6 +5,8 @@ import com.example.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Collections;
 
 @Controller
 @RequestMapping("/member")
@@ -79,24 +82,30 @@ public class MemberController {
 
     //로그인 실행 컨트롤러
     @PostMapping("/login")
-    public String POSTLogin(@RequestParam String userId, @RequestParam String userPw, HttpSession httpSession, RedirectAttributes redirectAttributes){
+    public String loginPOST(HttpServletRequest request, MemberDTO memberDTO, RedirectAttributes rttr) throws Exception{
 
-        MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setUserId(userId);
+//        System.out.println("login 메서드 진입");
+//        System.out.println("전달된 데이터 : " + member);
 
+        HttpSession session = request.getSession();
         MemberDTO member = memberService.memberLogin(memberDTO);
 
-        if(member != null && passwordEncoder.matches(userPw, member.getUserPw())){
-            //로그인 성공
-            httpSession.setAttribute("member", member);
-            return "redirect:/main";
-        }else {
-            //로그인 실패
-            redirectAttributes.addFlashAttribute("error", "아이디 또는 비밀번호가 올바르지 않습니다..");
+
+        if(member == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
+
+            int result = 0;
+            rttr.addFlashAttribute("result", result);
             return "redirect:/member/login";
+
         }
 
+        session.setAttribute("member", member);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+
+        return "redirect:/main";
+
     }
+
+
 
     //로그아웃
     @GetMapping("/logout")

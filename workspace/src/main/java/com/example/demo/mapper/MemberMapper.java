@@ -15,6 +15,8 @@ public interface MemberMapper {
     //로그인
     public MemberDTO memberLogin(MemberDTO memberDTO);
 
+    public MemberDTO findByUserId(String userid);
+
     public MemberDTO getMember(String userId);
 
 

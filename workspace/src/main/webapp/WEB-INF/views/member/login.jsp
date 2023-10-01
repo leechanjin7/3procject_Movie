@@ -269,7 +269,8 @@
                 $.ajax({
                     type : "post",
                     url : "/member/login",
-                    data : loginData,
+                    data : JSON.stringify(loginData),
+                    contentType : "application/json",
                     success : function(response){
 
                         if(response.success){

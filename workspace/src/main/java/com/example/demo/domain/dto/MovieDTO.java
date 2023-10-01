@@ -14,7 +14,7 @@ public class MovieDTO {
     private int movieId;
     private String movieName;
     private String movieRelease;
-    private String movieRating;
+    private int movieRating;
     private String movieType;
     private String movieInfo;
 
