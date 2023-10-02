@@ -28,9 +28,16 @@ public class MemberService {
         return memberMapper.memberLogin(memberDTO);
     }
 
+    //로그인
     public MemberDTO findByUserId(String userid){
         return memberMapper.findByUserId(userid);
     }
+
+    public MemberDTO getMember(String userId){
+        return memberMapper.getMember(userId);
+    }
+
+
 
 
 

@@ -45,8 +45,8 @@ public class MemberServiceTests {
 
     @Test
     public void memberLoginTest() {
-        String userId = "admin";
-        String rawPassword = "admin";
+        String userId = "test1";
+        String rawPassword = "1234";
 
         // DB에서 사용자 ID에 해당하는 회원 정보를 조회합니다.
         MemberDTO member = memberService.findByUserId(userId);

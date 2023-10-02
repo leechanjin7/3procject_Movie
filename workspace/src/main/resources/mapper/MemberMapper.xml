@@ -20,7 +20,7 @@
     </select>
 
     <select id="findByUserId" resultType="com.example.demo.domain.dto.MemberDTO">
-        SELECT USERID as userId, USERPW as userPw, USERNAME as userName, USERROLE as userRole
+        SELECT USERID, USERPW, USERNAME, USERROLE
         FROM TBL_MEMBER WHERE USERID = #{userId}
     </select>
 
