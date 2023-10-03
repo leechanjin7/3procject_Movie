@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -21,17 +21,6 @@
         }
     </style>
 </head>
-<body>
-<%--
-<h1>MAIN</h1>
-<hr />
-<c:if test="${empty ROLE}">
-	<a href="${pageContext.request.contextPath}/login.do">LOGIN</a><br/>
-	<a href="${pageContext.request.contextPath}/join.do">회원가입</a>
-</c:if>
-<c:if test="${not empty ROLE}">
-	<a href="${pageContext.request.contextPath}/logout.do" > >LOGOUT</a><br/>
-</c:if> --%>
 
 <body>
    <header>
@@ -49,14 +38,21 @@
 							alt="인스타그램로고"></a></li>
 				</ul>
 				<ul class="menu2">
-					<li><a href="">멤버십</a></li>
-					<li><a href="">고객센터</a></li>
-					<li><a href="">단체관람/대관문의</a></li>
-					<c:if test="${member == null}">
+                    <!-- 로그인 하지 않았을 때 -->
+                    <li><c:if test="${empty userRole}"><a href="">멤버십</a></li></c:if>
+                    <li><c:if test="${empty userRole}"><a href="">고객센터</a></li></c:if>
+                    <li><c:if test="${empty userRole}"><a href="">단체관람/대관문의</a></li></c:if>
+
+                    <!-- 로그인 했을 때 -->
+                    <li><c:if test="${userRole == 1}"><a href="">관리자 페이지</a></li></c:if>
+                    <li><c:if test="${not empty userRole and userRole != 1}"><a href="">멤버십</a></li></c:if>
+                    <li><c:if test="${not empty userRole and userRole != 1}"><a href="">고객센터</a></li></c:if>
+                    <li><c:if test="${not empty userRole and userRole != 1}"><a href="">단체관람/대관문의</a></li></c:if>
+					<c:if test="${empty SPRING_SECURITY_CONTEXT}">
 					    <li id="loginLink"><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
 					</c:if>
-					<c:if test="${member != null}">
-					    <li id="logoutLink" style="display:none;"><a href="${pageContext.request.contextPath}/main" class="logout_btn">로그아웃</a></li>
+					<c:if test="${not empty SPRING_SECURITY_CONTEXT}">
+					    <li id="logoutLink"><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 					</c:if>
 				</ul>
 				<ul class="menu3">
@@ -168,7 +164,7 @@
             <!-- 광고 닫는 버튼 -->
             <button class="banner_close"></button>
           </div>
-        <%@include file="includes/admin/footer.jsp"%>
+        <%@include file="includes/footer.jsp"%>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <!-- 제이쿼리 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -224,21 +220,7 @@
     });
 
 
-    //로그인 로그아웃 전환
-    $(document).ready(function){
-        var isLogin = false;
 
-        var loginLink = $("#loginLink");
-        var logoutLink = $("#logoutLink");
-
-        if(isLogin){
-            loginLink.hide();
-            logoutLink.show();
-        }else{
-             loginLink.show();
-             logoutLink.hide();
-        }
-    });
 
 
 

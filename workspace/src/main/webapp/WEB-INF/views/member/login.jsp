@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
 </head>
 <body>
-	<%@include file="../includes/admin/header.jsp"%>
+	<%@include file="../includes/header.jsp"%>
         <!-- 로그인 -->
         <div class="login-contents">
           <div class="login-main">
@@ -36,12 +36,12 @@
                         <p class="tip">
                           로그인이 필요한 서비스입니다.
                         </p>
-                        <form id="login_form" action="/member/login" method="post">
+                        <form id="login_form" method="post">
                           <div class="login-area">
                             <input type="text" name="userId" id="userId" maxlength="30" placeholder="아이디를 입력해 주세요." required/>
                             <br/>
                             <input type="password" name="userPw" id="userPw" maxlength="20" placeholder="비밀번호를 입력해 주세요." required/>
-                            <button type="submit" class="login-btn">로그인</button>
+                            <button type="submit" class="login-btn" id="loginButton">로그인</button>
                           </div>
                         </form>
                         <div id="errorMessage" style="color: red;"></div>
@@ -113,7 +113,7 @@
       </div>
       <!-- 로그인 끝 -->
       
-		<%@include file="../includes/admin/footer.jsp"%>
+		<%@include file="../includes/footer.jsp"%>
     
 <!-- 자바 스크립트 -->
 <!-- 제이쿼리 -->
@@ -182,35 +182,6 @@ let imgName = ['RUBYGILLMAN_980180', 'Conan_980180', 'Metamorphosis_980180'];
 $('.bot_banner').children('a').children('img').attr('src', '/resources/image/' + imgName[bottomBanner] + '.jpg');
 
 
-//로그인 버튼 클릭 메서드
-$(document).ready(function(){
-
-    $("#loginButton").click(function() {
-
-        alert("로그인 버튼 작동");
-
-        var userId = $("#userId").val();
-        var userPw = $("#userPw").val();
-
-        $.ajax({
-            type:"POST",
-            url:"/member/login",
-            contentType : "application/json",
-            data: JSON.stringify({
-                userId : userId,
-                userPw : userPw
-            }),
-            success : function(response){
-                alert("로그인 성공!");
-                window.location.href = "/main";
-            },
-            error : function(xhr){
-                alert("로그인 실패 : " + xhr.responseText);
-            }
-        });
-
-    });
-});
 
 
 

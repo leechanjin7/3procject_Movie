@@ -17,7 +17,7 @@
 </head>
 <body>
 
-	<%@include file="../includes/admin/header.jsp"%>
+	<%@include file="../includes/header.jsp"%>
 
 <div class="wrapper">
 	<form id="join_form" method="post" action="/member/join">
@@ -99,7 +99,7 @@
 	</form>
 </div>
 
-	<%@include file="../includes/admin/footer.jsp"%>
+	<%@include file="../includes/footer.jsp"%>
 
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

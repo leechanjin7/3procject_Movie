@@ -81,63 +81,46 @@ public class MemberController {
         }
 	}
 
-
-    //로그인 실행 컨트롤러
-    @PostMapping("/login")
-    public String POSTLogin(@ModelAttribute("memberDTO") MemberDTO memberDTO, HttpSession session, Model model) {
-
-        // MemberService를 통해 로그인 시도
-        MemberDTO member = memberService.memberLogin(memberDTO);
-        System.out.println("멤버 : " + member);
-
-        // 아이디와 비밀번호 필드가 비어 있는지 확인
-        if (StringUtils.isBlank(memberDTO.getUserId()) || StringUtils.isBlank(memberDTO.getUserPw())) {
-            model.addAttribute("errorMessage", "로그인 실패: 아이디와 비밀번호를 입력하세요.");
-            return "/member/login";
-        }
-
-        // 회원정보가 존재하지 않거나 비밀번호 불일치시 실패 메시지 출력
-        if (member == null) {
-            System.out.println("로그인 실패: 존재하지 않는 사용자 ID");
-            model.addAttribute("errorMessage", "로그인 실패: 잘못된 사용자 ID입니다.");
-            return "/member/login";
-        }
-
-        // 사용자가 제출한 비밀번호를 암호화하여 비교
-        if (!passwordEncoder.matches(memberDTO.getUserPw(), member.getUserPw())) {
-            System.out.println("로그인실패임?");
-            model.addAttribute("errorMessage", "로그인 실패: 잘못된 비밀번호입니다.");
-            return "/member/login";
-        }
-
-        // 로그인 성공시, 세션에 회원 정보 저장
-        session.setAttribute("member", member);
-        System.out.printf("%s 님이 로그인하셨습니다.%n", member.getUserId());
-        return "redirect:/main";
-    }
-
-
-    //로그아웃
-    @GetMapping("/logout")
-    public String GETLogout(HttpServletRequest httpServletRequest){
-        log.info("로그아웃 메서드 진입");
-
-        HttpSession session = httpServletRequest.getSession();
-
-        session.invalidate();
-
-        return "redirect:/main";
-    }
-
-    //비동기 로그아웃
-    @PostMapping("/logout")
-    @ResponseBody
-    public void POSTLogout(HttpServletRequest httpServletRequest){
-        log.info("비동기 로그아웃 메서드 진입");
-
-        HttpSession session = httpServletRequest.getSession();
-
-        session.invalidate();
-    }
+//    @PostMapping("/login.do")
+//    public String POSTLogin(HttpServletRequest request, MemberDTO memberDTO, RedirectAttributes rttr) throws Exception{
+//
+//        HttpSession session = request.getSession();
+//        MemberDTO member = memberService.memberLogin(memberDTO);
+//
+//        if(member == null){
+//            int result = 0;
+//            rttr.addFlashAttribute("result", result);
+//            log.info("로그인 실패!");
+//            return "redirect:/member/login";
+//        }
+//        session.setAttribute("member", member);
+//        log.info("로그인 성공!");
+//        return "redirect:/main";
+//    }
+//
+//
+//
+//    //로그아웃
+//    @GetMapping("/logout")
+//    public String GETLogout(HttpServletRequest httpServletRequest){
+//        log.info("로그아웃 메서드 진입");
+//
+//        HttpSession session = httpServletRequest.getSession();
+//
+//        session.invalidate();
+//
+//        return "redirect:/main";
+//    }
+//
+//    //비동기 로그아웃
+//    @PostMapping("/logout")
+//    @ResponseBody
+//    public void POSTLogout(HttpServletRequest httpServletRequest){
+//        log.info("비동기 로그아웃 메서드 진입");
+//
+//        HttpSession session = httpServletRequest.getSession();
+//
+//        session.invalidate();
+//    }
 
 }

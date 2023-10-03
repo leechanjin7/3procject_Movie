@@ -1,5 +1,6 @@
 package com.example.demo.configuration;
 
+import com.example.demo.configuration.auth.CustomAuthenticationFailureHandler;
 import com.example.demo.configuration.auth.CustomAuthenticationSuccessHandler;
 import com.example.demo.configuration.auth.PrincipalDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+
 import javax.sql.DataSource;
 
 @Configuration
@@ -29,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomAuthenticationSuccessHandler successHandler;
+
+    @Autowired
+    private CustomAuthenticationFailureHandler failureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
@@ -46,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/member/login")
                     .loginProcessingUrl("/member/login")
                     .successHandler(successHandler)
+                    .failureHandler(failureHandler)
                     .usernameParameter("userId")
                     .passwordParameter("userPw")
                     .defaultSuccessUrl("/main")
@@ -54,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .logout()
                     .logoutUrl("/member/logout")
-                    .logoutSuccessUrl("/member/login")
+                    .logoutSuccessUrl("/main")
                     .permitAll();
 
         http.csrf().disable();

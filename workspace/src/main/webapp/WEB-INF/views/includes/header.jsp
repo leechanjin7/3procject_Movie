@@ -19,8 +19,12 @@
 					<li><a href="">멤버십</a></li>
 					<li><a href="">고객센터</a></li>
 					<li><a href="">단체관람/대관문의</a></li>
-					<li id="loginLink"><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
-					<li id="logoutLink" style="display:none;"><a href="${pageContext.request.contextPath}/main" class="logout_btn">로그아웃</a></li>
+					<c:if test="${empty SPRING_SECURITY_CONTEXT}">
+                    	<li id="loginLink"><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                    </c:if>
+                    <c:if test="${not empty SPRING_SECURITY_CONTEXT}">
+                    	<li id="logoutLink"><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+                    </c:if>
 				</ul>
 				<ul class="menu3">
 					<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
