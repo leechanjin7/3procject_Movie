@@ -14,6 +14,23 @@
         VALUES(#{movieId}, #{movieName}, #{movieRelease}, #{movieRating}, #{movieType}, #{movieInfo});
     </insert>
 
+    <!-- 영화 API 업데이트 -->
+    <insert id="movie_insert" parameterType="list">
+        INSERT INTO tbl_movie VALUES <foreach collection="list" item="item" separator=","> (#{item.movieId},#{item.movieName},#{item.movieRelease},#{item.movieRating},#{item.movieType},#{item.movieInfo})</foreach>
+        ON DUPLICATE KEY UPDATE
+        movieName = VALUES(movieName),
+        movieRelease = VALUES(movieRelease),
+        movieRating = VALUES(movieRating),
+        movieType = VALUES(movieType),
+        movieInfo = VALUES(movieInfo);
+    </insert>
+    <!-- 영화 API 이미지 업데이트 -->
+    <insert id="movie_image_insert" parameterType="list">
+        INSERT INTO tbl_image VALUES <foreach collection="list" item="item" separator=","> (#{item.img_id},#{item.img_link})</foreach>
+        ON DUPLICATE KEY UPDATE
+        img_link = VALUES(img_link)
+    </insert>
+
     <update id="delete">
         DELETE FROM TBL_MOVIE
         WHERE MOVIEID = #{movieId}
