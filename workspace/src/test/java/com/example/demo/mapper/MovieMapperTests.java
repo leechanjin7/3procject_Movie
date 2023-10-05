@@ -1,12 +1,14 @@
 package com.example.demo.mapper;
 
 import com.example.demo.domain.dto.MovieDTO;
+import com.example.demo.domain.paging.Criteria;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.CollectionUtils;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -61,6 +63,17 @@ public class MovieMapperTests {
 //
 //		movieMapper.delete(62);
 //	}
+
+	@Test
+	public void getListPagingTest(){
+		Criteria criteria = new Criteria();
+
+		criteria.setPageNum(2);
+
+		List list = movieMapper.getListPaging(criteria);
+
+		list.forEach(movie -> log.info("" + movie));
+	}
 
 }
 

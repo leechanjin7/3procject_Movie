@@ -21,7 +21,7 @@
                 <li sec:authorize="hasRole('ADMIN')"><a href="">관리자 페이지</a></li>
                 <li><a href="">멤버십</a></li>
                 <li><a href="">고객센터</a></li>
-                <li><a href="">단체관람/대관문의</a>-</li>
+                <li><a href="">단체관람/대관문의</a></li>
                 <div sec:authorize="isAnonymous()">
                     <li id="loginLink"><a th:href="@{/member/login}">로그인</a></li>
                 </div>

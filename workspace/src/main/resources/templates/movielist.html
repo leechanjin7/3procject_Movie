@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:c="" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script
+            src="https://code.jquery.com/jquery-3.4.1.js"
+            integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+            crossorigin="anonymous"></script>
+    <style>
+        a{
+            text-decoration : none;
+        }
+        table{
+           border-collapse: collapse;
+           width: 1000px;
+           margin-top : 20px;
+           text-align: center;
+        }
+        td, th{
+            border : 1px solid black;
+            height: 50px;
+        }
+        th{
+            font-size : 17px;
+        }
+        thead{
+            font-weight: 700;
+        }
+        .table_wrap{
+            margin : 50px 0 0 50px;
+        }
+        .movieId{
+            width: 10%;
+        }
+        .movieName{
+            width: 12%;
+        }
+        .movieRelease{
+            width: 15%;
+        }
+        .movieRating{
+            width: 10%;
+        }
+        .movieType{
+            width: 15%;
+        }
+        .movieInfo{
+            width: 90%;
+        }
+        .top_btn{
+            font-size: 20px;
+            padding: 6px 12px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            font-weight: 600;
+        }
+        .pageInfo{
+            list-style : none;
+            display: inline-block;
+            margin: 50px 0 0 100px;
+        }
+        .pageInfo li{
+            float: left;
+            font-size: 20px;
+            margin-left: 18px;
+            padding: 7px;
+            font-weight: 500;
+        }
+        a:link {color:black; text-decoration: none;}
+        a:visited {color:black; text-decoration: none;}
+        a:hover {color:black; text-decoration: underline;}
+        .active{
+            background-color: #cdd5ec;
+        }
+
+    </style>
+</head>
+<body>
+<h1>목록 페이지입니다.</h1>
+
+<div class="table_wrap">
+    <a href="" class="top_btn">영화 목록</a>
+    <table>
+        <thead>
+        <tr>
+            <th class="movieId">번호</th>
+            <th class="movieName">제목</th>
+            <th class="movieRelease">개봉일</th>
+            <th class="movieRating">별점</th>
+            <th class="movieType">장르</th>
+            <th class="movieInfo">줄거리</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each = "movie : ${list}">
+                <td th:text ="${movie.movieId}"></td>
+                <td th:text="${movie.movieName}"></td>
+                <td th:text ="${movie.movieRelease}"></td>
+                <td th:text ="${movie.movieRating}"></td>
+                <td th:text ="${movie.movieType}"></td>
+                <td th:text ="${movie.movieInfo}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class ="pageInfo_wrap">
+        <div class="pageInfo_area">
+            <ul id="pageInfo" class="pageInfo">
+                <!-- 이전페이지 버튼 -->
+                <li class="pageInfo_btn previous" th:if="${pageMaker.prev}">
+                    <a th:href="@{/movielist(pageNum=${pageMaker.startPage-1}, amount=${pageMaker.criteria.amount})}">Prev</a>
+                </li>
+
+                <!-- 페이지 번호 버튼 -->
+                <li th:each="num : ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}"
+                    class="pageInfo_btn" th:classappend="${num == pageMaker.criteria.pageNum} ? 'active' : ''">
+                    <a th:href="@{/movielist(pageNum=${num}, amount=${pageMaker.criteria.amount})}" th:text="${num}"></a>
+                </li>
+
+                <!-- 다음페이지 버튼 -->
+                <li class="pageInfo_btn next" th:if="${pageMaker.next}">
+                    <a th:href="@{/movielist(pageNum=${pageMaker.endPage + 1}, amount=${pageMaker.criteria.amount})}">Next</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <form id="moveForm" method="get">
+        <!-- pageNum 값을 숫자로 변환하여 대체 -->
+        <input type="hidden" name="pageNum" th:attr="value=${pageMaker.criteria.pageNum}">
+        <!-- amount 값을 숫자로 변환하여 대체 -->
+        <input type="hidden" name="amount" th:attr="value=${pageMaker.criteria.amount}">
+    </form>
+</div>
+
+<script>
+    $(document).ready(function(){
+        var moveForm = $("#moveForm");
+
+        $(".move").on("click", function(e){
+            e.preventDefault();
+
+            moveForm.append("<input type='hidden' name='movieId' value='"+ $(this).attr("href")+"'>");
+            moveForm.attr("action", "/main");
+            moveForm.submit();
+        });
+
+        $(".pageInfo_area a").on("click", function(e){
+            e.preventDefault();
+
+            var pageNum = parseInt($(this).text();
+
+            if(!isNaN(pageNum)){
+                $("input[name='pageNum']").val(pageNum);
+                $("#moveForm").attr("action", "/movielist");
+                $("#moveForm").submit();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

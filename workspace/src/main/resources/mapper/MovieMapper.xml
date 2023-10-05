@@ -7,33 +7,31 @@
         FROM tbl_movie
         WHERE MOVIEID = #{movieId}
     </select>
-    <!-- 영화등록  -->
-    <insert id="insert">
-        INSERT INTO tbl_movie
-        (MOVIEID, MOVIENAME, MOVIERELEASE, MOVIERATING, MOVIETYPE, MOVIEINFO)
-        VALUES(#{movieId}, #{movieName}, #{movieRelease}, #{movieRating}, #{movieType}, #{movieInfo});
-    </insert>
 
-    <!-- 영화 API 업데이트 -->
-    <insert id="movie_insert" parameterType="list">
-        INSERT INTO tbl_movie VALUES <foreach collection="list" item="item" separator=","> (#{item.movieId},#{item.movieName},#{item.movieRelease},#{item.movieRating},#{item.movieType},#{item.movieInfo})</foreach>
-        ON DUPLICATE KEY UPDATE
-        movieName = VALUES(movieName),
-        movieRelease = VALUES(movieRelease),
-        movieRating = VALUES(movieRating),
-        movieType = VALUES(movieType),
-        movieInfo = VALUES(movieInfo);
-    </insert>
-    <!-- 영화 API 이미지 업데이트 -->
-    <insert id="movie_image_insert" parameterType="list">
-        INSERT INTO tbl_image VALUES <foreach collection="list" item="item" separator=","> (#{item.img_id},#{item.img_link})</foreach>
-        ON DUPLICATE KEY UPDATE
-        img_link = VALUES(img_link)
-    </insert>
+    <!-- 영화 전체 조회 -->
+    <select id="selectAll" resultType="int">
+        SELECT MOVIEID, MOVIENAME, MOVIERELEASE, MOVIERATING, MOVIETYPE, MOVIEINFO
+        FROM TBL_MOVIE
+    </select>
 
-    <update id="delete">
-        DELETE FROM TBL_MOVIE
-        WHERE MOVIEID = #{movieId}
+    <!-- 영화 목록  -->
+    <select id="getList" resultType="com.example.demo.domain.dto.MovieDTO">
+       SELECT * FROM TBL_MOVIE
+    </select>
 
-    </update>
+    <!-- 영화 목록(페이징)   -->
+    <select id="getListPaging" resultType="com.example.demo.domain.dto.MovieDTO">
+        SELECT MOVIEID, MOVIENAME, MOVIERELEASE, MOVIERATING, MOVIETYPE, MOVIEINFO
+        FROM TBL_MOVIE
+        ORDER BY
+        MOVIEID ASC
+        LIMIT #{skip}, #{amount}
+    </select>
+
+    <!-- 영화 총 갯수   -->
+    <select id="getTotal" resultType="int">
+        SELECT COUNT(*) FROM TBL_MOVIE
+    </select>
+
+
 </mapper>
