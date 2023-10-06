@@ -44,7 +44,7 @@ public class MovieController {
     //영화목록 페이지 접속(페이징 적용)
     @GetMapping("/movielist")
     public void GETMovieList(Model model, Criteria criteria){
-        log.info("GETMovieList 진입 ");
+//        log.info("GETMovieList 진입 ");
 
         model.addAttribute("list", movieService.getListPaging(criteria));
 

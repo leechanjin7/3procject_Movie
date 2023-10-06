@@ -11,6 +11,8 @@
     <link href="https://hangeul.pstatic.net/hangeul_static/css/NanumBarunGothicYetHangul.css" rel="stylesheet">
     <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+    <!-- sweetalert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 </head>
 <body>
 <th:block th:replace="~{includes/header.html :: content}"></th:block>
@@ -20,29 +22,28 @@
         <ul class="login-ul">
             <li class="active">
                 <div class="top-btn">
-                    <!-- 회원 비회원 전환 버튼 -->
                     <button type="button" class="tab-member-btn">
                         <span>회원</span>
+                    </button>
+                    <button type="button" class="tab-nonmember-btn">
+                        <span>비회원</span>
                     </button>
                 </div>
                 <div class="tab_con">
                     <div class="login-member">
                         <div class="contents_inner">
-                            <!-- 회원 로그인 박스 -->
                             <div class="login-box">
                                 <p class="tip">
-                                    로그인이 필요한 서비스입니다.
+                                    기능이 제한된 비회원으로도 로그인이 가능합니다.
                                 </p>
                                 <form id="login_form" method="post">
                                     <div class="login-area">
-                                        <input type="text" name="userId" id="userId" maxlength="30" placeholder="아이디를 입력해 주세요." required/>
+                                        <input type="text" name="userId" id="userId" placeholder="아이디를 입력해 주세요."required/>
                                         <br/>
-                                        <input type="password" name="userPw" id="userPw" maxlength="20" placeholder="비밀번호를 입력해 주세요." required/>
+                                        <input type="password" name="userPw" id="userPw" placeholder="비밀번호를 입력해 주세요." required/>
                                         <button type="submit" class="login-btn" id="loginButton">로그인</button>
                                     </div>
                                 </form>
-                                <div id="errorMessage" style="color: red;"></div>
-                                <!-- 로그인 하단 메뉴 -->
                                 <div class="login-bot">
                                     <div class="login-check">
                                         <input type="checkbox" name="logincheck" id="checksavedid"/>
@@ -55,7 +56,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- 로그인 박스 오른쪽 광고 -->
+                            <div class="non-login-box">
+                                <p class="tip">
+                                    지금 바로 회원가입 해보세요
+                                </p>
+                                <div class="non-login-area">
+                                    <label for="" id="username" style="padding-left: 47px;">이름</label> <input type="text" placeholder="이름을 입력해주세요.">
+                                    <hr/>
+                                    <label for="" id="phone">휴대폰번호</label> <input type="text" placeholder="휴대폰번호를 입력해주세요."> <button>인증</button>
+                                    <hr/>
+                                    <label for="" id="birth" style="padding-left: 15px;">생년월일</label>
+                                    <select id="year-select"></select>
+                                    <select id="month-select"></select>
+                                    <select id="day-select"></select>
+                                    <hr/>
+                                    <label for="" id="address" style="padding-left: 45px;">주소</label>
+                                    <input type="text" name= "zipcode" id="postcode" placeholder="우편번호를 입력하세요">
+                                    <button class="btn-secondary" onclick="searchZip()">우편번호검색</button>
+                                    <input type="text" name="addr1" id="defaultAddress" placeholder="기본주소 입력"  class="form-control" style=width:300px;/>
+                                    <input type="text" name="addr2"  placeholder="상세주소 입력" class="form-control"  style=width:200px;/>
+                                </div>
+                                <ul class="non-list">
+                                    <li>비회원 로그인 시 영화 조회 메뉴만 이용 가능하며 일부 서비스의 경우 정회원 로그인 시에만 사용 가능 합니다.</li>
+                                </ul>
+                                <div class="non-bottom-btn">
+                                    <a th:href="@{/member/join}" class="join-member">회원가입</a>
+                                    <a href="#" class="non-login-btn">비회원 로그인</a>
+                                </div>
+                            </div>
                             <section class="f-section">
                                 <div class="swiper">
                                     <div class="swiper-wrapper">
@@ -119,71 +147,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Swiper -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script >
-
-    // TOP 누르면 최상단 이동
-    const toTopBtn_el = document.getElementById('to_top');
-    toTopBtn_el.addEventListener('click', function() {
-        window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
-})
-// 스크롤시 메뉴 따라오기
-// 좌측 광고
-$(window).scroll(function() {
-    var scrollTop = $(document).scrollTop();
-    if (scrollTop < 300) {
-        scrollTop = 300;
-    }
-    $(".left_section").stop();
-    $(".left_section").animate({
-        "top": scrollTop
-    });
-});
-// 우측 퀵메뉴
-$(window).scroll(function() {
-    var scrollTop = $(document).scrollTop();
-    if (scrollTop < 200) {
-        scrollTop = 200;
-    }
-    $(".quick_section").stop();
-    $(".quick_section").animate({
-        "top": scrollTop
-    });
-});
-// x표시 광고 끄기
-// 버튼과 광고 요소 선택
-const bannerCloseButton = document.querySelector('.banner_close');
-const leftBanner = document.querySelector('.left_banner');
-
-// 버튼 클릭 시 광고 숨기기
-bannerCloseButton.addEventListener('click', function() {
-    leftBanner.style.display = 'none';
-    bannerCloseButton.style.display = 'none';
-});
-
-// 우측 광고 이미지 넘기기
-const swiper_vertical = new Swiper(".f-section .swiper", {
-    // Optional parameters
-    direction: "vertical",
-    autoplay: {
-        delay: 1000,
-    },
-    loop: true,
-});
-
-// 하단 광고 이미지 랜덤 표시
-let bottomBanner = Math.floor(Math.random() * 3);
-let imgName = ['RUBYGILLMAN_980180', 'Conan_980180', 'Metamorphosis_980180'];
-$('.bot_banner').children('a').children('img').attr('src', '/image/' + imgName[bottomBanner] + '.jpg');
-
-
-
-
-
-
-</script>
+<!-- sweetalert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+<!-- 우편 검색 -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/daumaddr.js"></script>
 
 </body>
 </html>

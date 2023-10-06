@@ -51,7 +51,8 @@
 				</div>
 			</ul>
 			<ul class="menu3">
-				<li><a th:href="@{/member/join}">회원가입</a></li>
+				<li th:if="${#authorization.expression('hasRole(''USER'')')}"><a th:href="@{/member/join}">마이페이지</a></li>
+				<li th:if="${#authorization.expression('isAnonymous()')}"><a th:href="@{/member/join}">회원가입</a></li>
 				<li><a href="">바로예매</a></li>
 				<li><a href=""><img src="/image/햄버거버튼.png"></a></li>
 			</ul>
@@ -168,59 +169,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Swiper -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script>
-	document.addEventListener("DOMContentLoaded", function(){
-        var swiper = new Swiper('.mainmovie.swiper-container', {
-            direction: 'horizontal',
-            autoplay: {
-                delay: 1000,
-            },
-            loop: true,
-            slidesPerView: 5,
-            spaceBetween: 10,
-            centeredSlides: true,
-    })
-});
-    // TOP 누르면 최상단 이동
-    const toTopBtn_el = document.getElementById('to_top');
-       toTopBtn_el.addEventListener('click',function(){
-           window.scrollTo({top:0,behavior:'smooth'})
-       })
-    // 우측 퀵메뉴
-    $(window).scroll(function(){
-   var scrollTop = $(document).scrollTop();
-   if (scrollTop < 200) {
-     scrollTop = 200;
-   }
-     $(".quick_section").stop();
-     $(".quick_section").animate( { "top" : scrollTop });
-   });
-   // 좌측 광고
-   $(window).scroll(function(){
-   var scrollTop = $(document).scrollTop();
-   if (scrollTop < 300) {
-     scrollTop = 300;
-   }
-     $(".left_section").stop();
-     $(".left_section").animate( { "top" : scrollTop });
-   });
-    // x표시 광고 끄기
-   // 버튼과 광고 요소 선택
-   const bannerCloseButton = document.querySelector('.banner_close');
-   const leftBanner = document.querySelector('.left_banner');
+<script type="text/javascript" src="/js/main.js"></script>
 
-   // 버튼 클릭 시 광고 숨기기
-   bannerCloseButton.addEventListener('click', function () {
-     leftBanner.style.display = 'none';
-     bannerCloseButton.style.display = 'none';
-   });
-
-
-
-
-
-
-</script>
 
 
 </body>
