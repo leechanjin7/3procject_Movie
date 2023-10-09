@@ -3,7 +3,6 @@ main>div{
     display:block;
 }
 .subsection{
-    border: 1px solid;
     margin-top:-196px;
     height : 774px;
     width:100%;
@@ -60,6 +59,12 @@ main>.subsection>.sub1>.sub2>.front>a{
 /*.sub1:hover .sub2{
     transform:rotateY(180deg);
 }*/
+
+.container {
+    width: 70%; /* 원하는 너비로 설정 */
+    margin: auto; /* 가운데 정렬 */
+}
+
 .contents{
     display:flex;
     border:1px solid;
@@ -72,21 +77,30 @@ main>.subsection>.sub1>.sub2>.front>a{
     width:100%;
 
 }
+.contents>.contentslist>.mainmovie.swiper-container{
+    overflow : hidden;
+}
 .contents>.contentslist>.mainmovie.swiper-container>.swiper-wrapper{
    display: flex;
    position:relative;
    height: 424px;
-   justify-content: space-around;
+   justify-content: space-evenly;
 }
-.contents>.contentslist>.mainmovie.swiper-container>.swiper-wrapper>li{
+.contents>.contentslist>.mainmovie.swiper-container>.swiper-wrapper>div{
     list-style: none;
     position: relative;
-    height:50px;
+    height:380px;
     align-items: center;
+    justify-content: center;
     /* display: flex; */
+    flex-basis : 20%;
+    max-width:20%;
+
+    margin-right : -100px;
+    margin-left : -100px;
 
 }
-.contents>.contentslist>.mainmovie.swiper-container>.swiper-wrapper>li>a{
+.contents>.contentslist>.mainmovie.swiper-container>.swiper-wrapper>div>a{
     text-decoration: none;
     color:black;
     margin-top:10px;
@@ -102,12 +116,9 @@ main>.subsection>.sub1>.sub2>.front>a{
 
 
 }
-.contents>.contentslist>.mainmovie.swiper-container>.swiper-wrapper>li>a img{
-    width:232px;
-    height: 312px;
-    margin-top:25px;
-    margin-left:10px;
-    padding-bottom:30px;
+.contents>.contentslist>.mainmovie.swiper-container>.swiper-wrapper>div>a img{
+    width : auto;
+    height : 312px;
 
 }
 /* 오른쪽 사이드 배너2 */
@@ -170,4 +181,60 @@ main>.subsection>.sub1>.sub2>.front>a{
     /* x표시 이미지 */
     background: transparent url(../image/close_13_gry.png) no-repeat 0 0;
 }
+
+/* Swiper Slide CSS 수정 */
+.swiper-slide {
+    width : 20%;
+}
+.swiper-slide a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.swiper-slide img{
+    width : 100%;
+    height : auto;
+    margin-bottom : 10px;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    background-color: #000;
+    width: 50px;
+    height: 50px;
+    position:absolute;
+}
+
+.swiper-button-next {
+    right: -30px; /* 오른쪽에 위치 */
+}
+
+.swiper-button-prev {
+    left: -30px; /* 왼쪽에 위치 */
+}
+
+.swiper {
+  width: 1200px;
+  height: 350px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide > img {
+  width: 100%;
+  height: 100%;
+}
+
+.notice {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+.notice-img{
+    width : 50%;
+}
+
    

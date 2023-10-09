@@ -11,6 +11,6 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class MovieImageDTO {
 
-	private int img_id;
-	private String img_link;
+	private int imgId;
+	private String imgLink;
 }

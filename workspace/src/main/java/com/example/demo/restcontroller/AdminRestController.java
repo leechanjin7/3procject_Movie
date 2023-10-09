@@ -68,8 +68,8 @@ public class AdminRestController {
             movie.setMovieRating(result.getVote_average()); // Assuming rating is a String
             movie.setMovieInfo(result.getOverview());
             //이미지
-            movieImage.setImg_id(result.getId());
-            movieImage.setImg_link(result.getPoster_path());
+            movieImage.setImgId(result.getId());
+            movieImage.setImgLink(result.getPoster_path());
             movies.add(movie);
             
             //장르 따로 받아야 함

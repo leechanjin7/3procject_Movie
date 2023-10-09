@@ -27,10 +27,9 @@
     </insert>
 
     <!-- 영화 삭제  -->
-    <update id="delete">
+    <delete id="delete">
         DELETE FROM TBL_MOVIE
         WHERE MOVIEID = #{movieId}
-
-    </update>
+    </delete>
 
 </mapper>

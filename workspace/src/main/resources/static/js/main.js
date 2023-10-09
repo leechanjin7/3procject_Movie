@@ -1,15 +1,32 @@
-//메인 영화 사진 swiper
-document.addEventListener("DOMContentLoaded", function(){
-    var swiper = new Swiper('.mainmovie.swiper-container', {
-        direction: 'horizontal',
-        autoplay: {
-            delay: 1000,
-        },
-        loop: true,
-        slidesPerView: 5,
-        spaceBetween: 10,
-        centeredSlides: true,
-    })
+var mySwiper = new Swiper(".swiper", {
+  // 슬라이드를 버튼으로 움직일 수 있습니다.
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+
+//  // 현재 페이지를 나타내는 점이 생깁니다. 클릭하면 이동합니다.
+//  pagination: {
+//    el: ".swiper-pagination",
+//    type: "bullets",
+//  },
+
+  // 현재 페이지를 나타내는 스크롤이 생깁니다. 클릭하면 이동합니다.
+  scrollbar: {
+    draggable: false,
+  },
+
+  // 3초마다 자동으로 슬라이드가 넘어갑니다. 1초 = 1000
+  autoplay: {
+    delay: 5000,
+  },
+
+  slidesPerView: 5,
+  slidesPerGroup: 1,
+  centeredSlides: false,
+  spaceBetween: 20,
+
+
 });
 
 // TOP 누르면 최상단 이동
