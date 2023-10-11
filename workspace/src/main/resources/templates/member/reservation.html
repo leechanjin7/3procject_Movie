@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns="">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <title>reservation</title>
     <link rel="stylesheet" type="text/css" href="/css/header.css"/>
     <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
-    <link rel="stylesheet" href="/css/default.css" />
-    <link rel="stylesheet" href="/css/reservation.css" />
+    <link rel="stylesheet" href="/css/default.css"/>
+    <link rel="stylesheet" href="/css/reservation.css"/>
 
     <!-- 네이버 폰트 -->
     <link href="https://hangeul.pstatic.net/hangeul_static/css/NanumBarunGothicYetHangul.css" rel="stylesheet">
@@ -56,16 +56,6 @@
                         <span class="round">STEP 1</span> 영화관 선택
                     </dt>
                     <dd>
-                        <!-- <ul class="choice-list cinema-choice-list">
-                             <%&#45;&#45; 첫번째 버튼 클릭하면 두번쨰 활성화되고 다시 쿼리문 수행&#45;&#45;%>
-                             <c:forEach items="${list}" var="list">
-                                 <li>
-                                     <button value="${list}">${list}</button>
-            <ul class="choice-list-detail" id="cityList">
-            </ul>
-            </li>
-            </c:forEach>
-            </ul>-->
                         <ul class="choice-list cinema-choice-list">
                             <li>
                                 <button class="active">서울</button>
@@ -95,22 +85,25 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li>
+                                <button type="button">대구</button>
+                                <ul class="choice-list-detail">
+                                    <li>
+                                        <button type="button">반월당</button>
+                                    </li>
+                                    <li>
+                                        <button type="button">중앙로</button>
+                                    </li>
+                                    <li>
+                                        <button type="button">다사</button>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </dd>
                 </dl>
                 <input type="hidden" value="서울" name="theater_city">
                 <input type="hidden" value="화곡점" name="theater_loc">
-                <!--<dl class="date_choice">
-                    <dt>
-                        <span class="round">STEP 2</span> 관람일 선택
-                    </dt>
-                    <dd>
-                        <p class="select-message">영화관을 선택해주세요.</p>
-                        <ul class="choice-list" id="dateList">
-
-                        </ul>
-                    </dd>
-                </dl>-->
                 <dl class="date_choice">
                     <dt><span class="round">STEP 2</span> 관람일 선택</dt>
                     <dd>
@@ -130,19 +123,6 @@
                         </ul>
                     </dd>
                 </dl>
-                <!-- <dl class="time_choice">
-                     <dt>
-                         <span class="round">STEP 3</span> 관람시간 선택
-                     </dt>
-                     <dd>
-                         <p class="select-message">관람일을 선택해주세요.</p>
-                         &lt;!&ndash; 선택 날짜에 관한 관람시간 리스트 &ndash;&gt;
-                         <ul class="choice-list" id="timeList">
-
-                         </ul>
-                         &lt;!&ndash;  선택 전  &ndash;&gt;
-                     </dd>
-                 </dl>-->
                 <dl class="time_choice">
                     <dt><span class="round">STEP 3</span> 관람시간 선택</dt>
                     <dd>
@@ -163,38 +143,6 @@
                     </dd>
                 </dl>
                 <input type="hidden" value="2회 12:00 (시네마2관)" name="theater_name">
-                <!--<dl class="seat_choice">
-                    <dt>
-                        <span class="round">STEP 4</span> 좌석 및 잔여석 확인
-                    </dt>
-                    <dd>
-                        <p class="select-message">관람시간을 선택해주세요.</p>
-                        <div class="seat-choice-content">
-                            &lt;!&ndash; 선택 시간에 관한 좌석 및 잔여석 &ndash;&gt;
-                            <div class="remain-seat">일반석 : <span id="remainSeatNum">${remainseats}</span>석</div>
-                            &lt;!&ndash; 몇좌석 남았는지 seat-v에 넣기 ajax로&ndash;&gt;
-                            &lt;!&ndash;  선택 전&ndash;&gt;
-                            <div class="select-person-area">
-                                <label for="ticketCount" class="select-title">인원선택</label>
-                                <span>
-                      <select id="ticketCount" class="select-person">
-                        <option value="1" selected>1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                      </select>
-                    </span>
-                            </div>
-                            <p class="select-caption">※최대 10명까지 선택가능 합니다.</p>
-                        </div>
-                    </dd>
-                </dl>-->
                 <dl class="seat_choice">
                     <dt><span class="round">STEP 4</span> 좌석 및 잔여석 확인</dt>
                     <dd>
@@ -206,19 +154,19 @@
                                 <div class="select-person-area">
                                     <label for="ticketCount" class="select-title">인원선택</label>
                                     <span>
-                    <select id="ticketCount" class="select-person">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
-                      <option value="7">7</option>
-                      <option value="8">8</option>
-                      <option value="9">9</option>
-                      <option value="10">10</option>
-                    </select>
-                  </span>
+                                        <select id="ticketCount" class="select-person">
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                          <option value="4">4</option>
+                                          <option value="5">5</option>
+                                          <option value="6">6</option>
+                                          <option value="7">7</option>
+                                          <option value="8">8</option>
+                                          <option value="9">9</option>
+                                          <option value="10">10</option>
+                                        </select>
+                                    </span>
                                 </div>
                                 <p class="tx_deco">최대 10명까지 선택가능 합니다.</p>
                             </div>
@@ -257,7 +205,6 @@
             </div>
 
         </div>
-        <!--        <form  th:action = "@{/order/movie}" method="post" >-->
         <div class="payment-area">
             <button id="payment" type="submit" class="join-submit join-button">결제</button>
         </div>

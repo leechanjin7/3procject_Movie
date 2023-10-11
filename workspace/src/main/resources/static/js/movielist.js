@@ -12,7 +12,7 @@
         $(".pageInfo_area a").on("click", function(e){
             e.preventDefault();
 
-            var pageNum = parseInt($(this).text();
+            var pageNum = parseInt($(this).text());
 
             if(!isNaN(pageNum)){
                 $("input[name='pageNum']").val(pageNum);

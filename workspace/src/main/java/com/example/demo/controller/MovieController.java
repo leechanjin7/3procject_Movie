@@ -23,13 +23,13 @@ public class MovieController {
     private final MovieService movieService;
 
 
-    @GetMapping("/main")
-    public String GETMainPage() {
-
-        log.info("메인 페이지 진입");
-
-        return "main";
-    }
+//    @GetMapping("/main")
+//    public String GETMainPage() {
+//
+//        log.info("메인 페이지 진입");
+//
+//        return "main";
+//    }
 
 //    //영화목록
 //    @GetMapping("/movielist")

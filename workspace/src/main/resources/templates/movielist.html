@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:c="" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
@@ -29,7 +29,7 @@
         <tbody>
             <tr th:each = "movie : ${list}">
                 <td th:text ="${movie.movieId}"></td>
-                <td th:text="${movie.movieName}"></td>
+                <td th:text ="${movie.movieName}"></td>
                 <td th:text ="${movie.movieRelease}"></td>
                 <td th:text ="${movie.movieRating}"></td>
                 <td th:text ="${movie.movieType}"></td>

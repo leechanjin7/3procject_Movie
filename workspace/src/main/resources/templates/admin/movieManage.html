@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="" lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/admin/movieManage.css">
+<link rel="stylesheet" href="/css/admin/footer.css">
+<link rel="stylesheet" href="/css/admin/movielist.css">
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+<th:block th:replace="~{includes/admin/header.html :: content}"></th:block>
+    			
+    			
+                <div class="admin_content_wrap">
+                    <div class="admin_content_subject"><span>영화 관리</span></div>
+					<div class="table_wrap">
+						<table>
+							<thead>
+							<tr>
+								<th class="movieId">번호</th>
+								<th class="movieName">제목</th>
+								<th class="movieRelease">개봉일</th>
+								<th class="movieRating">평점</th>
+								<th class="movieType">장르</th>
+								<th class="movieInfo">줄거리</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:each = "movie : ${list}">
+								<td th:text ="${movie.movieId}"></td>
+								<td th:text ="${movie.movieName}"></td>
+								<td th:text ="${movie.movieRelease}"></td>
+								<td th:text ="${movie.movieRating}"></td>
+								<td th:text ="${movie.movieType}"></td>
+								<td th:text ="${movie.movieInfo}"></td>
+							</tr>
+							</tbody>
+						</table>
+						<div class ="pageInfo_wrap">
+							<div class="pageInfo_area">
+								<ul id="pageInfo" class="pageInfo">
+									<!-- 이전페이지 버튼 -->
+									<li class="pageInfo_btn previous" th:if="${pageMaker.prev}">
+										<a th:href="@{movieManage(pageNum=${pageMaker.startPage-1}, amount=${pageMaker.criteria.amount})}">Prev</a>
+									</li>
+
+									<!-- 페이지 번호 버튼 -->
+									<li th:each="num : ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}"
+										class="pageInfo_btn" th:classappend="${num == pageMaker.criteria.pageNum} ? 'active' : ''">
+										<a th:href="@{movieManage(pageNum=${num}, amount=${pageMaker.criteria.amount})}" th:text="${num}"></a>
+									</li>
+
+									<!-- 다음페이지 버튼 -->
+									<li class="pageInfo_btn next" th:if="${pageMaker.next}">
+										<a th:href="@{movieManage(pageNum=${pageMaker.endPage + 1}, amount=${pageMaker.criteria.amount})}">Next</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<form id="moveForm" method="get">
+							<!-- pageNum 값을 숫자로 변환하여 대체 -->
+							<input type="hidden" name="pageNum" th:attr="value=${pageMaker.criteria.pageNum}">
+							<!-- amount 값을 숫자로 변환하여 대체 -->
+							<input type="hidden" name="amount" th:attr="value=${pageMaker.criteria.amount}">
+						</form>
+					</div>
+				</div>
+
+
+
+<th:block th:replace="~{includes/admin/footer.html :: content}"></th:block>
+					<script>
+						$(document).ready(function(){
+							var moveForm = $("#moveForm");
+
+							$(".move").on("click", function(e){
+								e.preventDefault();
+
+								moveForm.append("<input type='hidden' name='movieId' value='"+ $(this).attr("href")+"'>");
+								moveForm.attr("action", "/main");
+								moveForm.submit();
+							});
+
+							$(".pageInfo_area a").on("click", function(e){
+								e.preventDefault();
+
+								var pageNum = parseInt($(this).text());
+
+								if(!isNaN(pageNum)){
+									$("input[name='pageNum']").val(pageNum);
+									$("#moveForm").attr("action", "/admin/movieManage");
+									$("#moveForm").submit();
+								}
+							});
+						});
+					    $(".previous a, .next a").on("click", function(e){
+							e.preventDefault();
+
+							var pageNum = $(this).attr('href').match(/pageNum=(\d+)/)[1];
+
+							if(pageNum){
+								$("input[name='pageNum']").val(pageNum);
+								$("#moveForm").attr("action", "admin/movieManage");
+								$("#moveForm").submit();
+							}
+						});
+					});
+					</script>
+                
+                
+<!--<script>-->
+
+<!--	$(document).ready(function(){-->
+<!--		-->
+<!--		//등록 성공 이벤트-->
+<!--		let eResult = '<c:out value="${enroll_result}"/>';-->
+<!--		-->
+<!--		checkResult(eResult);-->
+<!--		-->
+<!--		function checkResult(result){-->
+<!--			-->
+<!--			if(result == ''){-->
+<!--				return;-->
+<!--			}-->
+<!--			-->
+<!--			alert("영화'"+ eResult +"'를 등록하였습니다.");-->
+<!--			-->
+<!--		}-->
+<!--		-->
+<!--		/* 수정 성공 이벤트 */-->
+<!--		let modify_result = '${modify_result}';-->
+<!--		-->
+<!--		if(modify_result == 1){-->
+<!--			alert("수정 완료");-->
+<!--		}-->
+<!--		-->
+<!--		//삭제 결과 경고창-->
+<!--		let delete_result = '${delete_result}';-->
+<!--		-->
+<!--		if(delete_result == 1){-->
+<!--			alert("삭제 완료");-->
+<!--		}-->
+<!--	-->
+<!--	});-->
+<!--	-->
+<!--	let searchForm = $('#searchForm');-->
+<!--	let moveForm = $('#moveForm');-->
+
+<!--	/* 작거 검색 버튼 동작 */-->
+<!--	$("#searchForm button").on("click", function(e){-->
+<!--		-->
+<!--		e.preventDefault();-->
+<!--		-->
+<!--		/* 검색 키워드 유효성 검사 */-->
+<!--		if(!searchForm.find("input[name='keyword']").val()){-->
+<!--			alert("키워드를 입력하십시오");-->
+<!--			return false;-->
+<!--		}-->
+<!--		-->
+<!--		searchForm.find("input[name='pageNum']").val("1");-->
+<!--		-->
+<!--		searchForm.submit();-->
+<!--		-->
+<!--	});-->
+
+
+<!--	/* 페이지 이동 버튼 */-->
+<!--	$(".pageMaker_btn a").on("click", function(e){-->
+<!--		-->
+<!--		e.preventDefault();-->
+<!--		-->
+<!--		moveForm.find("input[name='pageNum']").val($(this).attr("href"));-->
+<!--		-->
+<!--		moveForm.submit();-->
+<!--		-->
+<!--	});-->
+<!--	-->
+<!--	$(".move").on("click", function(e){-->
+<!--		-->
+<!--		e.preventDefault();-->
+<!--		-->
+<!--		moveForm.append("<input type='hidden' name='bookId' value='"+$(this).attr("href") +"'>");-->
+<!--		moveForm.attr("action", "/admin/goodsDetail");-->
+<!--		moveForm.submit();-->
+<!--		-->
+<!--		-->
+<!--		-->
+<!--	});-->
+<!--	-->
+<!--</script>-->
+ 
+</body>
+</html>

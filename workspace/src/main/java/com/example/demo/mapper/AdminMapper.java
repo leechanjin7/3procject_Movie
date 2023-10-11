@@ -2,6 +2,7 @@ package com.example.demo.mapper;
 
 import com.example.demo.domain.dto.MovieDTO;
 import com.example.demo.domain.dto.MovieImageDTO;
+import com.example.demo.domain.paging.Criteria;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,6 +21,12 @@ public interface AdminMapper {
 
     //영화삭제
     public void delete(int movieId);
+
+    //영화목록(리스트)
+    public List<MovieDTO> movieGetList(Criteria criteria);
+
+    //영화 총 갯수
+    public int movieGetTotal();
 
 
 }

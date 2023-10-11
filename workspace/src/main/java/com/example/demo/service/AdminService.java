@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.dto.MovieDTO;
 import com.example.demo.domain.dto.MovieImageDTO;
+import com.example.demo.domain.paging.Criteria;
 import com.example.demo.mapper.AdminMapper;
 import com.example.demo.mapper.MovieMapper;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,16 @@ public class AdminService {
     //영화 삭제
     public void delete(int movieId){
         adminMapper.delete(movieId);
+    }
+
+    //영화목록(리스트)
+    public List<MovieDTO> movieGetList(Criteria criteria){
+        return adminMapper.movieGetList(criteria);
+    }
+
+    //영화 총 갯수
+    public int movieGetTotal(){
+        return adminMapper.movieGetTotal();
     }
 
 

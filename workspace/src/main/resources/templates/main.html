@@ -2,8 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="" lang="en">
 <head>
 	<!-- JSTL Core 라이브러리 다운로드 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstl/1.2/jstl.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstl/1.2/jstl-functions.min.js"></script>
+<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstl/1.2/jstl.min.js"></script>-->
+<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/jstl/1.2/jstl-functions.min.js"></script>-->
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/css/default.css" />
@@ -124,16 +124,12 @@
 </main>
 <div class="swiper mySwiper">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"><a href=""><img src="/image/분노의질주.jpg" alt="">분노의질주:라이드 오어 다이</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/범죄도시.jpg" alt="">범죄도시3</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/가디언즈.jpg" alt="">가디언즈 오브 갤럭시:Volume 3</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/슈퍼마리오.jpg" alt="">슈퍼마리오브라더스</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/빅트립2.jpg" alt="">빅트립2</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/더문.jpg" alt="">더문</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/엘리멘탈.jpg" alt="">엘리멘탈</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/미션.jpg" alt="">미션임파서블</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/코난.jpg" alt="">코난</a></div>
-		<div class="swiper-slide"><a href=""><img src="/image/밀수.jpg" alt="">밀수</a></div>
+		<div class="swiper-slide" th:each="movie : ${movies}">
+			<a href="">
+				<img th:src="@{'https://image.tmdb.org/t/p/w500' + ${movie.imgLink} }" alt="">
+				<span th:text="${movie.movieName}"></span>
+			</a>
+		</div>
 	</div>
 	<!-- If we need pagination -->
 	<div class="swiper-pagination"></div>

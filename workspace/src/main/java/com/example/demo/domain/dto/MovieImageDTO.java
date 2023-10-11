@@ -13,4 +13,6 @@ public class MovieImageDTO {
 
 	private int imgId;
 	private String imgLink;
+	private int movieRating;
+	private String movieName;
 }

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 @Slf4j
 
@@ -26,13 +28,13 @@ public class MovieImageMapperTests {
     @Test
     public void selectRatingImageTest(){
 
-        int imgId = 27;
 
-        MovieImageDTO result = movieImageMapper.selectRatingImage(imgId);
-        System.out.println("==============================");
-        System.out.println(result);
-        System.out.println("==============================");
-
+        List<MovieImageDTO> images = movieImageMapper.selectRatingImage();
+        for(MovieImageDTO image : images){
+            System.out.println("imageId : " + image.getImgId());
+            System.out.println("imageLink : " + image.getImgLink() );
+            System.out.println("movieName : " + image.getMovieName());
+        }
 
     }
 }

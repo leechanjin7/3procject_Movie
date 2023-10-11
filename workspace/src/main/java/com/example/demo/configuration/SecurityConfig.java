@@ -50,10 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/css/**", "/js/**", "/image/**").permitAll()
                 .antMatchers("/", "/member/**", "/main", "/member/join","/member/login").permitAll()
-                .antMatchers("/admintest/**").permitAll()
+                .antMatchers("/admintest/**","/mainImage/**").permitAll()
                 .antMatchers("/movielist/**").permitAll()
                 .antMatchers("/reservation/**").permitAll()
-                .antMatchers("/admin").hasRole("ADMIN")
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
