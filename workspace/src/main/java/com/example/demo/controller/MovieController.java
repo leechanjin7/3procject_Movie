@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.dto.MovieDTO;
+import com.example.demo.domain.dto.Search;
 import com.example.demo.domain.paging.Criteria;
 import com.example.demo.domain.paging.PageMakerDTO;
 import com.example.demo.service.MovieService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.awt.print.Pageable;
 import java.util.List;
@@ -41,17 +43,35 @@ public class MovieController {
 //    }
 
 
+
     //영화목록 페이지 접속(페이징 적용)
+//    @GetMapping("/movielist")
+//    public void GETMovieList(Model model, Criteria criteria, Search search) {
+////        log.info("GETMovieList 진입 ");
+//
+//        model.addAttribute("list", movieService.getListPaging(criteria, search));
+//
+//        int total = movieService.getTotal(search);
+//        PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
+//        model.addAttribute("pageMaker", pageMaker);
+//    }
+
+    //영화검색 + 페이징
     @GetMapping("/movielist")
-    public void GETMovieList(Model model, Criteria criteria){
-//        log.info("GETMovieList 진입 ");
+    public void GETMovieList(Search search, Criteria criteria, Model model){
+        System.out.println("GET movielist " + search);
+        List<MovieDTO> list = movieService.getList(criteria, search);
+        model.addAttribute("list", list);
 
-        model.addAttribute("list", movieService.getListPaging(criteria));
-
-        int total = movieService.getTotal();
+        int total = movieService.getTotal(search);
+        System.out.println("Count : " + total);
         PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
+
+        int totalMovieCount = movieService.getTotal(search);
+        model.addAttribute("totalMovieCount", totalMovieCount);
         model.addAttribute("pageMaker", pageMaker);
     }
+
 
 
 

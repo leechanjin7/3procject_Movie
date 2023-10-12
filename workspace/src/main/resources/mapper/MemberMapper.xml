@@ -5,7 +5,6 @@
     <insert id="memberJoin">
         INSERT INTO TBL_MEMBER
         VALUES (#{userId}, #{userPw}, #{userName}, #{userAddr1}, #{userAddr2}, #{userAddr3}, #{userPhone}, 0 )
-
     </insert>
 
     <!-- 아이디 중복검사 -->

@@ -46,6 +46,13 @@
         SELECT COUNT(*) FROM TBL_MOVIE
     </select>
 
+    <!-- 영화 조회 페이지 -->
+    <select id="movieGetDetail" resultType="com.example.demo.domain.dto.MovieDTO">
+        SELECT M.MOVIEID, M.MOVIENAME, M.MOVIERELEASE, M.MOVIERATING, M.MOVIETYPE, M.MOVIEINFO,
+        (SELECT IMG_LINK FROM TBL_IMAGE I WHERE I.IMG_ID = M.MOVIEID) AS IMG_LINK
+        FROM TBL_MOVIE M
+        WHERE MOVIEID = #{movieId}
+    </select>
 
 
 </mapper>

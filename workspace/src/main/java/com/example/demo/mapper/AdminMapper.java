@@ -28,5 +28,9 @@ public interface AdminMapper {
     //영화 총 갯수
     public int movieGetTotal();
 
+    //영화 조회 페이지
+    public MovieDTO movieGetDetail(int movieId);
+
+
 
 }

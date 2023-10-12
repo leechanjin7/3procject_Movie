@@ -30,5 +30,14 @@ public class AdminMapperTests {
         }
     }
 
+    @Test
+    public void movieGetDetailTest(){
+
+        int movieId = 5;
+
+        MovieDTO result = adminMapper.movieGetDetail(movieId);
+        System.out.println("영화 조회 데이터 : " + result);
+    }
+
 
 }

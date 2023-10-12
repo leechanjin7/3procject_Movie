@@ -18,5 +18,7 @@ public class MovieDTO {
     private String movieType;
     private String movieInfo;
 
+    private String imgLink;
+
 
 }

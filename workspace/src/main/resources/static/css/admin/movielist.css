@@ -48,7 +48,7 @@
         .pageInfo{
             list-style : none;
             display: inline-block;
-            margin: 50px 0 0 100px;
+            margin: 50px 0 0 10px;
         }
         .pageInfo li{
             float: left;
@@ -74,7 +74,7 @@
         }
 
         .table_wrap {
-            width: 120%;
+            width: 110%;
             margin: auto;
         }
 

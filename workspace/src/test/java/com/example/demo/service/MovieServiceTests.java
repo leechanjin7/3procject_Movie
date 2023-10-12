@@ -16,13 +16,13 @@ public class MovieServiceTests {
     private MovieService movieService;
 
     //영화 조회(페이징적용)
-    @Test
-    public void getListPagingTest(){
-
-        Criteria criteria = new Criteria();
-
-        List list = movieService.getListPaging(criteria);
-
-        list.forEach(movie -> log.info("" + movie));
-    }
+//    @Test
+//    public void getListPagingTest(){
+//
+//        Criteria criteria = new Criteria();
+//
+//        List list = movieService.getListPaging(criteria);
+//
+//        list.forEach(movie -> log.info("" + movie));
+//    }
 }

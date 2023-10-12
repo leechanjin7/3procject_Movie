@@ -49,6 +49,11 @@ public class AdminService {
         return adminMapper.movieGetTotal();
     }
 
+    //영화 조회 페이지
+    public MovieDTO movieGetDetail(int movieId){
+        return adminMapper.movieGetDetail(movieId);
+    }
+
 
 
 }

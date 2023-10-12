@@ -105,6 +105,44 @@ ul{
     line-height: 80px;
     color: white;    
 }
+
+span.bunch {
+    display: inline-block;
+    vertical-align: middle;
+}
+#sFld{
+    width: 90px;
+    min-width: 85px;
+    height: 34px;
+    border: 1px solid #d1d0cf;
+    background-color: #fff;
+    line-height: 29px;
+}
+input{
+    width: 300px;
+    height: 33px;
+    border: 1px solid #d1d0cf;
+    line-height: 2.1em;
+    font-size: 14px;
+    vertical-align: top;
+    color: #4c4c4c;
+    padding: 0 3px;
+    margin-bottom: 10px;
+}
+.btn_search{
+    width: auto;
+    min-width: 50px;
+    height: 36px;
+    vertical-align: top;
+    margin-bottom: 10px;
+    margin-left: -2px;
+    line-height: 30px;
+    text-align: center;
+    color: white;
+    background-color:  rgb(42, 178, 196);
+    border-radius: 5px;
+    border: none;
+}
 /*
  상품 목록 영역
 .goods_table_wrap{
@@ -152,35 +190,7 @@ ul{
 }
 
 	*/
-/* 검색 영역 *//*
 
-.search_wrap{
-	margin-top:15px;
-}
-.search_input{
-    position: relative;
-    text-align:center;	
-}
-.search_input input[name='keyword']{
-	padding: 4px 10px;
-    font-size: 15px;
-    height: 20px;
-    line-height: 20px;
-}
-.search_btn{
-	height: 32px;
-    width: 80px;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 20px;
-    position: absolute;
-    margin-left: 15px;
-    background-color: #c3daf7;
-}
-
-*/
-
- 
  
 /* float 속성 해제 */
 .clearfix{
