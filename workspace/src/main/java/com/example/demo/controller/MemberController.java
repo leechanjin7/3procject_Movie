@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.dto.MemberDTO;
 import com.example.demo.service.MemberService;
+import com.example.demo.service.SecurityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.platform.commons.util.StringUtils;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.Collections;
 
 @Controller
@@ -28,6 +30,9 @@ public class MemberController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private SecurityService securityService;
 
 
 
@@ -81,47 +86,80 @@ public class MemberController {
         }
 	}
 
-//    @PostMapping("/login.do")
-//    public String POSTLogin(HttpServletRequest request, MemberDTO memberDTO, RedirectAttributes rttr) throws Exception{
-//
-//        HttpSession session = request.getSession();
-//        MemberDTO member = memberService.memberLogin(memberDTO);
-//
-//        if(member == null){
-//            int result = 0;
-//            rttr.addFlashAttribute("result", result);
-//            log.info("로그인 실패!");
-//            return "redirect:/member/login";
-//        }
-//        session.setAttribute("member", member);
-//        log.info("로그인 성공!");
-//        return "redirect:/main";
-//    }
-//
-//
-//
-//    //로그아웃
-//    @GetMapping("/logout")
-//    public String GETLogout(HttpServletRequest httpServletRequest){
-//        log.info("로그아웃 메서드 진입");
-//
-//        HttpSession session = httpServletRequest.getSession();
-//
-//        session.invalidate();
-//
-//        return "redirect:/main";
-//    }
-//
-//    //비동기 로그아웃
-//    @PostMapping("/logout")
-//    @ResponseBody
-//    public void POSTLogout(HttpServletRequest httpServletRequest){
-//        log.info("비동기 로그아웃 메서드 진입");
-//
-//        HttpSession session = httpServletRequest.getSession();
-//
-//        session.invalidate();
-//    }
+
+    //회원 정보 수정
+    @GetMapping("/userInfo")
+    public void userInfo() {
+        log.info("마이페이지 진입");
+
+    }
+
+    @GetMapping("/userInfo/update")
+    public String userInfoUpdate() {
+        log.info("회원 정보 수정페이지 진입");
+
+        return "/member/userInfo";
+    }
+
+    @PostMapping("/userInfo/update")
+    public String updateUserInfo(Principal principal, @RequestBody MemberDTO memberDTO) {
+        //로그인한 유저 정보에서 Id 받아와서 저장
+        String userId = principal.getName();
+        memberDTO.setUserId(userId);
+
+        //새로운 패스워드 암호화
+        if(memberDTO.getUserPw() != null) {
+            String encodedPassword = passwordEncoder.encode(memberDTO.getUserPw());
+            memberDTO.setUserPw((encodedPassword));
+        }
+
+        memberService.updateUserInfo(memberDTO);
+        System.out.println(memberDTO);
+
+        return "/member/userInfo";
+    }
+
+    @GetMapping("/passCheck")
+    public void checkPassword() {
+        log.info("패스워드 변경 페이지 진입");
+    }
+
+    @PostMapping("/passCheck")
+    @ResponseBody
+    public String PostcheckPassword(Principal principal, @RequestBody MemberDTO memberDTO) throws Exception {
+        //로그인한 유저 정보에서 Id 받아와서 저장
+        String userId = principal.getName();
+        memberDTO.setUserId(userId);
+
+        System.out.println(memberDTO);
+
+        boolean result = securityService.checkPassword(memberDTO);
+        System.out.println(result);
+
+        if(!result){
+            return "fail";  //패스워드 틀림
+        }else{
+            return "success";   //패스워드 일치
+        }
+
+    }
+
+    //회원 탈퇴
+    @GetMapping("/userInfo/delete")
+    public String userInfoDelete() {
+        log.info("회원탈퇴 페이지 진입");
+
+        return "/member/userInfo";
+    }
+
+    @PostMapping("/userInfo/delete")
+    public String PostUserDelete(@RequestParam("userId") String userId, HttpSession session)
+    {
+        memberService.PostUserDelete(userId);
+        //사용자 세션 종료(로그아웃)
+        session.invalidate();
+        return "redirect:/main";
+    }
 
 
 

@@ -39,7 +39,7 @@
 			</ul>
 			<ul class="menu2">
 				<!-- 로그인 했을 때 -->
-				<li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a href="">관리자 페이지</a></li>
+				<li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a th:href="@{admin/main}">관리자 페이지</a></li>
 				<li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a href="">멤버십</a></li>
 				<li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a href="">고객센터</a></li>
 				<li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a href="">단체관람/대관문의</a></li>
@@ -51,7 +51,7 @@
 				</div>
 			</ul>
 			<ul class="menu3">
-				<li th:if="${#authorization.expression('hasRole(''USER'')')}"><a th:href="@{/member/join}">마이페이지</a></li>
+				<li th:if="${#authorization.expression('hasRole(''USER'')')}"><a th:href="@{/member/userInfo}">마이페이지</a></li>
 				<li th:if="${#authorization.expression('isAnonymous()')}"><a th:href="@{/member/join}">회원가입</a></li>
 				<li><a th:href="@{/member/reservation}">바로예매</a></li>
 				<li><a href=""><img src="/image/햄버거버튼.png"></a></li>

@@ -38,11 +38,11 @@ public class AdminController {
 
     @GetMapping("/movieManage")
     public void showList(Search search, Criteria criteria, Model model){
-        System.out.println("GET movieManage "+search);
+//        System.out.println("GET movieManage "+search);
         List<MovieDTO> list = movieService.getList(criteria, search);
         model.addAttribute("list", list);
         int total = movieService.getTotal(search);
-        System.out.println("Count : " + total);
+//        System.out.println("Count : " + total);
 
         PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
 

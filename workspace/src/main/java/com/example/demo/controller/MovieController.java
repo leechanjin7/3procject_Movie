@@ -59,12 +59,12 @@ public class MovieController {
     //영화검색 + 페이징
     @GetMapping("/movielist")
     public void GETMovieList(Search search, Criteria criteria, Model model){
-        System.out.println("GET movielist " + search);
+//        System.out.println("GET movielist " + search);
         List<MovieDTO> list = movieService.getList(criteria, search);
         model.addAttribute("list", list);
 
         int total = movieService.getTotal(search);
-        System.out.println("Count : " + total);
+//        System.out.println("Count : " + total);
         PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
 
         int totalMovieCount = movieService.getTotal(search);

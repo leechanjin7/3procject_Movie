@@ -4,6 +4,7 @@ package com.example.demo.configuration.auth;
 import com.example.demo.domain.dto.MemberDTO;
 import com.example.demo.mapper.MemberMapper;
 import com.example.demo.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class PrincipalDetailsService implements UserDetailsService {
 
 	@Autowired
@@ -27,7 +29,6 @@ public class PrincipalDetailsService implements UserDetailsService {
 
 	@Autowired
 	private MemberService memberService;
-	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -42,22 +43,13 @@ public class PrincipalDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("Could not find user");
 		}
 
-		// USERROLE 값에 따라 권한 부여
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		if (memberDTO.getUserRole() == 1) {  // 관리자
-			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		} else {  // 일반 유저
-			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		}
+		PrincipalDetails principal = new PrincipalDetails();
+		principal.setDto(memberDTO);
 
-		// UserDetails 객체 생성 시 권한 정보 추가
-		return new User(memberDTO.getUserName(), memberDTO.getUserPw(), authorities);
+		System.out.println("Loaded user details: " + principal);
+
+		return principal;
+
 	}
-
-
-
-
-
-
 
 }

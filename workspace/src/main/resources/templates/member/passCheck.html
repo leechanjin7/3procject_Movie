@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/header.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/footer.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/passCheck.css"/>
+    <!-- 네이버 폰트 -->
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/NanumBarunGothicYetHangul.css" rel="stylesheet">
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+</head>
+<body>
+<th:block th:replace="~{includes/header.html :: content}"></th:block>
+<!-- 메인 -->
+<h1>USER PAGE</h1>
+<!-- 마이페이지 버튼 -->
+<div class="mypage-warp">
+    <!-- 회원 정보 수정 -->
+    <div class="userChange">
+        <p class="tip">
+            비밀번호 입력
+        </p>
+        <div class="user-update">
+            <form id="pw-update-form" method="post">
+                <label for="nowPw" style="padding-left: 55px;">현재 PW</label> <input type="password" name="" id="nowPw" class="now_pw_input" placeholder="현재 PW를 입력해주세요.">
+                <br/>
+                <label for="userPw" style="padding-left: 55px;">새로운 PW</label> <input type="password" name="" id="userPw" class="pw_input" placeholder="새로운 PW를 입력해주세요.">
+                <span class="final_pw_ck">비밀번호를 입력해주세요.</span>
+                <br/>
+                <label for="repw">PW 확인</label><input type="password" name="" id="rePw" class="pwck_input" placeholder="변경할 비밀번호를 다시 입력해주세요.">
+                <span class="final_pwck_ck">비밀번호 확인해 주세요.</span>
+                <span class="pwck_input_re_1">비밀번호가 일치합니다.</span>
+                <span class="pwck_input_re_2">비밀번호가 일치하지 않습니다.</span>
+                <button type="submit" class="pw-save">전송</button>
+            </form>
+        </div>
+
+        <div class="pwd-update-btn-center">
+            <button class="pwd-update-cancle-btn">나가기</button>
+        </div>
+
+    </div>
+</div>
+
+<th:block th:replace="~{includes/footer.html :: content}"></th:block>
+
+<!-- 자바 스크립트 -->
+<!-- 제이쿼리 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- lodash cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- Swiper -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+<script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/userPwd.js"></script>
+</body>
+</html>

@@ -27,4 +27,26 @@
         SELECT * FROM TBL_MEMBER WHERE USERID = #{userId}
     </select>
 
+    <!-- 정보 수정 -->
+    <update id="PostPwUpdate" parameterType="String">
+        UPDATE TBL_MEMBER SET USERPW = #{userPw} WHERE USERID = #{userId};
+    </update>
+    <update id="PostNameUpdate" parameterType="String">
+        UPDATE TBL_MEMBER SET USERNAME = #{userName} WHERE USERID = #{userId};
+    </update>
+    <update id="PostPhoneUpdate" parameterType="String">
+        UPDATE TBL_MEMBER SET USERPHONE = #{userPhone} WHERE USERID = #{userId};
+    </update>
+    <update id="PostAddrUpdate" parameterType="String">
+        UPDATE TBL_MEMBER SET USERADDR1 = #{userAddr1}, USERADDR2 = #{userAddr2}, USERADDR3 = #{userAddr3} WHERE USERID = #{userId};
+    </update>
+    <!-- 현재 pw 확인 -->
+    <select id="checkPassword" resultType="String">
+        SELECT USERPW FROM TBL_MEMBER WHERE USERID = #{userId}
+    </select>
+    <!-- 회원 탈퇴 -->
+    <delete id="PostUserDelete">
+        DELETE FROM TBL_MEMBER WHERE USERID = #{userId};
+    </delete>
+
 </mapper>
