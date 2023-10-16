@@ -36,6 +36,7 @@ public class AdminController {
 
     }
 
+    //영화 목록 및 검색
     @GetMapping("/movieManage")
     public void showList(Search search, Criteria criteria, Model model){
 //        System.out.println("GET movieManage "+search);
@@ -51,17 +52,6 @@ public class AdminController {
         model.addAttribute("pageMaker", pageMaker);
     }
 
-//    //영화 관리(목록) 페이지
-//    @GetMapping("/movieManage")
-//    public void GETMovieList(Model model, Criteria criteria){
-////        log.info("GETMovieList 진입 ");
-//
-//        model.addAttribute("list", adminService.movieGetList(criteria));
-//
-//        int total = adminService.movieGetTotal();
-//        PageMakerDTO pageMaker = new PageMakerDTO(criteria, total);
-//        model.addAttribute("pageMaker", pageMaker);
-//    }
 
     //영화 등록 페이지
     @GetMapping("/movieEnroll")

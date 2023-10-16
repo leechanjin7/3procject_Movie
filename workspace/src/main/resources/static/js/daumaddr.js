@@ -1,28 +1,3 @@
-// 우편 검색
-const searchZip=function()
-{
- new daum.Postcode({
-     oncomplete: function(data) {
-         // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-         var addr='';
-
-         //사용자가 도로명 주소 선택
-         if(data.userSelectedType==='R')
-         {
-           addr=data.roadAddress;
-         }
-         else //사용자가 지번 주소 선택 'J'
-         {
-           addr=data.jibunAddress;
-         }
-         document.getElementById('postcode').value=data.zonecode;
-         document.getElementById('defaultAddress').value=addr;
-         // 커서를 상세주소 필드로 이동한다.
-         document.getElementById("addr2").focus();
-     }
- }).open();
-}
-
 /* 다음 주소 연동 */
 function execution_daum_address(){
 

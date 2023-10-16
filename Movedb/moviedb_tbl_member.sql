@@ -43,7 +43,7 @@ CREATE TABLE `tbl_member` (
 
 LOCK TABLES `tbl_member` WRITE;
 /*!40000 ALTER TABLE `tbl_member` DISABLE KEYS */;
-INSERT INTO `tbl_member` VALUES ('admin','1234','관리자','00000','관리자 주소','관리관리',100000000,1),('test1','test1','test1','test1','test1','test1',122222,0),('test2','1234','test2','57802','전남 광양시 마로니에길 61 (금호동)','fff',1022222222,0),('test22','1234','ChanJinLee','02255','서울 중랑구 용마산로 193 (면목동)','fddadf',1022222222,0),('test223','1234','이찬진','02570','서울 동대문구 제기동 1050 ','ffff',1022222222,0);
+INSERT INTO `tbl_member` VALUES ('admin','$2a$10$Gy0wtMlMG/48wIswG4w/d.Jvx/GwxWiXBoKw3hNaIrHxcnkjp9KIe','관리자','48060','부산 해운대구 APEC로 17 (우동)','ffff',1000000000,1),('test2','$2a$10$9rFUbikL6Z5zcQClpskzmOtO/awZ4WCslg/zv3/leZh5hp4SG9J6i','test2','03993','서울 마포구 연남로 1 (동교동)','dfadf',0,0);
 /*!40000 ALTER TABLE `tbl_member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-27 11:13:36
+-- Dump completed on 2023-10-16 12:36:36

@@ -34,6 +34,10 @@ input:focus, textarea:focus, input[type="checkbox"]:checked + label {
     background-color: white;
     font-size: 15px;
 }
+.login-contents>.login-main>.login-ul>.active>.tab_con>.login-member>.contents_inner>.f-section>.swiper>.swiper-wrapper>.swiper-slide {
+    width: 100% !important;
+    height: 100% !important;
+}
 .login-contents>.login-main>.login-ul>.active>.top-btn>.tab-member-btn>span {
     position: relative;
     vertical-align: top;

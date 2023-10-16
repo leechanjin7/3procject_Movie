@@ -31,7 +31,7 @@ public class MemberMapperTests {
         memberDTO.setUserAddr1("test1");
         memberDTO.setUserAddr2("test1");
         memberDTO.setUserAddr3("test1");
-        memberDTO.setUserPhone(1222222);
+        memberDTO.setUserPhone("1222222");
 
         memberMapper.memberJoin(memberDTO);
     }
