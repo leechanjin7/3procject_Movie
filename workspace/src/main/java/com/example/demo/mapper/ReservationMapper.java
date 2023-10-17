@@ -17,5 +17,9 @@ public interface ReservationMapper {
     public List<ReservationDTO> reserveSelect(ReservationDTO reservationDTO);
 
     //예매 취소
+    public int reserveCancel(int reservationId);
+
+    //예매 정보(예매 취소)
+    public ReservationDTO getReserve(int reservationId);
 
 }

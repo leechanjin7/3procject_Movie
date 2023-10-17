@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.sql.Time;
+
 @Component
 @Data
 @AllArgsConstructor
@@ -15,4 +17,6 @@ public class TheaterDTO {
     private String theaterName;
     private String theaterLocation;
     private int totalSeats;
+
+    private Time showTime;
 }

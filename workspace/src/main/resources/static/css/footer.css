@@ -1,5 +1,13 @@
 @charset "UTF-8";
 /* 푸터 */
+
+/* footer */
+
+.wrapper>footer{
+    height:400px;
+
+    background-color: black;
+}
 .footer {
     padding-top: 50px;
 }

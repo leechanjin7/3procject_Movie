@@ -7,4 +7,13 @@
         SELECT THEATERNAME, TOTALSEATS
         FROM TBL_THEATER
     </select>
+
+    <!-- 각 극장마다의 상영시간 조회 -->
+    <select id="selectAllTheaterShowTime" resultType="com.example.demo.domain.dto.TheaterDTO">
+        SELECT T.THEATERNAME, COALESCE(GROUP_CONCAT(S.SHOWTIME ORDER BY S.SHOWTIME ASC),'') AS SHOWTIMES
+        FROM TBL_THEATER T
+        INNER JOIN TBL_THEATER_SHOWTIME TS ON T.THEATERID = TS.THEATERID
+        INNER JOIN TBL_SHOWTIME S ON TS.SHOWTIMEID = S.SHOWTIMEID
+        GROUP BY T.THEATERNAME
+    </select>
 </mapper>

@@ -1,65 +1,92 @@
-var mySwiper = new Swiper(".swiper", {
-  // 슬라이드를 버튼으로 움직일 수 있습니다.
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
 
-//  // 현재 페이지를 나타내는 점이 생깁니다. 클릭하면 이동합니다.
-//  pagination: {
-//    el: ".swiper-pagination",
-//    type: "bullets",
-//  },
+	//-------------------------------------
+    //MAIN-01 BANNER BACKGROUND
+    //-------------------------------------
+    const Bgswiper = new Swiper('.main-01 .swiper', {
+        // Optional parameters
+        direction: 'horizontal', //수평 슬라이드(기본)
+        loop: true,
 
-  // 현재 페이지를 나타내는 스크롤이 생깁니다. 클릭하면 이동합니다.
-  scrollbar: {
-    draggable: false,
-  },
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+            type:'bullets',     //added ------ bullets,progressbar,fraction
+            clickable:'true'    //added ------
+        },
 
-  // 3초마다 자동으로 슬라이드가 넘어갑니다. 1초 = 1000
-  autoplay: {
-    delay: 5000,
-  },
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
 
-  slidesPerView: 5,
-  slidesPerGroup: 1,
-  centeredSlides: false,
-  spaceBetween: 20,
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+
+        //---Added...
+        autoplay:{            //시작시 바로 재생 여부
+            delay:5000,
+            disableOnInteraction:false //사용자의 action에 따른 슬라이드 동작 정지여부
+        },
+        //---Added... 마우스 휠 효과
+        mousewheel:false,
+        // effect : 'fade',
+        speed:1000,
+        });
+
+    //-------------------------------------
+    //MAIN-02 BANNER BACKGROUND
+    //-------------------------------------
+    const main_02swiper = new Swiper('.main-02 .swiper', {
+        direction:'horizontal', //수평 슬라이드(기본)
+        autoplay:{            //시작시 바로 재생 여부
+            delay:2000,
+            disableOnInteraction:false //사용자의 action에 따른 슬라이드 동작 정지여부
+        },
+        loop:true, //무한재생
+
+        slidesPerView:5,  //한번에 보여주는 slide개수
+        spaceBetween:0,   //slide 간격 (px)
+        centeredSlides:true,
+
+        // // navigation
+        navigation:{
+            prevEl:'.swiper-button-prev',
+            nextEl:'.swiper-button-next'
+        },
+        });
+
+        //-------------------------------------
+        //
+        //-------------------------------------
+        const nav_el = document.querySelector('nav');
 
 
-});
+        //lodash's _.throttle(함수,지연시간) 사용
+        window.addEventListener('scroll',_.throttle(function(){
+            console.log("scroll_event's Y : " ,window.scrollY);
 
-// TOP 누르면 최상단 이동
-const toTopBtn_el = document.getElementById('to_top');
- toTopBtn_el.addEventListener('click',function(){
-     window.scrollTo({top:0,behavior:'smooth'})
- })
-// 스크롤시 메뉴 따라오기
-// 좌측 광고
-$(window).scroll(function(){
-var scrollTop = $(document).scrollTop();
-if (scrollTop < 300) {
-scrollTop = 300;
-}
-$(".left_section").stop();
-$(".left_section").animate( { "top" : scrollTop });
-});
-// 우측 퀵메뉴
-$(window).scroll(function(){
-var scrollTop = $(document).scrollTop();
-if (scrollTop < 200) {
-scrollTop = 200;
-}
-$(".quick_section").stop();
-$(".quick_section").animate( { "top" : scrollTop });
-});
-// x표시 광고 끄기
-// 버튼과 광고 요소 선택
-const bannerCloseButton = document.querySelector('.banner_close');
-const leftBanner = document.querySelector('.left_banner');
+            if(window.scrollY>80){
 
-// 버튼 클릭 시 광고 숨기기
-bannerCloseButton.addEventListener('click', function () {
-leftBanner.style.display = 'none';
-bannerCloseButton.style.display = 'none';
-});
+                nav_el.style.position='fixed';
+                nav_el.style.top="0px";
+                nav_el.style.left="0px";
+                nav_el.style.zIndex="10";
+                nav_el.style.width="100%";
+
+            }else{
+                nav_el.style.position='relative';
+
+
+            }
+        },300))
+
+        <!-- top-banner -->
+        const top_banner_btn_el = document.querySelector('.top-banner-btn');
+        top_banner_btn_el.addEventListener('click',function(){
+            const top_banner_el = document.querySelector('.top-banner');
+            top_banner_el.style.display="none";
+        });
+
