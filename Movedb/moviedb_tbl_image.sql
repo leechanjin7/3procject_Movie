@@ -25,9 +25,9 @@ DROP TABLE IF EXISTS `tbl_image`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_image` (
-  `img_id` int NOT NULL,
-  `img_link` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`img_id`)
+  `imgId` int NOT NULL,
+  `imgLink` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`imgId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-16 12:36:36
+-- Dump completed on 2023-10-17 13:34:42
