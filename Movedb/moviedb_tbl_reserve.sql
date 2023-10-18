@@ -18,29 +18,35 @@ USE `moviedb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbl_showtime`
+-- Table structure for table `tbl_reserve`
 --
 
-DROP TABLE IF EXISTS `tbl_showtime`;
+DROP TABLE IF EXISTS `tbl_reserve`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_showtime` (
-  `showtimeId` int NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tbl_reserve` (
+  `reserveId` int NOT NULL,
+  `userId` varchar(255) DEFAULT NULL,
   `theaterId` int DEFAULT NULL,
-  `showtime` time DEFAULT NULL,
-  PRIMARY KEY (`showtimeId`),
-  KEY `theaterId` (`theaterId`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `movieId` int DEFAULT NULL,
+  `reserveDate` date DEFAULT NULL,
+  `startDate` date DEFAULT NULL,
+  `startTime` time DEFAULT NULL,
+  `endTime` time DEFAULT NULL,
+  `selectSeat` varchar(255) DEFAULT NULL,
+  `selectSeatNum` int DEFAULT NULL,
+  `priceTotal` int DEFAULT NULL,
+  PRIMARY KEY (`reserveId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_showtime`
+-- Dumping data for table `tbl_reserve`
 --
 
-LOCK TABLES `tbl_showtime` WRITE;
-/*!40000 ALTER TABLE `tbl_showtime` DISABLE KEYS */;
-INSERT INTO `tbl_showtime` VALUES (1,NULL,'10:00:00'),(2,NULL,'12:00:00'),(3,NULL,'14:00:00'),(4,NULL,'16:00:00'),(5,NULL,'18:00:00'),(6,NULL,'20:00:00'),(7,NULL,'22:00:00');
-/*!40000 ALTER TABLE `tbl_showtime` ENABLE KEYS */;
+LOCK TABLES `tbl_reserve` WRITE;
+/*!40000 ALTER TABLE `tbl_reserve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_reserve` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-17 13:34:42
+-- Dump completed on 2023-10-18 16:20:01

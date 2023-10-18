@@ -42,7 +42,7 @@ public class AdminRestController {
 		Calendar cal = Calendar.getInstance();
 
 		String today = sdf.format(cal.getTime());
-		cal.add(Calendar.DATE, -3); //  일수 뺴기
+		cal.add(Calendar.DATE, -30); //  일수 뺴기
 		String yesterday = sdf.format(cal.getTime());
 		
 		//API URL

@@ -14,9 +14,9 @@
     </insert>
     <!-- 영화 API 이미지 업데이트 -->
     <insert id="movie_image_insert" parameterType="list">
-        INSERT INTO tbl_image VALUES <foreach collection="list" item="item" separator=","> (#{item.img_id},#{item.img_link})</foreach>
+        INSERT INTO tbl_image VALUES <foreach collection="list" item="item" separator=","> (#{item.imgId},#{item.imgLink})</foreach>
         ON DUPLICATE KEY UPDATE
-        img_link = VALUES(img_link)
+        imgLink = VALUES(imgLink)
     </insert>
 
     <!-- 영화등록  -->

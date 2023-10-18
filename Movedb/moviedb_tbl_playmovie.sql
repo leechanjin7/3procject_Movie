@@ -18,27 +18,29 @@ USE `moviedb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbl_reservationseat`
+-- Table structure for table `tbl_playmovie`
 --
 
-DROP TABLE IF EXISTS `tbl_reservationseat`;
+DROP TABLE IF EXISTS `tbl_playmovie`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_reservationseat` (
-  `reservationseatId` int NOT NULL AUTO_INCREMENT,
-  `reservationId` int DEFAULT NULL,
-  `seatId` int DEFAULT NULL,
-  PRIMARY KEY (`reservationseatId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tbl_playmovie` (
+  `playMovieId` int NOT NULL AUTO_INCREMENT,
+  `playMovie` varchar(255) DEFAULT NULL,
+  `openDate` date DEFAULT NULL,
+  `endDate` date DEFAULT NULL,
+  PRIMARY KEY (`playMovieId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_reservationseat`
+-- Dumping data for table `tbl_playmovie`
 --
 
-LOCK TABLES `tbl_reservationseat` WRITE;
-/*!40000 ALTER TABLE `tbl_reservationseat` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_reservationseat` ENABLE KEYS */;
+LOCK TABLES `tbl_playmovie` WRITE;
+/*!40000 ALTER TABLE `tbl_playmovie` DISABLE KEYS */;
+INSERT INTO `tbl_playmovie` VALUES (1,'화란','2023-10-18','2023-10-28'),(2,'범죄도시3','2023-10-18','2023-10-28'),(3,'엘리멘탈','2023-10-18','2023-10-28'),(4,'어바웃타임','2023-10-18','2023-10-28'),(5,'오펜하이머','2023-10-18','2023-10-28'),(6,'더 넌2','2023-10-18','2023-10-28'),(7,'퍼피 구조대:더 마이티 무비','2023-10-18','2023-10-28'),(8,'더 마블스','2023-10-18','2023-10-28'),(9,'콘크리트 유토피아','2023-10-18','2023-10-28'),(10,'1947 보스톤','2023-10-18','2023-10-28');
+/*!40000 ALTER TABLE `tbl_playmovie` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-17 13:34:42
+-- Dump completed on 2023-10-18 16:20:01

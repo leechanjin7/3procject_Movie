@@ -18,32 +18,28 @@ USE `moviedb`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tbl_reservation`
+-- Table structure for table `tbl_cinema`
 --
 
-DROP TABLE IF EXISTS `tbl_reservation`;
+DROP TABLE IF EXISTS `tbl_cinema`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_reservation` (
-  `reservationId` int NOT NULL AUTO_INCREMENT,
-  `userId` varchar(255) DEFAULT NULL,
-  `showtimeId` int DEFAULT NULL,
-  `seatNumber` int DEFAULT NULL,
-  `reservationTime` time DEFAULT NULL,
-  `priceTotal` int DEFAULT NULL,
-  PRIMARY KEY (`reservationId`),
-  KEY `userId` (`userId`),
-  KEY `showtimeId` (`showtimeId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tbl_cinema` (
+  `cinemaId` int NOT NULL AUTO_INCREMENT,
+  `cinemaName` varchar(255) DEFAULT NULL,
+  `cinemaLocation` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`cinemaId`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_reservation`
+-- Dumping data for table `tbl_cinema`
 --
 
-LOCK TABLES `tbl_reservation` WRITE;
-/*!40000 ALTER TABLE `tbl_reservation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbl_reservation` ENABLE KEYS */;
+LOCK TABLES `tbl_cinema` WRITE;
+/*!40000 ALTER TABLE `tbl_cinema` DISABLE KEYS */;
+INSERT INTO `tbl_cinema` VALUES (1,'신림','서울'),(2,'용산','서울'),(3,'홍대입구','서울'),(4,'경주','경북/대구'),(5,'동성로','경북/대구'),(6,'포항','경북/대구'),(7,'동해','강원'),(8,'춘천','강원'),(9,'화천','강원'),(10,'인천아시아드','경기/인천'),(11,'파주','경기/인천'),(12,'용인에버랜드','경기/인천');
+/*!40000 ALTER TABLE `tbl_cinema` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-17 13:34:42
+-- Dump completed on 2023-10-18 16:20:01
