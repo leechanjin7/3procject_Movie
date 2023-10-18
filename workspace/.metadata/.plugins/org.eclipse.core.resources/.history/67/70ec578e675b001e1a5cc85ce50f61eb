@@ -1,0 +1,68 @@
+package com.movie.mapper;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.movie.domain.dto.MovieDTO;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Slf4j
+public class MovieMapperTests {
+	
+	@Autowired
+	public MovieMapper movieMapper;
+	
+//	//��ȸ�׽�Ʈ
+//	@Test
+//	public void selectTest() {
+//		
+//		MovieDTO movieDTO = movieMapper.select(1);
+//		System.out.println("��ȸ ���� : " + movieDTO);
+//	}
+//	
+//	//��ȭ����׽�Ʈ
+//	@Test
+//	public void insertTest() {
+//		
+//		MovieDTO movie = new MovieDTO();
+//		
+//		movie.setMovieName("�׽�Ʈ����");
+//		movie.setMovieTime("�׽�Ʈ�ð�");
+//		movie.setMovieInfo("�׽�Ʈ����");
+//		movie.setMovieType("�׽�Ʈ�׼�");
+//		movie.setMovieDic("�׽�Ʈ ����");
+//		movie.setMovieAct("�׽�Ʈ���");
+//		movie.setMovieRelease("�׽�Ʈ������¥");
+//		
+//		movieMapper.insert(movie);
+//	}
+	
+//	@Test
+//	public void selectTest() {
+//		
+//		int movieId = 26;
+//		
+//		MovieDTO result = movieMapper.select(movieId);
+//		System.out.println("==============================");
+//		System.out.println(result);
+//		System.out.println("==============================");
+//		
+//		
+//	}
+	
+	@Test
+	public void deleteTest() {
+		
+		
+		movieMapper.delete(61);
+	}
+
+}

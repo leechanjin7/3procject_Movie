@@ -1,0 +1,34 @@
+package com.movie.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.movie.domain.dto.MemberDTO;
+import com.movie.mapper.MemberMapper;
+
+public class MemberServiceImple implements MemberService{
+	
+	@Autowired
+	MemberMapper memberMapper;
+
+	@Override
+	public void memberJoin(MemberDTO memberDTO) {
+		
+		memberMapper.memberJoin(memberDTO);
+		
+	}
+
+	@Override
+	public String idCheck(String memberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberDTO memberLogin(MemberDTO memberDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}

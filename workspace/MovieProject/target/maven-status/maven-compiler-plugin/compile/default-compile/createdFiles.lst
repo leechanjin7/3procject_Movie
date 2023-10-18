@@ -1,0 +1,8 @@
+com\movie\controller\HomeController.class
+com\movie\mapper\TestMapper.class
+com\movie\domain\dto\TestDTO.class
+com\movie\service\TestService.class
+com\movie\domain\dto\MovieDTO.class
+com\movie\controller\TestController.class
+com\movie\mapper\MovieMapper.class
+com\movie\service\TestServiceImpl.class
