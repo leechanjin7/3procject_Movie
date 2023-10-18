@@ -165,8 +165,8 @@
 
 
 /* 관람시간 */
-.time_choice .choice-list {
-    display: none;
+.time_choice .choice-list .choice-timeList {
+
 }
 
 .showTime-active {

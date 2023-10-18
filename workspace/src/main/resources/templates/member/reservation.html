@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/reservation.css"/>
     <!-- Jquery -->
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,43 +182,43 @@
                             <li>
                                 <button type="button" onclick="setActive(this);" name="theaterLocation">서울</button>
                                 <ul class="choice-list-detail">
-                                    <li th:each="theater : ${Slist}"><button type="button" th:text="${theater.theaterName}" onclick="openPopup(); setLocal(this);"></button></li>
+                                    <li th:each="theater : ${Slist}"><button type="button" th:text="${theater.theaterName}" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
                                 </ul>
                             </li>
                             <li>
                                 <button type="button" onclick="setActive(this);" name="theaterLocation">경기도</button>
                                 <ul class="choice-list-detail">
-                                    <li th:each="theater : ${GGlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this);"></button></li>
+                                    <li th:each="theater : ${GGlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
                                 </ul>
                             </li>
                             <li>
                                 <button type="button" onclick="setActive(this);" name="theaterLocation">대구</button>
                                 <ul class="choice-list-detail">
-                                    <li th:each="theater : ${Dlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this);"></button></li>
+                                    <li th:each="theater : ${Dlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
                                 </ul>
                             </li>
                             <li>
                                 <button type="button" onclick="setActive(this);" name="theaterLocation">경북</button>
                                 <ul class="choice-list-detail">
-                                    <li th:each="theater : ${GBlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this);"></button></li>
+                                    <li th:each="theater : ${GBlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
                                 </ul>
                             </li>
                             <li>
                                 <button type="button" onclick="setActive(this);" name="theaterLocation">충청/대전</button>
                                 <ul class="choice-list-detail">
-                                    <li th:each="theater : ${CDlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this);"></button></li>
+                                    <li th:each="theater : ${CDlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
                                 </ul>
                             </li>
                             <li>
                                 <button type="button" onclick="setActive(this);" name="theaterLocation">강원</button>
                                 <ul class="choice-list-detail">
-                                    <li th:each="theater : ${GAlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this);"></button></li>
+                                    <li th:each="theater : ${GAlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
                                 </ul>
                             </li>
                             <li>
                                 <button type="button" onclick="setActive(this);" name="theaterLocation">제주</button>
                                 <ul class="choice-list-detail">
-                                    <li th:each="theater : ${Jlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this);"></button></li>
+                                    <li th:each="theater : ${Jlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
                                 </ul>
                             </li>
                         </ul>
