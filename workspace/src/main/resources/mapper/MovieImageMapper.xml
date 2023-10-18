@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.MovieImageMapper">
+
+    <!-- 영화 이미지 조회 -->
+    <select id="selectImage" resultType="com.example.demo.domain.dto.MovieImageDTO">
+        SELECT IMG_ID, IMG_LINK
+        FROM TBL_IMAGE
+        INNER JOIN TBL_MOVIE ON TBL_IMAGE.IMG_ID = TBL_MOVIE.MOVIEID
+        WHERE TBL_IMAGE.IMG_ID = #{imgId}
+    </select>
+
+    <!-- 영화 평점순 이미지 조회  -->
+    <select id="selectRatingImage" resultType="com.example.demo.domain.dto.MovieImageDTO">
+        SELECT TBL_IMAGE.IMG_ID, TBL_IMAGE.IMG_LINK, TBL_MOVIE.MOVIENAME, TBL_MOVIE.MOVIERATING
+        FROM TBL_IMAGE
+        INNER JOIN TBL_MOVIE ON TBL_IMAGE.IMG_ID = TBL_MOVIE.MOVIEID
+        ORDER BY TBL_MOVIE.MOVIERATING DESC
+        LIMIT 20
+    </select>
+
+</mapper>
