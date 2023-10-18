@@ -6,7 +6,7 @@
 
 /* 화면 전체 렙 */
 .wrapper{
-	width: 100%;	
+	width: 100%;
 }
 
 /* content 랩 */
@@ -14,6 +14,12 @@
 	width : 800px;
 	margin: auto;
 }
+
+form#join_form {
+    margin-top: 40px;
+}
+
+
 /* 페이지 제목 */
 .subjecet{
 	width: 100%;
@@ -39,8 +45,8 @@
 .id_input_box{
 	border: 1px solid black;
 	height:31px;
-	padding: 10px 14px;	
-	
+	padding: 10px 14px;
+
 }
 .id_input{
 	width:100%;
@@ -72,8 +78,8 @@
 .pw_input_box{
 	border: 1px solid black;
 	height:31px;
-	padding: 10px 14px;	
-	
+	padding: 10px 14px;
+
 }
 .pw_input{
 	width:100%;
@@ -94,8 +100,8 @@
 .pwck_input_box{
 	border: 1px solid black;
 	height:31px;
-	padding: 10px 14px;	
-	
+	padding: 10px 14px;
+
 }
 .pwck_input{
 	width:100%;
@@ -116,8 +122,8 @@
 .user_input_box{
 	border: 1px solid black;
 	height:31px;
-	padding: 10px 14px;	
-	
+	padding: 10px 14px;
+
 }
 .user_input{
 	width:100%;
@@ -138,8 +144,8 @@
 .phone_input_box{
 	border: 1px solid black;
 	height:31px;
-	padding: 10px 14px;	
-	
+	padding: 10px 14px;
+
 }
 .phone_input{
 	width:100%;
@@ -148,7 +154,7 @@
 	font-size:28px;
 }
 .phone_check_wrap{
-	margin-top: 20px;	
+	margin-top: 20px;
 }
 .phone_check_input_box{
 	border: 1px solid black;
@@ -202,13 +208,13 @@
     height: 31px;
     padding: 10px 14px;
     width: 61%;
-    float: left;	
+    float: left;
 }
 .address_input_1{
 	width:100%;
 	height:100%;
 	border:none;
-	font-size:28px;	
+	font-size:28px;
 }
 .address_button{
     border: 1px solid black;
@@ -220,7 +226,7 @@
     font-size: 30px;
     font-weight: 900;
     background-color: #ececf7;
-    cursor: pointer;	
+    cursor: pointer;
 }
 .address_input_2_wrap{
 	margin-top: 20px;
@@ -228,8 +234,8 @@
 .address_input_2_box{
 	border: 1px solid black;
 	height:31px;
-	padding: 10px 14px;	
-	
+	padding: 10px 14px;
+
 }
 .address_input_2{
 	width:100%;
@@ -244,8 +250,8 @@
 .address_input_3_box{
 	border: 1px solid black;
 	height:31px;
-	padding: 10px 14px;	
-	
+	padding: 10px 14px;
+
 }
 .address_input_3{
 	width:100%;
@@ -268,7 +274,7 @@
     color: white;
 }
 /* 유효성 검사 문구 */
- 
+
 .final_id_ck{
 	color : red;
     display: none;
@@ -296,12 +302,12 @@
 /* 비밀번호 확인 일치 유효성검사 */
 .pwck_input_re_1{
         color : green;
-        display : none;    
+        display : none;
 }
 .pwck_input_re_2{
         color : red;
-        display : none;    
-}   
+        display : none;
+}
 
 
 /* float 속성 해제 */

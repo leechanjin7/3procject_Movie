@@ -549,7 +549,7 @@
 			</div>
 			<div class="center">
 				<div class="logo">
-					<img src="/image/logo.jpg" />
+					<a th:href="@{/main}"><img src="/image/logo.jpg" /></a>
 				</div>
 
 			</div>
@@ -561,7 +561,6 @@
 					<li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}"><span class="material-symbols-outlined logout">logout</span></a></li>            <!--로그아웃-->
 					<!-- 기본상태 -->
 					<li sec:authorize="isAnonymous()"><a th:href="@{/member/login}"><span class="material-symbols-outlined login">login</span></a></li>
-				</ul>
 				</ul>
 			</div>
 		</div>

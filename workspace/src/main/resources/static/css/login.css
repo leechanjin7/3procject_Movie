@@ -2,7 +2,10 @@
 input:focus, textarea:focus, input[type="checkbox"]:checked + label {
     outline-style: dotted; outline-width: 1px; outline-color: black;
 }
+ body{
+     padding:0px;
 
+ }
 /* 로그인 전체 */
 .login-contents{
     width: 100%;

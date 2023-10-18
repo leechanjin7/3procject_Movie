@@ -11,9 +11,7 @@
     padding: 30px 0;
 }
 
-
 /* 영화 예매정보 */
-
 .ticket-info-area {
     background: #000;
 }
@@ -69,9 +67,7 @@
     font-weight: bold;
 }
 
-
 /* 영화예매 본문내용 */
-
 .box-step {
     overflow: hidden;
     width: 100%;
@@ -117,43 +113,41 @@
     vertical-align: middle;
 }
 
-.choice-list {
+.cinema-list {
     position: relative;
 }
+.cinema-list button[name="theaterLocation"] {
+    width: 30%;
+}
 
-.choice-list li button {
-    width: 100%;
+.cinema-list li button {
     padding: 15px 0;
     padding-left: 15px;
     font-size: 15px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #000;
     text-align: left;
 }
 
-/*.active:not(nav){
-    background: #000;
-    color: #fff;
-}*/
-.active:not(.nav-link){
+.cinema-list li button:hover {
     background: #000;
     color: #fff;
     border-radius: 8px;
 }
 
+.movie-active {
+    background: black;
+    color: white;
+    border-radius: 8px;
+}
 
-.choice-list li button:hover {
-    background: #000;
-    color: #fff;
+.local-active {
+    background: black;
+    color: white;
     border-radius: 8px;
 }
 
 
 /* 영화관선택 */
-
-.cinema-choice-list>li>button {
-    width: 30%;
-}
-
 .choice-list-detail {
     display: none;
     position: absolute;
@@ -165,23 +159,25 @@
 
 
 /* 관람일 */
-
 .date_choice .choice-list {
-    display: none;
+
 }
 
 
 /* 관람시간 */
-
 .time_choice .choice-list {
     display: none;
 }
 
+.showTime-active {
+    background: black;
+    color: white;
+    border-radius: 8px;
+}
 
 /* 좌석 */
-
 .seat_choice .seat-choice-content {
-    display: none;
+
 }
 
 .select-message {
@@ -336,66 +332,6 @@ img {
 }
 
 
-
-
-
-@charset "utf-8";
-
-
-@import url('https://fonts.googleapis.com/css?family=PT+Serif:400,400i,700'); /* Webfont : PT Seirf */
-@import url('https://fonts.googleapis.com/css?family=Lato:700,900&display=swap');
-
-
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 100;
-  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');
-}
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 300;
-  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');
-}
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');
-}
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight: 500;
-  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');
-}
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight:700;
-  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');
-}
-@font-face {
-  font-family: 'Noto Sans KR';
-  font-style: normal;
-  font-weight:900;
-  src: url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),
-  url(https://fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');
-}
-
-
 /* reset */
 div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,textarea {margin:0;padding:0}
 fieldset,img {border:0 none}
@@ -417,22 +353,15 @@ font-size:12px;line-height:1.5;font-family:'Noto Sans KR','돋움',Dotum,'굴림
 
 
 /*결제버튼*/
-
-
-
-
 .join-submit:hover{
     border-radius: 8px;
     margin-top:5px;
-
-
     color : #e4b535 !important;
     transition: all 0.5s ease;
-
 }
 
 .join-button {
-font-size:18px;line-height:1.5;font-family:'Noto Sans KR','돋움',Dotum,'굴림',Gulim, AppleGothic, Sans-serif;color:#333
+  font-size:18px;line-height:1.5;font-family:'Noto Sans KR','돋움',Dotum,'굴림',Gulim, AppleGothic, Sans-serif;color:#333
   display: inline-block;
   width: 100px;
   height: 50px;
@@ -443,9 +372,8 @@ font-size:18px;line-height:1.5;font-family:'Noto Sans KR','돋움',Dotum,'굴림
 }
 
 .join-submit {
-border-radius: 8px;
-    background-color : #000;
-
+  border-radius: 8px;
+  background-color : #000;
   color: #fff;
   margin-right: 10px;
 }
@@ -460,27 +388,3 @@ border-radius: 8px;
   font-size: 12px;
   color: red;
 }
-
-
-
-
-
-/*
-#navbarSupportedContent ul li:hover{
-padding-left: 5px;
-
-      transition: all 0.3s ease;
-
-background: red;
-
-
-
-  z-index: 1;
-
-
-
-
-}
-*/
-
-/**/

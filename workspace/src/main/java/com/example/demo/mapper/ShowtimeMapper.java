@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface ShowTimeMapper {
+public interface ShowtimeMapper {
 
-    //예매시간선택
-    public List<ShowtimeDTO> selectShowTimes();
+    //상영시간 전체 조회
+    public List<ShowtimeDTO> selectAll(ShowtimeDTO showtimeDTO);
 }

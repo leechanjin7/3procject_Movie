@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.dto.MovieDTO;
+import com.example.demo.domain.dto.MovieImageDTO;
 import com.example.demo.domain.dto.Search;
 import com.example.demo.domain.paging.Criteria;
 import com.example.demo.domain.paging.PageMakerDTO;
+import com.example.demo.service.MovieImageService;
 import com.example.demo.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ import java.util.List;
 public class MovieController {
 
     private final MovieService movieService;
+
+    private final MovieImageService movieImageService;
 
 
 //    @GetMapping("/main")
@@ -72,6 +76,15 @@ public class MovieController {
         model.addAttribute("pageMaker", pageMaker);
     }
 
+    @GetMapping("/movies/rating")
+    public void GETMovieRating(Model model) {
+        List<MovieImageDTO> list = movieImageService.selectRatingImage();
+        model.addAttribute("list", list);
+
+        System.out.println("list : " + list);
+
+//        log.info("레이팅순으로 정렬");
+    }
 
 
 

@@ -16,4 +16,56 @@
         INNER JOIN TBL_SHOWTIME S ON TS.SHOWTIMEID = S.SHOWTIMEID
         GROUP BY T.THEATERNAME
     </select>
+
+    <!-- 서울 영화관 조회 -->
+    <select id="selectSeoul" resultType="com.example.demo.domain.dto.TheaterDTO">
+        SELECT THEATERNAME
+        FROM TBL_THEATER
+        WHERE THEATERLOCATION = '서울';
+    </select>
+
+    <!-- 경기 영화관 조회 -->
+    <select id="selectGyeonggi" resultType="com.example.demo.domain.dto.TheaterDTO">
+        SELECT THEATERNAME
+        FROM TBL_THEATER
+        WHERE THEATERLOCATION = '경기';
+    </select>
+
+    <!-- 대구 영화관 조회 -->
+    <select id="selectDaegu" resultType="com.example.demo.domain.dto.TheaterDTO">
+        SELECT THEATERNAME
+        FROM TBL_THEATER
+        WHERE THEATERLOCATION = '대구';
+    </select>
+
+    <!-- 경북 영화관 조회 -->
+    <select id="selectGyeongbuk" resultType="com.example.demo.domain.dto.TheaterDTO">
+        SELECT THEATERNAME
+        FROM TBL_THEATER
+        WHERE THEATERLOCATION = '경북';
+    </select>
+
+    <!-- 충청,대전 영화관 조회 -->
+    <select id="selectDaejeon" resultType="com.example.demo.domain.dto.TheaterDTO">
+        SELECT THEATERNAME
+        FROM TBL_THEATER
+        WHERE THEATERLOCATION = '충청/대전';
+    </select>
+
+    <!-- 강원 영화관 조회 -->
+    <select id="selectGangwon" resultType="com.example.demo.domain.dto.TheaterDTO">
+        SELECT THEATERNAME
+        FROM TBL_THEATER
+        WHERE THEATERLOCATION = '강원';
+    </select>
+
+    <!-- 제주 영화관 조회 -->
+    <select id="selectJeju" resultType="com.example.demo.domain.dto.TheaterDTO">
+        SELECT THEATERNAME
+        FROM TBL_THEATER
+        WHERE THEATERLOCATION = '제주';
+    </select>
+
+
+
 </mapper>

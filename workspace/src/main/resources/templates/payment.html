@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<!-- 결제 버튼 클릭 시 경제창 호출 -->
+<button onclick="requestPayment()">결제하기</button>
+
+<script>
+    function requestPayment() {
+        PortOne.requestPayment({
+            storeId: 'store-81aa1a2d-3dc6-4101-aef0-7ee6967790bc',
+            paymentId: 'paymentId' + new Date().getTime(), // 고유한 결제 ID 생성
+            orderName: '나이키 와플 트레이너 2 SD',
+            totalAmount: 1000,
+            currency: 'CURRENCY_KRW',
+            channelKey: 'channel-key-cf0efb22-a82f-4dc4-8895-44a8f38f0aa8',
+            payMethod: "CARD",
+            customer: {customerId:"홍길동",
+            phoneNumber:"01011111111"}
+        });
+    }
+</script>
+</body>
+</html>
