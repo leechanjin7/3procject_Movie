@@ -1,6 +1,6 @@
 package com.example.demo.mapper;
 
-import com.example.demo.domain.dto.ReservationDTO;
+import com.example.demo.domain.dto.ReserveDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +19,23 @@ public class ReservationMapperTests {
     @Test
     public void reserveInsertTest(){
 
-        ReservationDTO reservationDTO = new ReservationDTO();
+        ReserveDTO reserveDTO = new ReserveDTO();
 
-        reservationDTO.setUserId("test1");
-        reservationDTO.setShowtimeId(1);
-        reservationDTO.setSeatNumber(1);
-        reservationDTO.setReservationTime(Time.valueOf("12:22:00"));
-        reservationDTO.setPriceTotal(40000);
+        reserveDTO.setUserId("test1");
+        reserveDTO.setShowtimeId(1);
+        reserveDTO.setSeatNumber(1);
+        reserveDTO.setReservationTime(Time.valueOf("12:22:00"));
+        reserveDTO.setPriceTotal(40000);
 
-        reservationMapper.reserveInsert(reservationDTO);
+        reservationMapper.reserveInsert(reserveDTO);
     }
 
     @Test
     public void reserveSelectTest(){
 
-        ReservationDTO reservationDTO = new ReservationDTO();
+        ReserveDTO reserveDTO = new ReserveDTO();
 
-        List<ReservationDTO> list = reservationMapper.reserveSelect(reservationDTO);
+        List<ReserveDTO> list = reservationMapper.reserveSelect(reserveDTO);
 
         System.out.println("결과 값 : " + list);
 
