@@ -19,4 +19,6 @@ public class TheaterPlayMovieDTO {
     private Time endTime;
     private int currentSeat;
     private boolean reserveOk;
+
+    private int totalSeats;
 }

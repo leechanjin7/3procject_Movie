@@ -146,6 +146,11 @@
     border-radius: 8px;
 }
 
+.theater-active {
+    background: black;
+    color: white;
+    border-radius: 8px;
+}
 
 /* 영화관선택 */
 .choice-list-detail {
@@ -158,6 +163,7 @@
 }
 
 
+
 /* 관람일 */
 .date_choice .choice-list {
 
@@ -165,11 +171,11 @@
 
 
 /* 관람시간 */
-.time_choice .choice-list .choice-timeList {
-
+.time_choice .choice-list {
+    display: none;
 }
 
-.showTime-active {
+.startTime-active {
     background: black;
     color: white;
     border-radius: 8px;

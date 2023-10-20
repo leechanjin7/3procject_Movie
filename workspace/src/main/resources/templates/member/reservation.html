@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/reservation.css"/>
     <!-- Jquery -->
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,11 +67,11 @@
                     <!-- 로그인상태 -->
                     <li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a
                             th:href="@{/member/userInfo}"><span class="material-symbols-outlined credit_card">credit_card</span></a>
-                    </li>
+                    </li>  <!--멤버쉽-->
                     <li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a href=""><span
-                            class="material-symbols-outlined groups">groups</span></a></li>
+                            class="material-symbols-outlined groups">groups</span></a></li>            <!--단체관람/대관문의-->
                     <li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}"><span
-                            class="material-symbols-outlined logout">logout</span></a></li>
+                            class="material-symbols-outlined logout">logout</span></a></li>            <!--로그아웃-->
                     <!-- 기본상태 -->
                     <li sec:authorize="isAnonymous()"><a th:href="@{/member/login}"><span
                             class="material-symbols-outlined login">login</span></a></li>
@@ -106,8 +105,12 @@
                     <li><a href="">스페셜관</a></li>
                     <li><a href="">서울</a></li>
                     <li><a href="">경기/인천</a></li>
+                    <li><a href="">충청/대전</a></li>
+                    <li><a href="">전라/광주</a></li>
                     <li><a href="">경상/대구</a></li>
+                    <li><a href="">경상/부산/울산</a></li>
                     <li><a href="">강원</a></li>
+                    <li><a href="">제주</a></li>
                 </ul>
             </li>
             <li><a href="">이벤트</a>
@@ -132,132 +135,209 @@
         </ul>
     </nav>
 
-<div id="container">
-    <form th:action="@{/member/reservation}" role="form" method="post" th:object="${movieDTO}">
-        <h3 class="ticket-title">영화예매</h3>
-        <div class="ticket-info-area" th:object="${movieDTO}">
-            <ul class="ticket-info">
-                <li>
+    <div id="container">
+        <form th:action="@{/member/reservation}" role="form" method="post" th:object="${movieDTO}">
+            <h3 class="ticket-title">영화예매</h3>
+            <div class="ticket-info-area" th:object="${movieDTO}">
+                <ul class="ticket-info">
+                    <li>
                     <span class="ticket-movie-poster">
                         <img th:src="@{''}" alt="">
                     </span>
-                    <div class="ticket-movie">
-                        <div class="ticket-info-title">영화</div>
-                        <div class="movie-name"></div>
-                        <input type="hidden" value="" name="ticket_num">
-                        <input type="hidden" value="" name="movieName">
-                    </div>
-                </li>
-                <li>
-                    <div class="ticket-info-date">관람일시</div>
-                    <div id="txtDate"></div>
-                    <div id="txtTime"></div>
-                    <input type="hidden" value="" name="schedule_date">
-                </li>
-                <li>
-                    <div class="ticket-info-seat">선택좌석</div>
-                    <div id=seatInfo></div>
-                    <input type="hidden" value="10" name="seat_num">
-                </li>
-                <li>
-                    <div class="ticket-info-total">총 결제금액</div>
-                    <div class="ticket-price"><span>0</span>원</div>
-                    <input type="hidden" value="14000" name="moviePrice">
-                </li>
-            </ul>
-        </div>
-        <!-- 예매본문 -->
-        <div class="layout-content reserve-wrap">
-            <div class="box-step">
-                <dl class="cinema-choice">
-                    <dt>
-                        <span class="round">STEP 1</span> 영화관 선택
-                    </dt>
-                    <dd>
-                        <ul class="cinema-list">
-                            <li>
-                                <button type="button" onclick="setActive(this);" name="theaterLocation">서울</button>
-                                <ul class="choice-list-detail">
-                                    <li th:each="theater : ${Slist}"><button type="button" th:text="${theater.theaterName}" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <button type="button" onclick="setActive(this);" name="theaterLocation">경기도</button>
-                                <ul class="choice-list-detail">
-                                    <li th:each="theater : ${GGlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <button type="button" onclick="setActive(this);" name="theaterLocation">대구</button>
-                                <ul class="choice-list-detail">
-                                    <li th:each="theater : ${Dlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <button type="button" onclick="setActive(this);" name="theaterLocation">경북</button>
-                                <ul class="choice-list-detail">
-                                    <li th:each="theater : ${GBlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <button type="button" onclick="setActive(this);" name="theaterLocation">충청/대전</button>
-                                <ul class="choice-list-detail">
-                                    <li th:each="theater : ${CDlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <button type="button" onclick="setActive(this);" name="theaterLocation">강원</button>
-                                <ul class="choice-list-detail">
-                                    <li th:each="theater : ${GAlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <button type="button" onclick="setActive(this);" name="theaterLocation">제주</button>
-                                <ul class="choice-list-detail">
-                                    <li th:each="theater : ${Jlist}"><button type="button" th:text="${theater.theaterName}" name="theaterName" onclick="openPopup(); setLocal(this); selectMovie(theaterName);"></button></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </dd>
-                </dl>
-                <input type="hidden" value="" name="theaterLocation">
-                <input type="hidden" value="" name="theaterName">
-                <dl class="date_choice">
-                    <dt><span class="round">STEP 2</span> 관람일 선택</dt>
-                    <dd>
-                        <ul class="choice-list" id="listDate">
-                            <li>
-                                <input type="text" name="publeYear">
-                                <input type="hidden" value="">
-                            </li>
-                        </ul>
-                    </dd>
-                </dl>
-                <dl class="time_choice">
-                    <dt><span class="round">STEP 3</span> 관람시간 선택</dt>
-                    <dd>
-                        <p class="select-message">관람일을 선택해주세요.</p>
-                        <!-- 선택 날짜에 관한 관람시간 리스트 -->
-                        <ul class="choice-list">
-                            <li class="choice-timeList">
-                                <button type="button" th:each="show : ${timeList}" th:text="${show.showTime}" name="showTime" onclick="setShowTime(this)"></button>
-                            </li>
-                        </ul>
-                        <!--  선택 전  -->
-                    </dd>
-                </dl>
-                <input type="hidden" value="2회 12:00 (시네마2관)" name="theater_name">
-                <dl class="seat_choice">
-                    <dt><span class="round">STEP 4</span> 좌석 및 잔여석 확인</dt>
-                    <dd>
-                        <div class="seat-choice-content">
-                            <!-- 선택 시간에 관한 좌석 및 잔여석 -->
-                            <div>일반석 : 50석</div>
-                            <!--  선택 전-->
-                            <div class="seat_type" id="tickectCountDiv" style="display: block;">
-                                <div class="select-person-area">
-                                    <label for="ticketCount" class="select-title">인원선택</label>
-                                    <span>
+                        <div class="ticket-movie">
+                            <div class="ticket-info-title">영화</div>
+                            <div class="movie-name"></div>
+                            <input type="hidden" value="" name="ticket_num">
+                            <input type="hidden" value="" name="movieName">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ticket-info-date">관람일시</div>
+                        <div id="txtDate"></div>
+                        <div id="txtTime"></div>
+                        <div id="txtendTime"></div>
+                        <input type="hidden" value="" name="schedule_date">
+                    </li>
+                    <li>
+                        <div class="ticket-info-seat">선택좌석</div>
+                        <div id=seatInfo></div>
+                        <input type="hidden" value="10" name="seat_num">
+                    </li>
+                    <li>
+                        <div class="ticket-info-total">총 결제금액</div>
+                        <div class="ticket-price"><span>원</span></div>
+                        <input type="hidden" name="moviePrice">
+                    </li>
+                </ul>
+            </div>
+            <!-- 예매본문 -->
+            <div class="layout-content reserve-wrap">
+                <div class="box-step">
+                    <dl class="cinema-choice">
+                        <dt>
+                            <span class="round">STEP 1</span> 영화관 선택
+                        </dt>
+                        <dd>
+                            <ul class="cinema-list">
+                                <li>
+                                    <button type="button" onclick="setActive(this);" name="theaterLocation">서울</button>
+                                    <ul class="choice-list-detail">
+                                        <li><button type="button" onclick="setLocal(this);">신림</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="1" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="2" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="3" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                        <li><button type="button" onclick="setLocal(this);">용산</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="4" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="5" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="6" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+
+                                        <li><button type="button" onclick="setLocal(this);">홍대입구</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="7" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="8" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="9" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="setActive(this);" name="theaterLocation">경북/대구</button>
+                                    <ul class="choice-list-detail">
+                                        <li><button type="button" onclick="setLocal(this);">경주</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="10" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="11" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="12" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                        <li><button type="button" onclick="setLocal(this);">동성로</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="13" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="14" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="15" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                        <li><button type="button" onclick="setLocal(this);">포항</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="16" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="17" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="18" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="setActive(this);" name="theaterLocation">경기/인천</button>
+                                    <ul class="choice-list-detail">
+                                        <li><button type="button" onclick="setLocal(this);">인천아시아드</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="28" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="29" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="30" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                        <li><button type="button" onclick="setLocal(this);">파주</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="31" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="32" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="33" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                        <li><button type="button" onclick="setLocal(this);">용인에버랜드</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="34" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="35" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="36" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <button type="button" onclick="setActive(this);" name="theaterLocation">강원</button>
+                                    <ul class="choice-list-detail">
+                                        <li><button type="button" onclick="setLocal(this);">동해</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="19" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="20" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="21" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                        <li><button type="button" onclick="setLocal(this);">춘천</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="22" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="23" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="24" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                        <li><button type="button" onclick="setLocal(this);">화천</button>
+                                            <ul class="choice-list-detail-theater">
+                                                <li><button type="button" data-hidden-value="25" onclick="openPopup(); setTheater(this);">1관</button></li>
+                                                <li><button type="button" data-hidden-value="26" onclick="openPopup(); setTheater(this);">2관</button></li>
+                                                <li><button type="button" data-hidden-value="27" onclick="openPopup(); setTheater(this);">3관</button></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <input type="hidden" value="" name="theaterLocation">
+                    <input type="hidden" value="" name="theaterName">
+                    <dl class="date_choice">
+                        <dt><span class="round">STEP 2</span> 관람일 선택</dt>
+                        <dd>
+                            <ul class="choice-list" id="listDate">
+                                <li>
+                                    <input type="text" name="publeYear">
+                                    <input type="hidden" value="">
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                    <dl class="time_choice">
+                        <dt><span class="round">STEP 3</span> 관람시간 선택</dt>
+                        <dd>
+                            <p class="select-message">관람일을 선택해주세요.</p>
+                            <!-- 선택 날짜에 관한 관람시간 리스트 -->
+                            <ul class="choice-list">
+                                <li class="choice-timeList">
+                                    <button type="button" data-hidden-value="10:00:00" name="startTime" onclick="setShowTime(this)">08:00:00</button>
+                                    <button type="button" data-hidden-value="13:00:00" name="startTime" onclick="setShowTime(this)">11:00:00</button>
+                                    <button type="button" data-hidden-value="17:00:00" name="startTime" onclick="setShowTime(this)">15:00:00</button>
+                                    <button type="button" data-hidden-value="20:30:00" name="startTime" onclick="setShowTime(this)">18:30:00</button>
+                                    <!--<button type="button" th:each="show : ${timeList}" th:text="${show.showTime}" name="showTime" onclick="setShowTime(this)"></button>-->
+                                </li>
+                            </ul>
+                            <!--  선택 전  -->
+                        </dd>
+                    </dl>
+                    <input type="hidden" value="2회 12:00 (시네마2관)" name="theater_name">
+                    <dl class="seat_choice">
+                        <dt><span class="round">STEP 4</span> 좌석 및 잔여석 확인</dt>
+                        <dd>
+                            <div class="seat-choice-content">
+                                <!-- 선택 시간에 관한 좌석 및 잔여석 -->
+                                <div>일반석 : 50석</div>
+                                <!--  선택 전-->
+                                <div class="seat_type" id="tickectCountDiv" style="display: block;">
+                                    <div class="select-person-area">
+                                        <label for="ageCategory" class="select-title">연령 선택</label>
+                                        <span>
+                                            <select id="ageCategory" class="select-person">
+                                                <option value="child">어린이</option>
+                                                <option value="adult">청소년</option>
+                                                <option value="senior">어른</option>
+                                            </select>
+                                        </span>
+                                        <br>
+                                        <label for="ticketCount" class="select-title">인원선택</label>
+                                        <span>
                                         <select id="ticketCount" class="select-person">
                                           <option value="1">1</option>
                                           <option value="2">2</option>
@@ -270,50 +350,50 @@
                                           <option value="9">9</option>
                                           <option value="10">10</option>
                                         </select>
-                                    </span>
+                                        </span>
+                                    </div>
+                                    <p class="tx_deco">최대 10명까지 선택가능 합니다.</p>
                                 </div>
-                                <p class="tx_deco">최대 10명까지 선택가능 합니다.</p>
                             </div>
-                        </div>
-                        <div class="txt_comment" id="seatComment" style="display: block;">관람시간을 선택해주세요.</div>
-                    </dd>
-                </dl>
-
-            </div>
-            <div class="screen">
-                <span class="screen-title">SCREEN</span>
-                <div class="seat-area">
-                    <span class="screen-stage">SCREEN</span>
-                    <ul class="all-seats">
-                    </ul>
-                </div>
-            </div>
-            <div class="reserve-note">
-                <div class="precautions"><strong>예매 시 주의사항</strong></div>
-                <div class="precautions-content">
-                    <p>※ 예매시 주의 사항</p>
-                    <p>1. 홈페이지 예매 후 현장에서 결제수단을 변경 할 수 없습니다.</p>
-                    <p>2. 영화 날짜 및 시간 변경은 취소 후 다시 예매 진행을 하셔야 합니다.</p>
-                    <p>3. 부분 취소 환불은 불가능합니다.</p>
-                    <ul class="reserve-rule">
-                        <li>※예매 취소 및 환불 규정</li>
-                        <li>&nbsp; &nbsp;· 인터넷(모바일)예매 : 영화 상영 시간 20분 전까지 환불 가능.<br>
-                            &nbsp; &nbsp; &nbsp; &nbsp;(인터넷(모바일)예매 후 현장에서 결제수단변경을 원하실 경우 상영시간 20분전까지 직접 예매 취소 후 재결제 하셔야
-                            합니다.)
-                        </li>
-                        <li>&nbsp; &nbsp;· 현장예매 : 영화상영시간 전까지 취소 및 환불 가능.</li>
-                    </ul>
+                            <div class="txt_comment" id="seatComment" style="display: block;">관람시간을 선택해주세요.</div>
+                        </dd>
+                    </dl>
 
                 </div>
+                <div class="screen">
+                    <span class="screen-title">SCREEN</span>
+                    <div class="seat-area">
+                        <span class="screen-stage">SCREEN</span>
+                        <ul class="all-seats">
+                        </ul>
+                    </div>
+                </div>
+                <div class="reserve-note">
+                    <div class="precautions"><strong>예매 시 주의사항</strong></div>
+                    <div class="precautions-content">
+                        <p>※ 예매시 주의 사항</p>
+                        <p>1. 홈페이지 예매 후 현장에서 결제수단을 변경 할 수 없습니다.</p>
+                        <p>2. 영화 날짜 및 시간 변경은 취소 후 다시 예매 진행을 하셔야 합니다.</p>
+                        <p>3. 부분 취소 환불은 불가능합니다.</p>
+                        <ul class="reserve-rule">
+                            <li>※예매 취소 및 환불 규정</li>
+                            <li>&nbsp; &nbsp;· 인터넷(모바일)예매 : 영화 상영 시간 20분 전까지 환불 가능.<br>
+                                &nbsp; &nbsp; &nbsp; &nbsp;(인터넷(모바일)예매 후 현장에서 결제수단변경을 원하실 경우 상영시간 20분전까지 직접 예매 취소 후 재결제 하셔야
+                                합니다.)
+                            </li>
+                            <li>&nbsp; &nbsp;· 현장예매 : 영화상영시간 전까지 취소 및 환불 가능.</li>
+                        </ul>
+
+                    </div>
+
+                </div>
 
             </div>
-
-        </div>
-        <div class="payment-area">
-            <button id="payment" type="button" class="join-submit join-button" onclick="requestPayment()">결제</button>
-        </div>
-    </form>
-</div>
+            <div class="payment-area">
+                <button id="payment" type="button" class="join-submit join-button" onclick="requestPayment()">결제</button>
+            </div>
+        </form>
+    </div>
     <footer th:fragment="content">
         <div class="footer">
             <div class="inner">
@@ -354,22 +434,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Swiper -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script>
-    function requestPayment() {
-        PortOne.requestPayment({
-            storeId: 'store-81aa1a2d-3dc6-4101-aef0-7ee6967790bc',
-            paymentId: 'paymentId' + new Date().getTime(), // 고유한 결제 ID 생성
-            orderName: '나이키 와플 트레이너 2 SD',
-            totalAmount: 1000,
-            currency: 'CURRENCY_KRW',
-            channelKey: 'channel-key-cf0efb22-a82f-4dc4-8895-44a8f38f0aa8',
-            payMethod: "CARD",
-            customer: {customerId:"홍길동",
-            phoneNumber:"01011111111"}
-        });
-    }
-</script>
-
 <script type="text/javascript" src="/js/reservation.js"></script>
 
 

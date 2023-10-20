@@ -1,0 +1,24 @@
+package com.example.demo.mapper;
+
+import com.example.demo.domain.dto.TheaterPlayMovieDTO;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.sql.Time;
+import java.util.Date;
+import java.util.List;
+
+@Mapper
+public interface TheaterPlayMovieMapper {
+
+    // 상영영화, 상영일자, 영화시작시간을 받아 조회
+    public List<TheaterPlayMovieDTO> findTheaterPlayMovieId(
+            @Param("playMovie") String playMovie,
+            @Param("startDate") Date startDate,
+            @Param("startTime") Time startTime,
+            @Param("theaterId") int theaterId
+    );
+
+    // 총 좌석수 조회
+    public List<TheaterPlayMovieDTO> findTotalSeats();
+}

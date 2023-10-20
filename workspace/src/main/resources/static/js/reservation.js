@@ -21,9 +21,26 @@ function setLocal(button) {
     var buttons = document.querySelectorAll('.choice-list-detail button');
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove('local-active');
+        if (buttons[i].nextElementSibling) {  // button 다음에 오는 요소(여기서는 ul)가 있다면
+            buttons[i].nextElementSibling.style.display = "none";  // 그 요소를 숨김
+        }
     }
     // 클릭한 버튼에만 active 클래스 추가
     button.classList.add('local-active');
+    if (button.nextElementSibling) {  // 클릭한 button 다음에 오는 요소(여기서는 ul)가 있다면
+        button.nextElementSibling.style.display = "block";  // 그 요소를 보임
+    }
+}
+
+// 모든 버튼에서 active 클래스를 제거하고, 클릭한 버튼에만 active 클래스를 추가하는 함수
+function setTheater(button) {
+    // 모든 버튼에서 active 클래스 제거
+    var buttons = document.querySelectorAll('.choice-list-detail-theater button');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('theater-active');
+    }
+    // 클릭한 버튼에만 active 클래스 추가
+    button.classList.add('theater-active');
 }
 
 // '영화관 선택' 버튼 클릭 시 실행되는 함수
@@ -58,23 +75,6 @@ function selectMovie(theaterName) {
 }
 
 //캘린더 위젯 적용
-//설정
-const config = {
-    dateFormat: 'yy-mm-dd',
-    showOn : "button",
-    buttonText : "날짜 선택",
-    prevText: '이전 달',
-    nextText: '다음 달',
-    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    dayNames: ['일','월','화','수','목','금','토'],
-    dayNamesShort: ['일','월','화','수','목','금','토'],
-    dayNamesMin: ['일','월','화','수','목','금','토'],
-    yearSuffix: '년',
-    changeMonth : true,
-    changeYear : true
-}
-//캘린더
 $(function(){
   $("input[name='publeYear']").datepicker({
         dateFormat: 'yy-mm-dd',  //달력 날짜 형태
@@ -96,6 +96,26 @@ $(function(){
   $("input[name='publeYear']").datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
 });
 
+//캘린더 날짜 수정
+/*$('button[data-hidden-value]').click(function() {
+    var theaterId = $(this).attr('data-hidden-value');
+
+    $.ajax({
+        url: '/your_endpoint',  // 실제 엔드포인트로 변경해야 합니다.
+        type: 'GET',
+        data: { 'theaterId': theaterId },
+        success: function(response) {
+            // response는 서버에서 보내는 응답입니다.
+            // 이 예시에서는 response가 { 'startDate': '2023-10-20', 'endDate': '2023-11-20' } 형태라고 가정합니다.
+            $("input[name='publeYear']").datepicker('option', 'minDate', response.startDate);
+            $("input[name='publeYear']").datepicker('option', 'maxDate', response.endDate);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+});*/
+
 $(document).ready(function() {
     // 페이지 로드 시 시간 선택 버튼 숨기기
     $('.time_choice .choice-list').hide();
@@ -105,6 +125,9 @@ $(document).ready(function() {
         // 영화관 이름과 관람일이 모두 선택되었는지 확인
         var theaterName = localStorage.getItem('selectedTheater');
         var publeYear = $("input[name='publeYear']").val();
+        console.log(theaterName);
+        console.log(publeYear);
+
         if (theaterName && publeYear) {
             // '관람일을 선택해주세요.' 메시지 숨기기
             $('.select-message').hide();
@@ -118,10 +141,10 @@ function setShowTime(button) {
     // 모든 버튼에서 active 클래스 제거
     var buttons = document.querySelectorAll('.choice-timeList button');
     for (var i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove('showTime-active');
+        buttons[i].classList.remove('startTime-active');
     }
     // 클릭한 버튼에만 active 클래스 추가
-    button.classList.add('showTime-active');
+    button.classList.add('startTime-active');
 }
 
 $(document).ready(function() {
@@ -132,8 +155,83 @@ $(document).ready(function() {
     });
 
     // 시간 선택 버튼 클릭 시 #txtTime 업데이트
-    $("button[name='showTime']").click(function() {
+    $("button[name='startTime']").click(function() {
         var selectedTime = $(this).text();
-        $('#txtTime').text(selectedTime);
+        var theaterId = $(this).attr('data-hidden-value');
+        $('#txtTime').text(selectedTime + " ~ " + theaterId);
+    });
+});
+
+// '영화 선택', '날짜 선택', '시간 선택' 버튼 클릭 시 실행되는 함수
+/*
+function fetchTheaterPlayMovieId() {
+    var theaterId = $('button[data-hidden-value].local-active').attr('data-hidden-value');
+    var movieId = localStorage.getItem('selectedMovie');
+    var date = $("input[name='publeYear']").val();
+    var startTime = $('button[name="startTime"].showTime-active').text();
+
+    $.ajax({
+        url: '/your_endpoint',  // 실제 엔드포인트로 변경해야 합니다.
+        type: 'GET',
+        data: {
+            'theaterId': theaterId,
+            'movieId': movieId,
+            'date': date,
+            'startTime': startTime
+        },
+        success: function(response) {
+            // response는 서버에서 보내는 응답입니다.
+            // 이 예시에서는 response가 { 'theaterPlayMovieId': 123 } 형태라고 가정합니다.
+
+            localStorage.setItem('theaterPlayMovieId', response.theaterPlayMovieId);
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+        }
+    });
+}
+
+$('button[data-hidden-value], button[name="startTime"]').click(fetchTheaterPlayMovieId);
+$("input[name='publeYear']").change(fetchTheaterPlayMovieId);*/
+
+
+//결제 API
+function requestPayment() {
+    PortOne.requestPayment({
+        storeId: 'store-81aa1a2d-3dc6-4101-aef0-7ee6967790bc',
+        paymentId: 'paymentId' + new Date().getTime(), // 고유한 결제 ID 생성
+        orderName: '나이키 와플 트레이너 2 SD',
+        totalAmount: 1000,
+        currency: 'CURRENCY_KRW',
+        channelKey: 'channel-key-cf0efb22-a82f-4dc4-8895-44a8f38f0aa8',
+        payMethod: "CARD",
+        customer: {customerId:"홍길동",
+        phoneNumber:"01011111111"}
+    });
+}
+
+
+$(document).ready(function(){
+    $("#ageCategory, #ticketCount").change(function(){
+        var age = $("#ageCategory").val();
+        console.log(age);
+        var count = parseInt($("#ticketCount").val(), 10);
+        console.log(count);
+
+        $.ajax({
+            url: '/getPrice',
+            type: 'post',
+            data: JSON.stringify({ age: age }),
+            contentType: 'application/json',
+            dataType : 'json',
+            success: function(data) {
+                console.log(data);
+                var total = data.price * count;
+                console.log(data.price);
+                $(".ticket-price").html(total + "<span>원</span>");
+                $("input[name='moviePrice']").val(total);
+            }
+        });
     });
 });
