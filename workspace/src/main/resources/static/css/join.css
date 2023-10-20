@@ -2,9 +2,10 @@
 *{
 	margin: 0;
 	padding:0;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-/* 화면 전체 렙 */
+/*화면 전체 렙*/
 .wrapper{
 	width: 100%;
 }

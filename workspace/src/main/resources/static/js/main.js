@@ -90,3 +90,25 @@
             top_banner_el.style.display="none";
         });
 
+        fetch('/checkLogin')
+            .then(response => response.json())
+            .then(data => {
+                // Set the value of 'isLoggedIn' variable based on the server's response.
+                let isLoggedIn = data.isLoggedIn;
+
+                let link = document.querySelector('#membership_link');
+
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    if (isLoggedIn) {
+                        // If the user is logged in,
+                        // move to the next page
+                        window.location.href = '/member/userInfo';
+                    } else {
+                        // If the user is not logged in,
+                        // show a popup and do not move to the next page
+                        alert("로그인이 필요한 서비스입니다.");
+                    }
+               });
+        });

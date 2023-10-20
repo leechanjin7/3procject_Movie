@@ -64,18 +64,12 @@
             </div>
             <div class="right">
                 <ul>
-                    <!-- 로그인상태 -->
-                    <li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a
-                            th:href="@{/member/userInfo}"><span class="material-symbols-outlined credit_card">credit_card</span></a>
-                    </li>  <!--멤버쉽-->
-                    <li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a href=""><span
-                            class="material-symbols-outlined groups">groups</span></a></li>            <!--단체관람/대관문의-->
-                    <li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}"><span
-                            class="material-symbols-outlined logout">logout</span></a></li>            <!--로그아웃-->
                     <!-- 기본상태 -->
-                    <li sec:authorize="isAnonymous()"><a th:href="@{/member/login}"><span
-                            class="material-symbols-outlined login">login</span></a></li>
-                </ul>
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/member/userInfo}"><span class="material-symbols-outlined credit_card">credit_card</span></a></li>  <!--멤버쉽-->
+                    <li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a href=""><span class="material-symbols-outlined groups">groups</span></a></li>            <!--단체관람/대관문의-->
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}"><span class="material-symbols-outlined logout">logout</span></a></li>            <!--로그아웃-->
+                    <!-- 로그인상태 -->
+                    <li sec:authorize="isAnonymous()"><a th:href="@{/member/login}"><span class="material-symbols-outlined login">login</span></a></li>
                 </ul>
             </div>
         </div>
@@ -104,13 +98,9 @@
                 <ul class=submenu>
                     <li><a href="">스페셜관</a></li>
                     <li><a href="">서울</a></li>
-                    <li><a href="">경기/인천</a></li>
-                    <li><a href="">충청/대전</a></li>
-                    <li><a href="">전라/광주</a></li>
                     <li><a href="">경상/대구</a></li>
-                    <li><a href="">경상/부산/울산</a></li>
+                    <li><a href="">경기/인천</a></li>
                     <li><a href="">강원</a></li>
-                    <li><a href="">제주</a></li>
                 </ul>
             </li>
             <li><a href="">이벤트</a>
@@ -330,13 +320,13 @@
                                         <label for="ageCategory" class="select-title">연령 선택</label>
                                         <span>
                                             <select id="ageCategory" class="select-person">
-                                                <option value="child">어린이</option>
-                                                <option value="adult">청소년</option>
-                                                <option value="senior">어른</option>
+                                                <option value="어린이">어린이</option>
+                                                <option value="청소년">청소년</option>
+                                                <option value="어른">어른</option>
                                             </select>
                                         </span>
                                         <br>
-                                        <label for="ticketCount" class="select-title">인원선택</label>
+                                        <label for="ticketCount" class="select-title">인원 선택</label>
                                         <span>
                                         <select id="ticketCount" class="select-person">
                                           <option value="1">1</option>

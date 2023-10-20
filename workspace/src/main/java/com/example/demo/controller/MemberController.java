@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationServiceException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -159,6 +163,19 @@ public class MemberController {
         //사용자 세션 종료(로그아웃)
         session.invalidate();
         return "redirect:/main";
+    }
+
+
+    @GetMapping("/checkLogin")
+    @ResponseBody
+    public Map<String, Boolean> checkLoginStatus() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isLoggedIn = authentication != null && authentication.isAuthenticated();
+
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("isLoggedIn", isLoggedIn);
+
+        return response;
     }
 
 

@@ -9,6 +9,8 @@
 .mypage-warp>.mypage {
     margin-top: 30px;
     padding-top: 35px;
+    display: flex;
+    justify-content: center;
 }
 .mypage-warp>.mypage>.mypage-menu::after {
     display: block;

@@ -198,11 +198,15 @@ $("input[name='publeYear']").change(fetchTheaterPlayMovieId);*/
 
 //결제 API
 function requestPayment() {
+    var movieName = document.querySelector('.movie-name').innerText;
+    var totalAmountStr = document.querySelector('.ticket-price').innerText; // "원" 포함된 문자열
+    var totalAmount = parseInt(totalAmountStr.replace(/,/g, ''), 10); // 콤마 제거 후 숫자로 변환
+
     PortOne.requestPayment({
         storeId: 'store-81aa1a2d-3dc6-4101-aef0-7ee6967790bc',
         paymentId: 'paymentId' + new Date().getTime(), // 고유한 결제 ID 생성
-        orderName: '나이키 와플 트레이너 2 SD',
-        totalAmount: 1000,
+        orderName: movieName,
+        totalAmount: totalAmount,
         currency: 'CURRENCY_KRW',
         channelKey: 'channel-key-cf0efb22-a82f-4dc4-8895-44a8f38f0aa8',
         payMethod: "CARD",
@@ -215,9 +219,7 @@ function requestPayment() {
 $(document).ready(function(){
     $("#ageCategory, #ticketCount").change(function(){
         var age = $("#ageCategory").val();
-        console.log(age);
         var count = parseInt($("#ticketCount").val(), 10);
-        console.log(count);
 
         $.ajax({
             url: '/getPrice',
@@ -226,10 +228,9 @@ $(document).ready(function(){
             contentType: 'application/json',
             dataType : 'json',
             success: function(data) {
-                console.log(data);
                 var total = data.price * count;
-                console.log(data.price);
-                $(".ticket-price").html(total + "<span>원</span>");
+                var formattedTotal = total.toLocaleString('ko-KR');
+                $(".ticket-price").html(formattedTotal + "<span>원</span>");
                 $("input[name='moviePrice']").val(total);
             }
         });
