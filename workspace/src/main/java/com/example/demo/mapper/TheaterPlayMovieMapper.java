@@ -12,13 +12,9 @@ import java.util.List;
 public interface TheaterPlayMovieMapper {
 
     // 상영영화, 상영일자, 영화시작시간을 받아 조회
-    public List<TheaterPlayMovieDTO> findTheaterPlayMovieId(
-            @Param("playMovie") String playMovie,
-            @Param("startDate") Date startDate,
-            @Param("startTime") Time startTime,
-            @Param("theaterId") int theaterId
-    );
+    public List<TheaterPlayMovieDTO> findTheaterPlayMovieId(TheaterPlayMovieDTO theaterPlayMovieDTO);
 
     // 총 좌석수 조회
     public List<TheaterPlayMovieDTO> findTotalSeats();
+
 }

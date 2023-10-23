@@ -64,12 +64,18 @@
             </div>
             <div class="right">
                 <ul>
-                    <!-- 기본상태 -->
-                    <li sec:authorize="isAuthenticated()"><a th:href="@{/member/userInfo}"><span class="material-symbols-outlined credit_card">credit_card</span></a></li>  <!--멤버쉽-->
-                    <li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a href=""><span class="material-symbols-outlined groups">groups</span></a></li>            <!--단체관람/대관문의-->
-                    <li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}"><span class="material-symbols-outlined logout">logout</span></a></li>            <!--로그아웃-->
                     <!-- 로그인상태 -->
-                    <li sec:authorize="isAnonymous()"><a th:href="@{/member/login}"><span class="material-symbols-outlined login">login</span></a></li>
+                    <li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a
+                            th:href="@{/member/userInfo}"><span class="material-symbols-outlined credit_card">credit_card</span></a>
+                    </li>  <!--멤버쉽-->
+                    <li th:if="${#authorization.expression('!hasRole(''ADMIN'') or isAnonymous()')}"><a href=""><span
+                            class="material-symbols-outlined groups">groups</span></a></li>            <!--단체관람/대관문의-->
+                    <li sec:authorize="isAuthenticated()"><a th:href="@{/member/logout}"><span
+                            class="material-symbols-outlined logout">logout</span></a></li>            <!--로그아웃-->
+                    <!-- 기본상태 -->
+                    <li sec:authorize="isAnonymous()"><a th:href="@{/member/login}"><span
+                            class="material-symbols-outlined login">login</span></a></li>
+                </ul>
                 </ul>
             </div>
         </div>
@@ -98,9 +104,13 @@
                 <ul class=submenu>
                     <li><a href="">스페셜관</a></li>
                     <li><a href="">서울</a></li>
-                    <li><a href="">경상/대구</a></li>
                     <li><a href="">경기/인천</a></li>
+                    <li><a href="">충청/대전</a></li>
+                    <li><a href="">전라/광주</a></li>
+                    <li><a href="">경상/대구</a></li>
+                    <li><a href="">경상/부산/울산</a></li>
                     <li><a href="">강원</a></li>
+                    <li><a href="">제주</a></li>
                 </ul>
             </li>
             <li><a href="">이벤트</a>
@@ -121,6 +131,7 @@
                     <li><a href="">포토카드</a></li>
                 </ul>
             </li>
+
         </ul>
     </nav>
 
@@ -136,8 +147,6 @@
                         <div class="ticket-movie">
                             <div class="ticket-info-title">영화</div>
                             <div class="movie-name"></div>
-                            <input type="hidden" value="" name="ticket_num">
-                            <input type="hidden" value="" name="movieName">
                         </div>
                     </li>
                     <li>
@@ -145,12 +154,9 @@
                         <div id="txtDate"></div>
                         <div id="txtTime"></div>
                         <div id="txtendTime"></div>
-                        <input type="hidden" value="" name="schedule_date">
-                    </li>
                     <li>
                         <div class="ticket-info-seat">선택좌석</div>
                         <div id=seatInfo></div>
-                        <input type="hidden" value="10" name="seat_num">
                     </li>
                     <li>
                         <div class="ticket-info-total">총 결제금액</div>
@@ -306,40 +312,58 @@
                             <!--  선택 전  -->
                         </dd>
                     </dl>
-                    <input type="hidden" value="2회 12:00 (시네마2관)" name="theater_name">
                     <dl class="seat_choice">
                         <dt><span class="round">STEP 4</span> 좌석 및 잔여석 확인</dt>
                         <dd>
                             <div class="seat-choice-content">
                                 <!-- 선택 시간에 관한 좌석 및 잔여석 -->
-                                <div>일반석 : 50석</div>
+                                <div>현재 좌석 : <span id="current-seat"></span></div>
+                                <div>총 좌석 : <span id="total-seats"></span></div>
                                 <!--  선택 전-->
                                 <div class="seat_type" id="tickectCountDiv" style="display: block;">
                                     <div class="select-person-area">
-                                        <label for="ageCategory" class="select-title">연령 선택</label>
-                                        <span>
-                                            <select id="ageCategory" class="select-person">
-                                                <option value="어린이">어린이</option>
-                                                <option value="청소년">청소년</option>
-                                                <option value="어른">어른</option>
-                                            </select>
-                                        </span>
-                                        <br>
-                                        <label for="ticketCount" class="select-title">인원 선택</label>
-                                        <span>
-                                        <select id="ticketCount" class="select-person">
-                                          <option value="1">1</option>
-                                          <option value="2">2</option>
-                                          <option value="3">3</option>
-                                          <option value="4">4</option>
-                                          <option value="5">5</option>
-                                          <option value="6">6</option>
-                                          <option value="7">7</option>
-                                          <option value="8">8</option>
-                                          <option value="9">9</option>
-                                          <option value="10">10</option>
+                                        <label for="childrenCount" class="select-title">어린이 인원 선택</label>
+                                        <select id="childrenCount" class="select-person">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
                                         </select>
-                                        </span>
+                                        <label for="teenCount" class="select-title">청소년 인원 선택</label>
+                                        <select id="teenCount" class="select-person">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                        <label for="adultCount" class="select-title">성인 인원 선택</label>
+                                        <select id="adultCount" class="select-person">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
                                     </div>
                                     <p class="tx_deco">최대 10명까지 선택가능 합니다.</p>
                                 </div>
@@ -353,8 +377,73 @@
                     <span class="screen-title">SCREEN</span>
                     <div class="seat-area">
                         <span class="screen-stage">SCREEN</span>
-                        <ul class="all-seats">
-                        </ul>
+                        <div class="seat-container">
+                            <div class="row">
+                                <span>A</span>
+                                <div class="seat" data-hidden-value="a1"><span>1</span></div>
+                                <div class="seat" data-hidden-value="a2"><span>2</span></div>
+                                <div class="seat" data-hidden-value="a3"><span>3</span></div>
+                                <div class="seat" data-hidden-value="a4"><span>4</span></div>
+                                <div class="seat" data-hidden-value="a5"><span>5</span></div>
+                                <div class="seat" data-hidden-value="a6"><span>6</span></div>
+                                <div class="seat" data-hidden-value="a7"><span>7</span></div>
+                                <div class="seat" data-hidden-value="a8"><span>8</span></div>
+                                <div class="seat" data-hidden-value="a9"><span>9</span></div>
+                                <div class="seat" data-hidden-value="a10"><span>10</span></div>
+                            </div>
+                            <div class="row">
+                                <span>B</span>
+                                <div class="seat" data-hidden-value="b1"><span>11</span></div>
+                                <div class="seat" data-hidden-value="b2"><span>12</span></div>
+                                <div class="seat" data-hidden-value="b3"><span>13</span></div>
+                                <div class="seat" data-hidden-value="b4"><span>14</span></div>
+                                <div class="seat" data-hidden-value="b5"><span>15</span></div>
+                                <div class="seat" data-hidden-value="b6"><span>16</span></div>
+                                <div class="seat" data-hidden-value="b7"><span>17</span></div>
+                                <div class="seat" data-hidden-value="b8"><span>18</span></div>
+                                <div class="seat" data-hidden-value="b9"><span>19</span></div>
+                                <div class="seat" data-hidden-value="b10"><span>20</span></div>
+                            </div>
+                            <div class="row">
+                                <span>C</span>
+                                <div class="seat" data-hidden-value="c1"><span>21</span></div>
+                                <div class="seat" data-hidden-value="c2"><span>22</span></div>
+                                <div class="seat" data-hidden-value="c3"><span>23</span></div>
+                                <div class="seat" data-hidden-value="c4"><span>24</span></div>
+                                <div class="seat" data-hidden-value="c5"><span>25</span></div>
+                                <div class="seat" data-hidden-value="c6"><span>26</span></div>
+                                <div class="seat" data-hidden-value="c7"><span>27</span></div>
+                                <div class="seat" data-hidden-value="c8"><span>28</span></div>
+                                <div class="seat" data-hidden-value="c9"><span>29</span></div>
+                                <div class="seat" data-hidden-value="c10"><span>30</span></div>
+                            </div>
+                            <div class="row">
+                                <span>D</span>
+                                <div class="seat" data-hidden-value="d1"><span>31</span></div>
+                                <div class="seat" data-hidden-value="d2"><span>32</span></div>
+                                <div class="seat" data-hidden-value="d3"><span>33</span></div>
+                                <div class="seat" data-hidden-value="d4"><span>34</span></div>
+                                <div class="seat" data-hidden-value="d5"><span>35</span></div>
+                                <div class="seat" data-hidden-value="d6"><span>36</span></div>
+                                <div class="seat" data-hidden-value="d7"><span>37</span></div>
+                                <div class="seat" data-hidden-value="d8"><span>38</span></div>
+                                <div class="seat" data-hidden-value="d9"><span>39</span></div>
+                                <div class="seat" data-hidden-value="d10"><span>40</span></div>
+                            </div>
+                            <div class="row">
+                                <span>E</span>
+                                <div class="seat" data-hidden-value="e1"><span>41</span></div>
+                                <div class="seat" data-hidden-value="e2"><span>42</span></div>
+                                <div class="seat" data-hidden-value="e3"><span>43</span></div>
+                                <div class="seat" data-hidden-value="e4"><span>44</span></div>
+                                <div class="seat" data-hidden-value="e5"><span>45</span></div>
+                                <div class="seat" data-hidden-value="e6"><span>46</span></div>
+                                <div class="seat" data-hidden-value="e7"><span>47</span></div>
+                                <div class="seat" data-hidden-value="e8"><span>48</span></div>
+                                <div class="seat" data-hidden-value="e9"><span>49</span></div>
+                                <div class="seat" data-hidden-value="e10"><span>50</span></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="reserve-note">
@@ -383,7 +472,7 @@
             </div>
         </form>
     </div>
-    <footer>
+    <footer th:fragment="content">
         <div class="footer">
             <div class="inner">
 				<span class="footerlogo"> <img

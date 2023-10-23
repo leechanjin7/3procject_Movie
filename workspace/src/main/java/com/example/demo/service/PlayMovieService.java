@@ -5,6 +5,8 @@ import com.example.demo.mapper.PlayMovieMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,5 +17,13 @@ public class PlayMovieService {
 
     public List<PlayMovieDTO> selectPlayMovie() {
         return playMovieMapper.selectPlayMovie();
+    }
+
+    public String findDateTime(String playMovie) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date opedTIme = playMovieMapper.findDateTime(playMovie);
+        String dateTime = dateFormat.format(opedTIme);
+
+        return dateTime;
     }
 }

@@ -15,4 +15,5 @@
         FROM TBL_THEATERPLAYMOVIE T1
         JOIN TBL_THEATER T2 ON T1.THEATERID = T2.THEATERID
     </select>
+
 </mapper>

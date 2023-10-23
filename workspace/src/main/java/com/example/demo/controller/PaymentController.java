@@ -40,7 +40,7 @@ public class PaymentController {
 
 
     // v2 토큰 생성후 토큰 저장
-    @PostMapping("/reservation")
+    @PostMapping("/payment")
     public String getToken2(Model model){
         // URL
 

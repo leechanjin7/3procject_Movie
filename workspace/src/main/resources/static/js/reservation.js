@@ -90,31 +90,34 @@ $(function(){
         yearSuffix: '년',    //달력의 년도 부분 뒤 텍스트
         changeMonth : true,
         changeYear : true,
-        minDate: "-0D", //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-        maxDate: "+5D" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
+        minDate: '-0D', //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+        maxDate: '2023-10-30' //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)
   });
   $("input[name='publeYear']").datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
 });
 
 //캘린더 날짜 수정
-/*$('button[data-hidden-value]').click(function() {
-    var theaterId = $(this).attr('data-hidden-value');
+$('button[data-hidden-value]').click(function() {
+    var playMovie = localStorage.getItem('selectedMovie');
+    console.log('캘린더 수정 무비', playMovie);
 
     $.ajax({
-        url: '/your_endpoint',  // 실제 엔드포인트로 변경해야 합니다.
-        type: 'GET',
-        data: { 'theaterId': theaterId },
+        url: '/member/reservation',  // 실제 엔드포인트로 변경해야 합니다.
+        type: 'POST',
+        contentType : 'application/json',
+        data: JSON.stringify ({ 'playMovie': playMovie,
+        }),
         success: function(response) {
             // response는 서버에서 보내는 응답입니다.
-            // 이 예시에서는 response가 { 'startDate': '2023-10-20', 'endDate': '2023-11-20' } 형태라고 가정합니다.
-            $("input[name='publeYear']").datepicker('option', 'minDate', response.startDate);
+            // 이 예시에서는 response가 { 'endDate': '2023-11-20' } 형태라고 가정합니다.
+            console.log('response.endDate : ', response.endDate);
             $("input[name='publeYear']").datepicker('option', 'maxDate', response.endDate);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
+            console.log('캘린더 수정 에러', textStatus, errorThrown);
         }
     });
-});*/
+});
 
 $(document).ready(function() {
     // 페이지 로드 시 시간 선택 버튼 숨기기
@@ -125,8 +128,6 @@ $(document).ready(function() {
         // 영화관 이름과 관람일이 모두 선택되었는지 확인
         var theaterName = localStorage.getItem('selectedTheater');
         var publeYear = $("input[name='publeYear']").val();
-        console.log(theaterName);
-        console.log(publeYear);
 
         if (theaterName && publeYear) {
             // '관람일을 선택해주세요.' 메시지 숨기기
@@ -163,45 +164,45 @@ $(document).ready(function() {
 });
 
 // '영화 선택', '날짜 선택', '시간 선택' 버튼 클릭 시 실행되는 함수
-/*
+$('button[data-hidden-value], button[name="startTime"]').click(fetchTheaterPlayMovieId);
+$("input[name='publeYear']").change(fetchTheaterPlayMovieId);
+
 function fetchTheaterPlayMovieId() {
-    var theaterId = $('button[data-hidden-value].local-active').attr('data-hidden-value');
-    var movieId = localStorage.getItem('selectedMovie');
-    var date = $("input[name='publeYear']").val();
-    var startTime = $('button[name="startTime"].showTime-active').text();
+    var theaterId = $('button[data-hidden-value].theater-active').attr('data-hidden-value');
+    var playMovie = localStorage.getItem('selectedMovie');
+    var startDate = $("input[name='publeYear']").val();
+    var startTime = $('button[name="startTime"].startTime-active').text();
+
+    console.log('상영관', theaterId);
 
     $.ajax({
-        url: '/your_endpoint',  // 실제 엔드포인트로 변경해야 합니다.
-        type: 'GET',
-        data: {
+        url: '/member/reservation',  // 실제 엔드포인트로 변경해야 합니다.
+        type: 'POST',
+        contentType : 'application/json',
+        data: JSON.stringify ({
             'theaterId': theaterId,
-            'movieId': movieId,
-            'date': date,
+            'playMovie': playMovie,
+            'startDate': startDate,
             'startTime': startTime
-        },
+        }),
         success: function(response) {
-            // response는 서버에서 보내는 응답입니다.
-            // 이 예시에서는 response가 { 'theaterPlayMovieId': 123 } 형태라고 가정합니다.
+            localStorage.setItem('totalSeats', response.totalSeats);
+            localStorage.setItem('currentSeat', response.currentSeat);
 
-            localStorage.setItem('theaterPlayMovieId', response.theaterPlayMovieId);
+             // 현재 좌석 값 업데이트
+            $('#current-seat').text(response.currentSeat);
 
+            // 총 좌석 값 가져오기 및 업데이트
+            $('#total-seats').text(response.totalSeats);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-            console.log(textStatus, errorThrown);
+            console.log('시트 에러값', textStatus, errorThrown);
         }
     });
 }
 
-$('button[data-hidden-value], button[name="startTime"]').click(fetchTheaterPlayMovieId);
-$("input[name='publeYear']").change(fetchTheaterPlayMovieId);*/
-
-
 //결제 API
 function requestPayment() {
-    var movieName = document.querySelector('.movie-name').innerText;
-    var totalAmountStr = document.querySelector('.ticket-price').innerText; // "원" 포함된 문자열
-    var totalAmount = parseInt(totalAmountStr.replace(/,/g, ''), 10); // 콤마 제거 후 숫자로 변환
-
     PortOne.requestPayment({
         storeId: 'store-81aa1a2d-3dc6-4101-aef0-7ee6967790bc',
         paymentId: 'paymentId' + new Date().getTime(), // 고유한 결제 ID 생성
@@ -212,49 +213,146 @@ function requestPayment() {
         payMethod: "CARD",
         customer: {customerId:"홍길동",
         phoneNumber:"01011111111"}
-    })
-    .then(function(response){
-        if(response.success){
-            return fetch('/reserve', {
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json'
-                },
-                body : JSON.stringify({
-                    userId:
-                    movieId:
-                    startDate:
-                    startTime:
-                    endTime:
-                    selectSeat:
-                    selectSeatNum:
-                    priceTotal:
-                })
-            })
-        }
-    }).then(res => res.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error : ', error));
+    });
+//    .then(function(response){
+//        if(response.success){
+//            return fetch('/payment', {
+//                method : 'POST',
+//                headers : {
+//                    'Content-Type' : 'application/json'
+//                },
+//                body : JSON.stringify({
+//                    userId:
+//                    movieName:
+//                    startDate:
+//                    startTime:
+//                    endTime:
+//                    selectSeat:
+//                    selectSeatNum:
+//                    priceTotal:
+//                })
+//            })
+//        }
+//    }).then(res => res.json())
+//         .then(data => console.log(data))
+//         .catch(error => console.error('Error : ', error));
 }
 
 
 $(document).ready(function(){
-    $("#ageCategory, #ticketCount").change(function(){
-        var age = $("#ageCategory").val();
-        var count = parseInt($("#ticketCount").val(), 10);
+    var prevValues = {childrenCount: 0, teenCount: 0, adultCount: 0};
 
-        $.ajax({
-            url: '/getPrice',
-            type: 'post',
-            data: JSON.stringify({ age: age }),
-            contentType: 'application/json',
-            dataType : 'json',
-            success: function(data) {
-                var total = data.price * count;
-                var formattedTotal = total.toLocaleString('ko-KR');
-                $(".ticket-price").html(formattedTotal + "<span>원</span>");
-                $("input[name='moviePrice']").val(total);
-            }
-        });
+    $("#childrenCount, #teenCount, #adultCount").each(function() {
+        prevValues[$(this).attr('id')] = $(this).val();
     });
+
+    $("#childrenCount, #teenCount, #adultCount").change(function(){
+        var children = parseInt($("#childrenCount").val(), 10);
+        var teen = parseInt($("#teenCount").val(), 10);
+        var adult = parseInt($("#adultCount").val(), 10);
+
+        var totalPeople = children + teen + adult;
+
+        // 현재 좌석 수 가져오기
+        let currentSeats = parseInt($('#current-seat').text());
+
+        if (totalPeople > currentSeats) {
+            alert("현재 좌석 수를 초과할 수 없습니다.");
+            $(this).val(prevValues[$(this).attr('id')]); // 이전 값으로 되돌리기
+            return;
+        }
+
+         // 이전 값을 업데이트
+         prevValues[$(this).attr('id')] = $(this).val();
+
+         // 총 가격 초기화
+         totalTicketPrice = 0;
+
+         // 어린이
+         $.ajax({
+             url: '/getPrice',
+             type: 'post',
+             data: JSON.stringify({ age: "어린이", count : children }),
+             contentType : 'application/json',
+             dataType : 'json',
+             success : function(data){
+                 updatePrice(data.price * children);
+             }
+         });
+
+          // 청소년
+          $.ajax({
+              url:'/getPrice',
+              type:'post',
+              data : JSON.stringify({age:"청소년", count : teen}),
+              contentType:'application/json',
+              dataType:'json',
+              success:function(data){
+                  updatePrice(data.price * teen);
+              }
+          });
+
+           // 성인
+           $.ajax({
+               url:'/getPrice',
+               type:'post',
+               data : JSON.stringify({age:"성인", count : adult}),
+               contentType:'application/json',
+               dataType:'json',
+               success:function(data){
+                   updatePrice(data.price * adult);
+               }
+           });
+      });
 });
+
+var totalTicketPrice = 0;
+function updatePrice(priceToAdd) {
+    totalTicketPrice += priceToAdd;
+    $(".ticket-price").html(totalTicketPrice.toLocaleString('ko-KR') + "<span>원</span>");
+    $("input[name='moviePrice']").val(totalTicketPrice);
+}
+
+$(document).ready(function(){
+    let maxSeats = 0;
+
+    $(".select-person").change(function() {
+        // 총 인원 계산
+        maxSeats = parseInt($('#childrenCount').val()) + parseInt($('#teenCount').val()) + parseInt($('#adultCount').val());
+
+        // 현재 선택된 좌석 수가 새로운 최대값보다 많으면 초과하는 만큼 제거
+        let selectedSeats = $('.selected-seat');
+        if (selectedSeats.length > maxSeats) {
+            for (let i = maxSeats; i < selectedSeats.length; i++) {
+                $(selectedSeats[i]).removeClass('selected-seat');
+            }
+        }
+
+        // seatInfo 업데이트
+        updateSeatInfo();
+    });
+
+    $(".seat").click(function(){
+        let currentSelected = $('.selected-seat').length;
+
+        if (!$(this).hasClass('selected-seat') && currentSelected >= maxSeats) {
+            alert('최대 인원을 초과할 수 없습니다.');
+            return;
+        }
+
+         // 배경색 변경
+         $(this).toggleClass('selected-seat');
+
+         // seatInfo 업데이트
+         updateSeatInfo();
+     });
+});
+
+function updateSeatInfo() {
+    let selectedSeatValues = [];
+    $('.selected-seat').each(function() {
+      selectedSeatValues.push($(this).data('hidden-value'));
+    });
+
+    $('#seatInfo').text(selectedSeatValues.join(', '));
+}

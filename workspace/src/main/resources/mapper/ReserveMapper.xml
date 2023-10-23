@@ -5,7 +5,7 @@
     <!-- 결제정보 DB 추가 -->
     <insert id="insertReserve" parameterType="com.example.demo.domain.dto.ReserveDTO">
         INSERT INTO TBL_RESERVE
-        VALUES (#{userId}, #{movieId}, now(),
+        VALUES (#{userId}, #{movieName}, now(),
         #{startDate}, #{startTime}, #{endTime}, #{selectSeat},
         #{selectSeatNum}, #{priceTotal})
     </insert>

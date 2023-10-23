@@ -12,7 +12,7 @@ public class ReserveDTO {
 
     private int reserveId;
     private String userId;
-    private int movieId;
+    private String movieName;
     private Date reserveDate;
     private Date startDate;
     private Time startTime;

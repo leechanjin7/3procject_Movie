@@ -221,7 +221,6 @@
 }
 
 .select-person {
-    float: right;
     font-size: 14px;
     padding: 5px 0;
 }
@@ -393,4 +392,40 @@ font-size:12px;line-height:1.5;font-family:'Noto Sans KR','돋움',Dotum,'굴림
   display: block;
   font-size: 12px;
   color: red;
+}
+
+.seat{
+    background-color: #444451;
+    height: 12px;
+    width: 15px;
+    margin: 3px;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.seat.selected-seat {
+    background-color: green;
+}
+.seat.selected{
+    background-color: #6feaf6;
+}
+.seat.occupied{
+    background-color: #fff;
+}
+.seat-container{
+    perspective: 1000px;
+    margin-bottom: 30px;
+}
+.row{
+    display : flex;
+}
+.seat:nth-of-type(2){
+    margin-right: 18px;
+}
+.seat:nth-last-of-type(2){
+    margin-left: 18px;
+}
+.seat:not(.occupied):hover{
+    cursor: pointer;
+    transform: scale(1.2);
 }

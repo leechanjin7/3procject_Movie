@@ -8,5 +8,11 @@
         FROM TBL_PLAYMOVIE
     </select>
 
+    <!-- 날짜 조회 -->
+    <select id="findDateTime" resultType="Date" >
+        SELECT endDate
+        FROM TBL_PLAYMOVIE
+        WHERE PLAYMOVIE = #{playmovie}
+    </select>
 
 </mapper>
