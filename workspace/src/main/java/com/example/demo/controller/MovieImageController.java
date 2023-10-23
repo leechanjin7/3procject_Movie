@@ -28,6 +28,7 @@ public class MovieImageController {
 
 //        System.out.println("GET /main...");
         List<MovieImageDTO> movies = movieImageService.selectRatingImage();
+
         model.addAttribute("movies", movies);
 
     }

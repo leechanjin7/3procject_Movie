@@ -18,7 +18,7 @@ public class ReserveDTO {
     private Time startTime;
     private Time endTime;
     private String selectSeat;
-    private int selectSeatNum;
+    private String selectSeatNum;
     private int priceTotal;
 
 }

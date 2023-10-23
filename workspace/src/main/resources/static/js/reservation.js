@@ -212,7 +212,29 @@ function requestPayment() {
         payMethod: "CARD",
         customer: {customerId:"홍길동",
         phoneNumber:"01011111111"}
-    });
+    })
+    .then(function(response){
+        if(response.success){
+            return fetch('/reserve', {
+                method : 'POST',
+                headers : {
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify({
+                    userId:
+                    movieId:
+                    startDate:
+                    startTime:
+                    endTime:
+                    selectSeat:
+                    selectSeatNum:
+                    priceTotal:
+                })
+            })
+        }
+    }).then(res => res.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error : ', error));
 }
 
 

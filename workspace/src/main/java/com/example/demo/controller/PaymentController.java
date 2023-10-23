@@ -146,7 +146,7 @@ public class PaymentController {
     }
 
 
-    //     결제 취소 아직 미완성
+    //결제 취소
     @GetMapping("/cancel")
     public String refound(){
 
