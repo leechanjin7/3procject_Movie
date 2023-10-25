@@ -1,4 +1,4 @@
-MovieRating
+MovieRatingProject
 =
 
 ## ▶️ 개발 동기
