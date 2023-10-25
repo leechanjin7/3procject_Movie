@@ -1,4 +1,7 @@
-MovieRating
+###### MovieRating
+
+<br/>
+
 03PROJECTPLAN
 =
 
@@ -90,11 +93,11 @@ MovieRating
 
 ##### Back-End 
 <img src="[https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)"/>
+<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 
 ##### Dev Tool
 <img src="https://img.shields.io/badge/SpringBoot-6DB33F.svg?style=for-the-badge&logo=springboot&logoColor=white">
 <img src="https://img.shields.io/badge/intellijidea-000000.svg?style=for-the-badge&logo=intellijidea&logoColor=white">
-<img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
 <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white">
 <img src="https://img.shields.io/badge/AWS-232F3E.svg?style=for-the-badge&logo=amazonaws&logoColor=white">
