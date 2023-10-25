@@ -89,7 +89,7 @@ MovieRating
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 
 ##### Back-End 
-<img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/>
+<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"/>
 
 ##### Dev Tool
 <img src="https://img.shields.io/badge/SpringBoot-6DB33F.svg?style=for-the-badge&logo=springboot&logoColor=white">
@@ -112,7 +112,7 @@ https://simpleicons.org/?q=aws <br/>
 
 |END POINT|METHOD|DESCRIPTION|
 |------|---|---|
-|/movie/movielist|GET| 영화목록 보기
+|/movie/movielist|GET| 전체영화목록 보기
 |/movie/orderList|POST| 결제내역 보기
 <br/>
 
