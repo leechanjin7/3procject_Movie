@@ -37,10 +37,10 @@ MovieRating
 
 ## ▶️ 개발 환경(플랫폼)
 
-##### OS : WINDOW Server 2022 base
-##### CPU SPEC : I5 Intel 
-##### RAM SPEC : 16GB SAMSUNG DDR4
-##### DISK SPEC : 100GB SSD 
+##### OS : Amazon Linux release 2023
+##### CPU : Intel(R) Xeon(R) CPU E5-2676 v3
+##### RAM : 1GB + SWAP 2GB
+##### disk : 30GB
 
 <br/>
 
@@ -77,23 +77,29 @@ MovieRating
 
 ##### 다음 주소 API
 ##### 원포트 결제 API
+##### TMDB MOVIE API
 
 <br/>
 
 ## ▶️ 기술스택
-<img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
 ##### Front-End
 <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-#0769AD
 
 ##### Back-End 
+<img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white"/>
 
+##### Dev Tool
+<img src="https://img.shields.io/badge/SpringBoot-6DB33F.svg?style=for-the-badge&logo=springboot&logoColor=white">
+<img src="https://img.shields.io/badge/intellijidea-000000.svg?style=for-the-badge&logo=intellijidea&logoColor=white">
 <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
 <img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white">
-<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+<img src="https://img.shields.io/badge/AWS-232F3E.svg?style=for-the-badge&logo=amazonaws&logoColor=white">
+<img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"/>
+
 
 [참고 배지 싸이트] <br/>
 https://simpleicons.org/?q=aws <br/>
