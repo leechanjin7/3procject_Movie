@@ -83,6 +83,10 @@ MovieRatingProject
 ## ▶️ 기술스택
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
+##### 사용빌드도구
+- 사용빌드도구 : gradle
+- ViewTemplate : thymeleaf, jsp ...
+
 ##### Front-End
 <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
