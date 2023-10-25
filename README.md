@@ -1,8 +1,4 @@
-###### MovieRating
-
-<br/>
-
-03PROJECTPLAN
+MovieRating
 =
 
 ## ▶️ 개발 동기
