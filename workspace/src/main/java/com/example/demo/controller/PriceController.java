@@ -23,15 +23,12 @@ public class PriceController {
     public ResponseEntity<Map<String, Object>> getPrice(@RequestBody Map<String, String> payload) {
         String age = payload.get("age");
 
-        // Validate age
         if (!(age.equals("어린이") || age.equals("청소년") || age.equals("성인"))) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", "Invalid age value: " + age));
         }
 
-        // Get PriceDTO from DB based on age...
         PriceDTO priceDto = priceService.getPriceByAge(age);
 
-        // If no price found for the given age
         if (priceDto == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "No price found for the given age: " + age));
         }

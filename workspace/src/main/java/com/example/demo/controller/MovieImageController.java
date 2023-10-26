@@ -25,8 +25,6 @@ public class MovieImageController {
     //이미지 뿌리기
     @GetMapping("/main")
     public void GETMovies(Model model){
-
-//        System.out.println("GET /main...");
         List<MovieImageDTO> movies = movieImageService.selectRatingImage();
 
         model.addAttribute("movies", movies);

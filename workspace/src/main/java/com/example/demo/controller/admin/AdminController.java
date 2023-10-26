@@ -72,6 +72,5 @@ public class AdminController {
             model.addAttribute("movieDetail", null);
         }
 
-
     }
 }
