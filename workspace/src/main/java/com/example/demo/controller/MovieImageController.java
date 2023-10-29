@@ -23,7 +23,7 @@ public class MovieImageController {
     private final MovieImageService movieImageService;
 
     //이미지 뿌리기
-    @GetMapping("/main")
+    @GetMapping("/index")
     public void GETMovies(Model model){
         List<MovieImageDTO> movies = movieImageService.selectRatingImage();
 

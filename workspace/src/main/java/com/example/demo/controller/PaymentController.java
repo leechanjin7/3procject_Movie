@@ -137,7 +137,7 @@ public class PaymentController {
         System.out.println(response);
         System.out.println(response.getBody());
 
-        return "main";
+        return "index";
     }
 
 
@@ -164,7 +164,7 @@ public class PaymentController {
         } catch (JsonProcessingException e) {
             // JSON 변환 오류 처리
             e.printStackTrace();
-            return "main";
+            return "index";
         }
 
         // HEADER 와 PARAMETER를 합치는 작업
@@ -176,7 +176,7 @@ public class PaymentController {
         System.out.println(response);
         System.out.println(response.getBody());
 
-        return "main";
+        return "index";
 
     }
 //

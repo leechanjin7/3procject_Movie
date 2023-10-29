@@ -57,11 +57,10 @@ dependencies {
 	implementation 'org.springframework.security:spring-security-web:5.4.2'
 	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
 	implementation 'org.springframework.security:spring-security-config:5.4.2'
-	 // https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons
+	//https://mvnrepository.com/artifact/org.junit.platform/junit-platform-commons
 	implementation 'org.junit.platform:junit-platform-commons:1.8.2'
-
-
-
+	//유효성 검사
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 }
 

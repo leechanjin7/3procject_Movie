@@ -10,7 +10,7 @@ public class MovieprojectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MovieprojectApplication.class, args);
-		openChromeBrowser("http://localhost:10000/main");
+		openChromeBrowser("http://localhost:10000/index");
 	}
 
 	private static void openChromeBrowser(String url) {
